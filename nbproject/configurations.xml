@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>edaPIC33Hardware.h</itemPath>
-      <itemPath>newxc16_header1.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -303,6 +302,16 @@
         </C30Global>
       </item>
       <item path="primzahlen.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="rechenleistung.c" ex="true" overriding="false">
         <C30>

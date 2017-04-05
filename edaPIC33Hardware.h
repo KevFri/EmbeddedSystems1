@@ -47,20 +47,43 @@
 #define LED2 34 //RB10
 #define LED3 35 //RB11
 
+#define D200 LED0
+#define D201 LED1
+#define D202 LED2 
+#define D203 LED3
+
+
 #define SW0 96  //RG12
 #define SW1 97  //RG13
 #define SW2 95  //RG14
 #define SW3 1   //RG15
 
-#define HIGH    1
-#define LOW     0
+#define SW200 SW0
+#define SW201 SW1
+#define SW202 SW2
+#define SW203 SW3
+
+//TODO add Pins in Functions:
+#define INCA    90 //RG0
+#define INCB    89 //RG1
+#define INCSW   14 //RG9
+
+//TODO add Pins in Functions:
+#define DIP0    10 //RG6 
+#define DIP1    11 //RG7
+
+#define HIGH    1 //Logical HIGH
+#define LOW     0 //Logical LOW
 
 // TODO Insert declarations or function prototypes (right here) to leverage
-void pinMode(uint8_t ui8Port, uint8_t ui8Mode);
+// TODO Insert Doxygen
+void pinMode(const uint8_t ui8Port,const  uint8_t ui8Mode);
 
-void digitalWrite(uint8_t ui8Port, uint8_t ui8Value);
+void digitalWrite(const uint8_t ui8Port,const  uint8_t ui8Value);
 
-uint8_t digitalRead(uint8_t ui8Port);
+void digitalToggle(const uint8_t ui8Port);
+
+uint8_t digitalRead(const uint8_t ui8Port);
 
 // live documentation
 
