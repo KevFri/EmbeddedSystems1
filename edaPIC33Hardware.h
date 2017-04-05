@@ -26,6 +26,11 @@
  * Revision history: 
  */
 
+// Check for Project Settings
+#ifndef __dsPIC33EP512MU810__
+    #error "Wrong Controller"
+#endif
+
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef EDAPIC33HARDWARE_H
@@ -33,15 +38,14 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h> 
-// TODO Insert appropriate #include <>
 
-// TODO Insert declarations
+// I/O Port Modes
 #define INPUT            0
 #define INPUT_PULLDOWN   1
 #define INPUT_PULLUP     2
 #define OUTPUT           3
 
-//defined als PIN
+//LEDs
 #define LED0 32 //RB8
 #define LED1 33 //RB9
 #define LED2 34 //RB10
@@ -52,7 +56,7 @@
 #define D202 LED2 
 #define D203 LED3
 
-
+//Push-Buttons
 #define SW0 96  //RG12
 #define SW1 97  //RG13
 #define SW2 95  //RG14
@@ -63,17 +67,22 @@
 #define SW202 SW2
 #define SW203 SW3
 
-//TODO add Pins in Functions:
+//Incremental Encoder
 #define INCA    90 //RG0
 #define INCB    89 //RG1
 #define INCSW   14 //RG9
 
-//TODO add Pins in Functions:
+//DIP Switches
 #define DIP0    10 //RG6 
 #define DIP1    11 //RG7
 
+//Logical level HIGH / LOW
 #define HIGH    1 //Logical HIGH
 #define LOW     0 //Logical LOW
+
+//TODO add piezo in functions PinMode, DigitalRead, DigitalWrite
+#define PIEZO   12 //RG8
+#define Piezo PIEZO
 
 // TODO Insert declarations or function prototypes (right here) to leverage
 // TODO Insert Doxygen
