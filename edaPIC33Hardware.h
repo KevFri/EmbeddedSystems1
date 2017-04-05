@@ -39,6 +39,10 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h> 
 
+//Logical level HIGH / LOW
+#define HIGH    1 //Logical HIGH
+#define LOW     0 //Logical LOW
+
 // I/O Port Modes
 #define INPUT            0
 #define INPUT_PULLDOWN   1
@@ -51,21 +55,11 @@
 #define LED2 34 //RB10
 #define LED3 35 //RB11
 
-#define D200 LED0
-#define D201 LED1
-#define D202 LED2 
-#define D203 LED3
-
 //Push-Buttons
 #define SW0 96  //RG12
 #define SW1 97  //RG13
 #define SW2 95  //RG14
 #define SW3 1   //RG15
-
-#define SW200 SW0
-#define SW201 SW1
-#define SW202 SW2
-#define SW203 SW3
 
 //Incremental Encoder
 #define INCA    90 //RG0
@@ -76,25 +70,54 @@
 #define DIP0    10 //RG6 
 #define DIP1    11 //RG7
 
-//Logical level HIGH / LOW
-#define HIGH    1 //Logical HIGH
-#define LOW     0 //Logical LOW
-
 //TODO add piezo in functions PinMode, DigitalRead, DigitalWrite
 #define PIEZO   12 //RG8
+
+#define D200 LED0
+#define D201 LED1
+#define D202 LED2 
+#define D203 LED3
+
+#define SW200 SW0
+#define SW201 SW1
+#define SW202 SW2
+#define SW203 SW3
+
 #define Piezo PIEZO
 
-// TODO Insert declarations or function prototypes (right here) to leverage
-// TODO Insert Doxygen
+/** 
+ * @brief Configures the specified pin to behave either as an input or an output.
+ * @brief it is possible to enable the internal pullup / pulldown resistors with the mode INPUT_PULLUP, INPUT_PULLDOWN
+ * @param uint8_t ui8Port   Number of the Port to configure.
+ * @param uint8_t ui8Mode   Mode to configure.
+ * @details Provided modes: INPUT, INPUT_PULLUP, INPUT_PULLDOWN, OUTPUT
+ * @attention   pinMode is not implemented for all pins (right now)
+ */
 void pinMode(const uint8_t ui8Port,const  uint8_t ui8Mode);
 
+/** 
+ * @brief Write a HIGH or a LOW value to a digital pin.
+ * @param uint8_t ui8Port   Number of the pin.
+ * @param uint8_t ui8Value  Value to write. Ether HIGH or LOL
+ * @details Provided values: HIGH, LOW, 1,0
+ * @attention Each Value of ui8Value unlike zero writes HIGH to the Outputport
+ * @attention digitalWrite is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ */
 void digitalWrite(const uint8_t ui8Port,const  uint8_t ui8Value);
 
+/** 
+ * @brief toggles the digital pin
+ * @param uint8_t ui8Port   Number of the pin to toggle.
+ * @attention digitalToggle is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ */
 void digitalToggle(const uint8_t ui8Port);
 
+/** 
+ * @brief toggles the digital pin.
+ * @param uint8_t ui8Port   Number of the pin to toggle.
+ * @attention digitalToggle is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ */
 uint8_t digitalRead(const uint8_t ui8Port);
-
-// live documentation
 
 #endif	/* EDAPIC33HARDWARE_H */
 

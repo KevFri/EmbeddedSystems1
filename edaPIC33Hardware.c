@@ -49,7 +49,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
                 TRISBbits.TRISB8=0;     //Pin B8: Digital Output   0 for Output / 1 for Input
                 break;
 
-            default: 
+            default:
                 break;
             }
         break;

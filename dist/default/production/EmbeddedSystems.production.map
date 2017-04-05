@@ -60,9 +60,9 @@ Program Memory  [Origin = 0x200, Length = 0x55600]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x100           0x180  (384)
-.text                        0x300               0x620           0x930  (2352)
+.text                        0x300               0x80a           0xc0f  (3087)
 
-                 Total program memory used (bytes):          0xab0  (2736) <1%
+                 Total program memory used (bytes):          0xd8f  (3471) <1%
 
 
 Auxflash Memory  [Origin = 0x7fc000, Length = 0x3ffa]
@@ -99,11 +99,11 @@ External Symbols in Program Memory (by address):
                   0x000248                  __data_init
                   0x0002fa                  __DefaultInterrupt
                   0x000300                  _pinMode
-                  0x000662                  _digitalWrite
-                  0x0006c8                  _digitalToggle
-                  0x000764                  _digitalRead
-                  0x000898                  _delay_ms
-                  0x0008c8                  _main
+                  0x0007fa                  _digitalWrite
+                  0x000872                  _digitalToggle
+                  0x00092e                  _digitalRead
+                  0x000a82                  _delay_ms
+                  0x000ab2                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -112,11 +112,11 @@ External Symbols in Program Memory (by name):
                   0x000248                  __data_init_extended
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000898                  _delay_ms
-                  0x000764                  _digitalRead
-                  0x0006c8                  _digitalToggle
-                  0x000662                  _digitalWrite
-                  0x0008c8                  _main
+                  0x000a82                  _delay_ms
+                  0x00092e                  _digitalRead
+                  0x000872                  _digitalToggle
+                  0x0007fa                  _digitalWrite
+                  0x000ab2                  _main
                   0x000300                  _pinMode
 
 Memory Configuration
@@ -223,10 +223,10 @@ __FUID0
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x16b1
+.debug_info       0x000000       0x17c5
  *(.debug_info)
- .debug_info      0x000000       0x12e3 build/default/production/edaPIC33Hardware.o
- .debug_info      0x0012e3        0x3ce build/default/production/Main.o
+ .debug_info      0x000000       0x13f7 build/default/production/edaPIC33Hardware.o
+ .debug_info      0x0013f7        0x3ce build/default/production/Main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x20a
@@ -234,20 +234,20 @@ __FUID0
  .debug_abbrev    0x000000         0xff build/default/production/edaPIC33Hardware.o
  .debug_abbrev    0x0000ff        0x10b build/default/production/Main.o
 
-.debug_line       0x000000        0x317
+.debug_line       0x000000        0x3bf
  *(.debug_line)
- .debug_line      0x000000        0x20e build/default/production/edaPIC33Hardware.o
- .debug_line      0x00020e        0x109 build/default/production/Main.o
+ .debug_line      0x000000        0x2b6 build/default/production/edaPIC33Hardware.o
+ .debug_line      0x0002b6        0x109 build/default/production/Main.o
 
 .debug_frame      0x000000         0xd0
  *(.debug_frame)
  .debug_frame     0x000000         0x84 build/default/production/edaPIC33Hardware.o
  .debug_frame     0x000084         0x4c build/default/production/Main.o
 
-.debug_str        0x000000         0x8b
+.debug_str        0x000000         0x94
  *(.debug_str)
- .debug_str       0x000000         0x80 build/default/production/edaPIC33Hardware.o
- .debug_str       0x000080          0xb build/default/production/Main.o
+ .debug_str       0x000000         0x89 build/default/production/edaPIC33Hardware.o
+ .debug_str       0x000089          0xb build/default/production/Main.o
 
 .debug_loc
  *(.debug_loc)
@@ -2971,29 +2971,29 @@ OUTPUT(dist/default/production/EmbeddedSystems.production.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000030        0x1d2
+                  0x000030        0x1ef
  .debug_pubtypes
-                  0x000030        0x192 build/default/production/edaPIC33Hardware.o
+                  0x000030        0x1af build/default/production/edaPIC33Hardware.o
  .debug_pubtypes
-                  0x0001c2         0x40 build/default/production/Main.o
+                  0x0001df         0x40 build/default/production/Main.o
 
 __c30_signature
-                  0x000202         0x18
+                  0x00021f         0x18
  __c30_signature
-                  0x000202          0x6 build/default/production/edaPIC33Hardware.o
+                  0x00021f          0x6 build/default/production/edaPIC33Hardware.o
  __c30_signature
-                  0x000208          0x6 build/default/production/Main.o
+                  0x000225          0x6 build/default/production/Main.o
  __c30_signature
-                  0x00020e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o)
+                  0x00022b          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o)
  __c30_signature
-                  0x000214          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_extended.o)
+                  0x000231          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_extended.o)
 
-.text             0x000300        0x620
- .text            0x000300        0x598 build/default/production/edaPIC33Hardware.o
+.text             0x000300        0x80a
+ .text            0x000300        0x782 build/default/production/edaPIC33Hardware.o
                   0x000300                  _pinMode
-                  0x000662                  _digitalWrite
-                  0x0006c8                  _digitalToggle
-                  0x000764                  _digitalRead
- .text            0x000898         0x88 build/default/production/Main.o
-                  0x000898                  _delay_ms
-                  0x0008c8                  _main
+                  0x0007fa                  _digitalWrite
+                  0x000872                  _digitalToggle
+                  0x00092e                  _digitalRead
+ .text            0x000a82         0x88 build/default/production/Main.o
+                  0x000a82                  _delay_ms
+                  0x000ab2                  _main
