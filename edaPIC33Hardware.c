@@ -372,6 +372,129 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             }
             break;
             
+        case INCA:
+            switch(ui8Mode) 
+            {
+                case INPUT:
+                    //configure input
+                    //ANSELBbits.ANSB8=0;   //unimplemented read as 0   //Digital I/O    0 for Digital / 1 for Analog
+                    CNENGbits.CNIEG0=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG0=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG0=0;     //Disable weak pulldown
+                    TRISGbits.TRISG0=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                break;
+
+                case INPUT_PULLDOWN:
+                    //configure input pulldown
+                    CNENGbits.CNIEG0=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG0=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG0=1;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG0=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case INPUT_PULLUP:
+                    //configure input pullup  
+                    CNENGbits.CNIEG0=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG0=1;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG0=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG0=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case OUTPUT:
+                    //configure output
+                    CNENGbits.CNIEG0=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG0=0;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG0=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG0=0;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                default: 
+                    break;
+            }
+            break;
+            
+                    case INCB:
+            switch(ui8Mode) 
+            {
+                case INPUT:
+                    //configure input
+                    //ANSELBbits.ANSB8=0;   //unimplemented read as 0   //Digital I/O    0 for Digital / 1 for Analog
+                    CNENGbits.CNIEG1=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG1=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG1=0;     //Disable weak pulldown
+                    TRISGbits.TRISG1=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                break;
+
+                case INPUT_PULLDOWN:
+                    //configure input pulldown
+                    CNENGbits.CNIEG1=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG1=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG1=1;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG1=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case INPUT_PULLUP:
+                    //configure input pullup  
+                    CNENGbits.CNIEG1=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG1=1;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG1=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG1=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case OUTPUT:
+                    //configure output
+                    CNENGbits.CNIEG1=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG1=0;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG1=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG1=0;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                default: 
+                    break;
+            }
+            break;
+            
+                    case INCSW:
+            switch(ui8Mode) 
+            {
+                case INPUT:
+                    //configure input
+                    //ANSELBbits.ANSB8=0;   //unimplemented read as 0   //Digital I/O    0 for Digital / 1 for Analog
+                    CNENGbits.CNIEG9=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG9=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG9=0;     //Disable weak pulldown
+                    TRISGbits.TRISG9=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                break;
+
+                case INPUT_PULLDOWN:
+                    //configure input pulldown
+                    CNENGbits.CNIEG9=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG9=0;     //Disable weak pullup
+                    CNPDGbits.CNPDG9=1;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG9=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case INPUT_PULLUP:
+                    //configure input pullup  
+                    CNENGbits.CNIEG9=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG9=1;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG9=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG9=1;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                case OUTPUT:
+                    //configure output
+                    CNENGbits.CNIEG9=0;     //Disable change notification interrupt
+                    CNPUGbits.CNPUG9=0;     //pullup    0 off / 1 on
+                    CNPDGbits.CNPDG9=0;     //pulldown  0 off / 1 on
+                    TRISGbits.TRISG9=0;     //Pin B8: Digital Output   0 for Output / 1 for Input
+                    break;
+
+                default: 
+                    break;
+            }
+            break;
+            
         default:
             break;
     }
@@ -477,16 +600,29 @@ uint8_t digitalRead(const uint8_t ui8Port)
         case LED3:
             return PORTBbits.RB11;
             break;
+            
         case DIP0:
             return PORTGbits.RG6;
             break;
+            
         case DIP1:
             return PORTGbits.RG7;
             break;
-        
+
+        case INCA:
+            return PORTGbits.RG0;
+            break;
+            
+        case INCB:
+            return PORTGbits.RG1;
+            break;
+            
+        case INCSW:
+            return PORTGbits.RG9;
+            break;
+            
         default:
             return 0;
             break;  
     }
-    
 }
