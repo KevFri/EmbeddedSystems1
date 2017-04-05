@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Rechenleistung</name>
+            <name>EmbeddedSystems1</name>
             <creation-uuid>b107c376-111c-4d31-b2d6-ad2f5205d7aa</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
