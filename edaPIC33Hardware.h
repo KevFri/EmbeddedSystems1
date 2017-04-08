@@ -49,29 +49,131 @@
 #define INPUT_PULLUP     2
 #define OUTPUT           3
 
+//all Pins with Description
+#define RG_15    1
+//#define VDD     2
+#define RE_5     3
+#define RE_6     4
+#define RE_7     5
+#define RC_1     6
+#define RC_2     7
+#define RC_3     8
+#define RC_4     9
+#define RG_6     10
+#define RG_7     11
+#define RG_8     12
+//#define MCLR    13
+#define RG_9     14
+//#define VSS     15
+//#define VDD     16
+#define RA_0     17
+#define RE_8     18
+#define RE_9     19
+#define RB_5     20
+#define RB_4     21
+#define RB_3     22
+#define RB_2     23
+#define RB_1     24
+#define RB_0     25
+#define RB_6     26
+#define RB_7     27
+#define RA_9     28
+#define RA_10    29
+//#define AVDD    30
+//#define AVSS    31
+#define RB_8     32
+#define RB_9     33
+#define RB_10    34
+#define RB_11    35
+//#define VSS     36
+//#define VDD     37
+#define RA_1     38
+#define RF_13    39
+#define RF_12    40
+#define RB_12    41
+#define RB_13    42
+#define RB_14    43
+#define RB_15    44
+//#define VSS     45
+//#define VDD     46  
+#define RD_14    47
+#define RD_15    48
+#define RF_4     49
+#define RF_5     50
+#define RF_3     51
+#define RF_2     52
+#define RF_8     53
+//#define VBUS    54
+//#define VUSB3V3 55
+#define RG_3     56
+#define RG_2     57
+#define RA_2     58
+#define RA_3     59
+#define RA_4     60
+#define RA_5     61
+//#define VDD     62
+#define RC_12    63
+#define RC_15    64
+//#define VSS     65
+#define RA_14    66
+#define RA_15    67
+#define RD_8     68
+#define RD_9     69
+#define RD_10    70
+#define RD_11    71
+#define RD_0     72
+#define RC_13    73
+#define RC_14    74
+//#define VSS     75
+#define RD_1     76
+#define RD_2     77
+#define RD_3     78
+#define RD_12    79
+#define RD_13    80
+#define RD_4     81
+#define RD_5     82
+#define RD_6     83
+#define RD_7     84
+//#define VCAP    85
+//#define VDD     86
+#define RF_0     87
+#define RF_1     88
+#define RG_1     89
+#define RG_0     90
+#define RA_6     91
+#define RA_7     92
+#define RE_0     93
+#define RE_1     94
+#define RG_14    95
+#define RG_12    96
+#define RG_13    97
+#define RE_2     98
+#define RE_3     99
+#define RE_4     100
+
 //LEDs
-#define LED0 32 //RB8
-#define LED1 33 //RB9
-#define LED2 34 //RB10
-#define LED3 35 //RB11
+#define LED0 RB_8
+#define LED1 RB_9
+#define LED2 RB_10
+#define LED3 RB_11
 
 //Push-Buttons
-#define SW0 96  //RG12
-#define SW1 97  //RG13
-#define SW2 95  //RG14
-#define SW3 1   //RG15
+#define SW0 RG_12
+#define SW1 RG_13
+#define SW2 RG_14
+#define SW3 RG_15
 
 //Incremental Encoder
-#define INCA    90 //RG0
-#define INCB    89 //RG1
-#define INCSW   14 //RG9
+#define INCA  RG_0
+#define INCB  RG_1
+#define INCSW RG_9
 
 //DIP Switches
-#define DIP0    10 //RG6 
-#define DIP1    11 //RG7
+#define DIP0  RG_6 
+#define DIP1  RG_7
 
 //TODO add piezo in functions PinMode, DigitalRead, DigitalWrite
-#define PIEZO   12 //RG8
+#define PIEZO RG_8
 
 #define D200 LED0
 #define D201 LED1
