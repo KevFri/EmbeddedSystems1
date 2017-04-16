@@ -220,6 +220,4 @@ void digitalToggle(const uint8_t ui8Port);
  * @attention digitalToggle is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
  */
 uint8_t digitalRead(const uint8_t ui8Port);
-
 #endif	/* EDAPIC33HARDWARE_H */
-

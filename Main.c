@@ -23,6 +23,7 @@
 #include <xc.h>         //Include appropriate controller specific headers
 #include <stdint.h>     //Standard typedefs
 #include "edaPIC33Hardware.h"
+#include "edaPIC33Timer.h"
 
 /* ***********************
  * Configuration Bits
@@ -61,28 +62,7 @@ void delay_ms(uint16_t u16milliseconds);
  * ***********************
  */
 
-/** 
- * @brief Provides u16milliseconds delay
- * @param u16milliseconds Delay in milliseconds
- * @details u16milliseconds=0 causes 65536 ms delay
- * @pre 7.37 MHz (Internal Fast RC), e. g.: <br>
- * _FOSCSEL(FNOSC_FRC); //Initial Oscillator:  Internal Fast RC <br>
- * _FOSC(POSCMD_NONE);  //Primary Oscillator disabled (quartz not used) <br>
- * s. 7.37 MHz DS70216C-page 39-19 <br>
- * @attention Code has to be changed if a different oscillator frequency is used.
- */
-void delay_ms(uint16_t u16milliseconds){
-    uint16_t ui16_i=0;
-    while(u16milliseconds){
-        for (ui16_i=0;ui16_i<331;ui16_i++){    //1 ms delay loop
-            __asm__ volatile("nop \n\t"
-                             "nop \n\t"
-                             "nop \n\t");
-        }//for
-        u16milliseconds--;
-    }//while
 
-}
 /* ***********************
  * Main
  * ***********************
@@ -99,34 +79,40 @@ int main() {
     PLLFBD = 455;
     CLKDIVbits.PLLPOST = 2;
     CLKDIVbits.PLLPRE = 2;
-    
-    
-    pinMode(LED0, OUTPUT);
-    pinMode(LED1, OUTPUT);
-    pinMode(LED2, OUTPUT);
-    pinMode(LED3, OUTPUT);
 
-    pinMode(SW0, INPUT_PULLUP);
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
+    /*
+    T1CONbits.TON = 0; // Disable Timer
+    //set the multiplexer to timer mode
+    T1CONbits.TCS = 0; // Select internal instruction cycle clock
+    T1CONbits.TGATE = 0; // Disable Gated Timer mode
+    //set prescaler
+    T1CONbits.TCKPS = 0b10; // Select 1:8 Prescaler
+    
+    TMR1 = 0x00; // Clear timer register
+    PR1 = 0xFFFF; // Load the period value
+    
+    //disable interrupt
+    IPC0bits.T1IP = 0x00; // Set Timer 1 Interrupt Priority Level
+    IFS0bits.T1IF = 0; // Clear Timer 1 Interrupt Flag
+    IEC0bits.T1IE = 0; // Enable Timer1 interrupt
+    
+    T1CONbits.TON = 1; // Start Timer
+    
+    pinMode(LED0,OUTPUT);
+    
+    int16_t t0 = (int16_t)TMR1;
+    int16_t t1;
+    int16_t dt=0;
+    */
+    //int16_t t1;
+     
 
     /* Endless Loop */
-    while(1){
+    pinMode(LED0,OUTPUT);
+    configTimer1PWM_1kHz(LED0, 140000000, 50);
 
-    digitalWrite(LED0, HIGH); //546ns
-    digitalWrite(LED0, LOW);  
-    
-    //LATBbits.LATB8 = HIGH;  //28,4ns
-    //LATBbits.LATB8 = LOW;
-            
-        
-    //digitalWrite(LED0, LOW);    //602ns
-    //digitalWrite(LED0, HIGH);  
-    //LATBbits.LATB8 = LOW;  //85,6ns
-    //LATBbits.LATB8 = HIGH;
-    
-    
+    while(1){  
+        onCycleTimer1PWM_1kHz();
     }//while
     
     return (EXIT_SUCCESS);  //never reached
