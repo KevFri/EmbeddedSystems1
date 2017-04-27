@@ -16,20 +16,20 @@
 #ifndef EDAPIC33HARDWARE_H
 #define	EDAPIC33HARDWARE_H
 
-#include <xc.h> // include processor files - each processor file is guarded.  
-#include <stdint.h> 
+#include <xc.h> //*include processor files - each processor file is guarded.  
+#include <stdint.h>//* include stdint for several datatypes 
 
-//Logical level HIGH / LOW
+//* Logical level HIGH / LOW
 #define HIGH    1 //Logical HIGH
 #define LOW     0 //Logical LOW
 
-// I/O Port Modes
+//* I/O Port Modes
 #define INPUT            0
 #define INPUT_PULLDOWN   1
 #define INPUT_PULLUP     2
 #define OUTPUT           3
 
-//all Pins with Description
+//*edaPIC33 definitions
 #define RG_15    1
 //#define VDD     2
 #define RE_5     3
@@ -131,40 +131,40 @@
 #define RE_3     99
 #define RE_4     100
 
-//LEDs
-#define LED0 RB_8
-#define LED1 RB_9
-#define LED2 RB_10
-#define LED3 RB_11
-
-//Push-Buttons
+//*Push-Buttons
 #define SW0 RG_12
 #define SW1 RG_13
 #define SW2 RG_14
 #define SW3 RG_15
 
-//Incremental Encoder
+//*Incremental Encoder
 #define INCA  RG_0
 #define INCB  RG_1
 #define INCSW RG_9
 
-//DIP Switches
+//* DIP Switches
 #define DIP0  RG_6 
 #define DIP1  RG_7
 
+//* PIEZO
 #define PIEZO RG_8
+#define Piezo PIEZO
 
+//*On Board LEDs
+#define LED0 RB_8
+#define LED1 RB_9
+#define LED2 RB_10
+#define LED3 RB_11
 #define D200 LED0
 #define D201 LED1
 #define D202 LED2 
 #define D203 LED3
 
+//* On Board Switches
 #define SW200 SW0
 #define SW201 SW1
 #define SW202 SW2
 #define SW203 SW3
-
-#define Piezo PIEZO
 
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
@@ -194,9 +194,9 @@ void digitalWrite(const uint8_t ui8Port,const  uint8_t ui8Value);
 void digitalToggle(const uint8_t ui8Port);
 
 /** 
- * @brief toggles the digital pin.
- * @param uint8_t ui8Port   Number of the pin to toggle.
- * @attention digitalToggle is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ * @brief reads the digital pin.
+ * @param uint8_t ui8Port   Number of the pin to read.
+ * @attention ...
  */
 uint8_t digitalRead(const uint8_t ui8Port);
 #endif	/* EDAPIC33HARDWARE_H */

@@ -64,10 +64,6 @@ void configTimer1PWM_1kHz(const uint8_t ui8PWMPort, uint32_t ui32FOSC, uint8_t u
 }
 
 
-/** 
- * @brief onCycle Function to generate PWM Signal with DutyCycle
- * @attention before calling this function call configTimer1PWM_1kHz func.
- */
 void onCycleTimer1PWM_1kHz()
 {
     static uint8_t _ui8Timer1_1kHz_Mode=0;
@@ -94,10 +90,6 @@ void onCycleTimer1PWM_1kHz()
     }  
 }
 
-/** 
- * @brief calculates new DutyCayle Parameter to generate PWM Signal
- * @attention before calling this function call configTimer1PWM_1kHz func.
- */
 void setTimer1PWM_DutyCycleParam(uint32_t ui32FOSC, uint8_t ui8DutyCycle)
 {
     uint64_t ui64NumOfIncrements =((uint64_t)ui32FOSC / 128000); //(2*64*1000) //Number of Increments for 1kHz

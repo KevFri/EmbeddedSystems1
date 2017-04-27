@@ -70,7 +70,7 @@ void enableInterrupt16BitTimer(uint8_t ui8Timer);
 void disableInterrupt16BitTimer(uint8_t ui8Timer);
 
 /** 
- * @brief clear timer interrupt glag
+ * @brief clear timer interrupt flag
  * @param uint8_t ui8Timer: choose preconfigured Timer (TIMER1 - TIMER9)
  * @attention
  */
@@ -86,24 +86,36 @@ void start16BitTimer(uint8_t ui8Timer);
 /** 
  * @brief stops the 16 Bit Timer
  * @param uint8_t ui8Timer: choose preconfigured Timer (TIMER1 - TIMER9)
- * 
  */
 void stop16BitTimer(uint8_t ui8Timer);
 
 
 
 
-//TODO Doxygen Documentation
+//* TODO Doxygen Documentation
+//* do not use this function
 uint8_t configTimer1PWM(const uint8_t ui8PWMPort, uint32_t ui32FOSC, uint32_t ui32PWMFrequenzy, uint8_t ui8DutyCycle);
 
-//TODO Doxygen Documentation
+/** 
+ * @brief onCycle Function to generate PWM Signal with DutyCycle
+ * @attention before calling this function call configTimer1PWM_1kHz func.
+ * @attention do not use this function
+ */
 void onCycleTimer1PWM();
 
-//TODO Doxygen Documentation
+//* TODO Doxygen Documentation
+//* do not use this function
 void configTimer1PWM_1kHz(const uint8_t ui8PWMPort, uint32_t ui32FOSC, uint8_t ui8DutyCycle);
 
-//TODO Doxygen Documentation
+//* TODO Doxygen Documentation
+//* !!do not use this function!!
 void onCycleTimer1PWM_1kHz();
+
+/** 
+ * @brief calculates new DutyCayle Parameter to generate PWM Signal
+ * @attention before calling this function call configTimer1PWM_1kHz func.
+ * @attention !!do not use this function!!
+ */
 void setTimer1PWM_DutyCycleParam(uint32_t ui32FOSC, uint8_t ui8DutyCycle);
 
 
