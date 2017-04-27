@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=edaPIC33Hardware.c Main.c edaPIC33Timer.c
+SOURCEFILES_QUOTED_IF_SPACED=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c MainVorlage.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/Main.o ${OBJECTDIR}/edaPIC33Timer.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/edaPIC33Hardware.o.d ${OBJECTDIR}/Main.o.d ${OBJECTDIR}/edaPIC33Timer.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/MainVorlage.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/edaPIC33Hardware.o.d ${OBJECTDIR}/edaPIC33Timer.o.d ${OBJECTDIR}/edaPIC33SystemTime.o.d ${OBJECTDIR}/MainVorlage.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/Main.o ${OBJECTDIR}/edaPIC33Timer.o
+OBJECTFILES=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/MainVorlage.o
 
 # Source Files
-SOURCEFILES=edaPIC33Hardware.c Main.c edaPIC33Timer.c
+SOURCEFILES=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c MainVorlage.c
 
 
 CFLAGS=
@@ -95,19 +95,26 @@ ${OBJECTDIR}/edaPIC33Hardware.o: edaPIC33Hardware.c  nbproject/Makefile-${CND_CO
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33Hardware.c  -o ${OBJECTDIR}/edaPIC33Hardware.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33Hardware.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33Hardware.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/Main.o: Main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Main.o.d 
-	@${RM} ${OBJECTDIR}/Main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Main.c  -o ${OBJECTDIR}/Main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/Main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/edaPIC33Timer.o: edaPIC33Timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/edaPIC33Timer.o.d 
 	@${RM} ${OBJECTDIR}/edaPIC33Timer.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33Timer.c  -o ${OBJECTDIR}/edaPIC33Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33Timer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33SystemTime.o: edaPIC33SystemTime.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33SystemTime.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33SystemTime.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33SystemTime.c  -o ${OBJECTDIR}/edaPIC33SystemTime.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33SystemTime.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33SystemTime.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/MainVorlage.o: MainVorlage.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/MainVorlage.o.d 
+	@${RM} ${OBJECTDIR}/MainVorlage.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MainVorlage.c  -o ${OBJECTDIR}/MainVorlage.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainVorlage.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/MainVorlage.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/edaPIC33Hardware.o: edaPIC33Hardware.c  nbproject/Makefile-${CND_CONF}.mk
@@ -117,19 +124,26 @@ ${OBJECTDIR}/edaPIC33Hardware.o: edaPIC33Hardware.c  nbproject/Makefile-${CND_CO
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33Hardware.c  -o ${OBJECTDIR}/edaPIC33Hardware.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33Hardware.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33Hardware.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/Main.o: Main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Main.o.d 
-	@${RM} ${OBJECTDIR}/Main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Main.c  -o ${OBJECTDIR}/Main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/Main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/edaPIC33Timer.o: edaPIC33Timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/edaPIC33Timer.o.d 
 	@${RM} ${OBJECTDIR}/edaPIC33Timer.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33Timer.c  -o ${OBJECTDIR}/edaPIC33Timer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33Timer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33SystemTime.o: edaPIC33SystemTime.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33SystemTime.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33SystemTime.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33SystemTime.c  -o ${OBJECTDIR}/edaPIC33SystemTime.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33SystemTime.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33SystemTime.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/MainVorlage.o: MainVorlage.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/MainVorlage.o.d 
+	@${RM} ${OBJECTDIR}/MainVorlage.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MainVorlage.c  -o ${OBJECTDIR}/MainVorlage.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainVorlage.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/MainVorlage.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>edaPIC33Timer.h</itemPath>
       <itemPath>edaPIC33Hardware.h</itemPath>
+      <itemPath>edaPIC33SystemTime.h</itemPath>
+      <itemPath>edaPIC33Oscillator.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,9 +20,12 @@
       <itemPath>rechenleistung.c</itemPath>
       <itemPath>primzahlen.c</itemPath>
       <itemPath>edaPIC33Hardware.c</itemPath>
-      <itemPath>Main.c</itemPath>
       <itemPath>PinModeMain.c</itemPath>
       <itemPath>edaPIC33Timer.c</itemPath>
+      <itemPath>edaPIC33SystemTime.c</itemPath>
+      <itemPath>TimerMain.c</itemPath>
+      <itemPath>SystemTimeMain.c</itemPath>
+      <itemPath>MainVorlage.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -293,6 +298,42 @@
         <property key="voltagevalue" value="3.25"/>
       </PICkit3PlatformTool>
       <item path="PinModeMain.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="SystemTimeMain.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="TimerMain.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="edaPIC33Timer.h" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
