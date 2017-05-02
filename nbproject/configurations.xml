@@ -8,6 +8,7 @@
       <itemPath>edaPIC33Hardware.h</itemPath>
       <itemPath>edaPIC33SystemTime.h</itemPath>
       <itemPath>edaPIC33Oscillator.h</itemPath>
+      <itemPath>edaPIC33BlinkLed.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,6 +27,8 @@
       <itemPath>TimerMain.c</itemPath>
       <itemPath>SystemTimeMain.c</itemPath>
       <itemPath>MainVorlage.c</itemPath>
+      <itemPath>MainNonBlocking.c</itemPath>
+      <itemPath>edaPIC33BlinkLed.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -195,6 +198,18 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <item path="MainVorlage.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="ADC 2" value="true"/>
@@ -333,7 +348,7 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="edaPIC33Timer.h" ex="true" overriding="false">
+      <item path="edaPIC33Timer.h" ex="false" overriding="false">
         <C30>
         </C30>
         <C30-AR>

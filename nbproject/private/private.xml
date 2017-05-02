@@ -4,14 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Oscillator.h</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33BlinkLed.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/nbproject/Makefile-default.mk</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33BlinkLed.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33SystemTime.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Timer.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Timer.h</file>
-            <file>file:/C:/Program%20Files%20(x86)/Microchip/xc16/v1.31/support/dsPIC33E/h/p33EP512MU810.h</file>
-            <file>file:/C:/Temp/EmbeddedSystems/SystemTimeMain.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33SystemTime.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/MainNonBlocking.c</file>
         </group>
     </open-files>
 </project-private>

@@ -19,6 +19,7 @@ void configSystemTimeMillis()
     T1CONbits.TGATE = 0; // Disable Gated Timer mode
     T1CONbits.TCKPS = 0b01; // Select 1:8 Prescaler
     TMR1 = 0x00; // Clear timer register
+    //PR1 = 8755-1; // 140Mhz, internal osc with 7,37mhz
     PR1 = 8750-1; // Load the period value //TODO CALIBRATE NEW 140Mhz: 8750-1 / 120Mhz: 7500-1
     IPC0bits.T1IP = 0x01; // Set Timer 1 Interrupt Priority Level
     IFS0bits.T1IF = 0; // Clear Timer 1 Interrupt Flag
