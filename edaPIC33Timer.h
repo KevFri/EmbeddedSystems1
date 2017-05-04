@@ -42,6 +42,7 @@
  * @details TMRx 16Bit Count Register is set to zero(start value)
  * @details PRx 16Bit Period Register is set to 0xFFFF (free-running timer), can be changed with function setPeriodRegister16BitTimer(
  * @attention Timer has to be started with start16BitTimer
+ * @attention Timer1 is used is edaPIC33SystemTime.h
  * @attention !!use int16_t typecasts when programming with free running timers!!
  */
 void config16BitTimer(uint8_t ui8Timer, uint8_t ui8TSIDL, uint8_t ui8TGATE, uint8_t ui8TCKPS, uint8_t ui8TSYNC, uint8_t ui8TCS, uint8_t ui8IE, uint8_t ui8IP);

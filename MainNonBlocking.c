@@ -54,43 +54,59 @@
  * Main
  * ***********************
  */
-
+//_FWDT(FWDTEN_OFF); set watchdog (enable) off
 
 /**
  * Main Function
  */
 int main() {
 
+    
+    
     configOscillator();
     
-    
+    //set LED pinmodes
     pinMode(LED0,OUTPUT);
     pinMode(LED1,OUTPUT);
     pinMode(LED2,OUTPUT);
     pinMode(LED3,OUTPUT);
     
+    //set switch pinmodes
     pinMode(SW0, INPUT_PULLUP);
     pinMode(SW1, INPUT_PULLUP);
     pinMode(SW2, INPUT_PULLUP);
     pinMode(SW3, INPUT_PULLUP);
     
+    //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
     
     
     /* Endless Loop */
     while(1){
         static uint32_t ui32Time= 0;
-
-        blinkLed0(measureToggleTimeSW0());
-        blinkLed1(measureToggleTimeSW1());
-        blinkLed2(measureToggleTimeSW2());
-        blinkLed3(measureToggleTimeSW3());
+        //LATBbits.LATB8=1; //toggle LED0
+        /*
+        blinkLed(LED0, measureToggleTimeSW(SW0));
+        blinkLed(LED1, measureToggleTimeSW(SW1));
+        blinkLed(LED2, measureToggleTimeSW(SW2));
+        blinkLed(LED3, measureToggleTimeSW(SW3));*/
         
         
-        ui32Time++;
-        while(getSystemTimeMillis() < ui32Time);
+        blinkLed(LED0, 125);
+        blinkLed(LED1, 250);
+        blinkLed(LED2, 500);
+        blinkLed(LED3, 1000);
+        
+        
+        ui32Time++; //increase ms counter
+        //LATBbits.LATB8=0; //toggle LED to measure working time of loop
+        
+        while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
+        {
+            ClrWdt();   //clear watchdog timer
+        }
+            
     }//while
-    
     return (EXIT_SUCCESS);  //never reached
 } //main()
 
