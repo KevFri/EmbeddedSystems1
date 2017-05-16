@@ -9,6 +9,7 @@
       <itemPath>edaPIC33SystemTime.h</itemPath>
       <itemPath>edaPIC33Oscillator.h</itemPath>
       <itemPath>edaPIC33BlinkLed.h</itemPath>
+      <itemPath>edaPIC33FiniteStateMachine.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -29,6 +30,7 @@
       <itemPath>MainVorlage.c</itemPath>
       <itemPath>MainNonBlocking.c</itemPath>
       <itemPath>edaPIC33BlinkLed.c</itemPath>
+      <itemPath>MainFSM.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -198,6 +200,18 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <item path="MainNonBlocking.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <item path="MainVorlage.c" ex="true" overriding="false">
         <C30>
         </C30>

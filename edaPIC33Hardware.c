@@ -742,3 +742,135 @@ uint8_t digitalRead(const uint8_t ui8Port)
             break;  
     }
 }
+const uint16_t cui16DebounceTime=1;
+uint8_t isPressedSW0()
+{
+    static uint8_t ui8State = STATE_STABLE_HIGH; //default state
+    static uint16_t ui16Counter=0;
+    uint8_t ui8ReturnValue=1;
+    switch(ui8State)
+    {             
+        case STATE_STABLE_HIGH:
+            if(digitalRead(SW0)==LOW)
+            {
+                ui8State = STATE_INSTABLE_HIGH;
+                ui16Counter=0;
+            }
+            ui8ReturnValue= HIGH;
+            break;
+                
+        case STATE_INSTABLE_HIGH:
+            ui16Counter++;
+            if(digitalRead(SW0)==LOW)
+            {
+                if( ui16Counter>=cui16DebounceTime )
+                {
+                    ui8State = STATE_STABLE_LOW;
+                    ui8ReturnValue= LOW;
+                }
+                else
+                    ui8ReturnValue= HIGH;
+
+            }
+            else
+            {
+                ui8State = STATE_STABLE_HIGH;
+                ui8ReturnValue= HIGH;
+            }
+            break;
+        
+        case STATE_STABLE_LOW:
+            if(digitalRead(SW0)==HIGH)
+            {
+                ui8State = STATE_INSTABLE_LOW;
+                ui16Counter=0;
+            }
+            ui8ReturnValue= LOW;
+            break;
+                
+        case STATE_INSTABLE_LOW:
+            ui16Counter++;
+            if(digitalRead(SW0)==HIGH)
+            {
+                if(ui16Counter >= cui16DebounceTime)
+                {
+                    ui8State = STATE_STABLE_HIGH;
+                    ui8ReturnValue= HIGH;
+                }
+                else
+                    ui8ReturnValue= LOW;
+            }
+            else
+            {
+                ui8State = STATE_STABLE_LOW;
+                ui8ReturnValue= LOW;
+            }            
+            break;
+        default:
+            ui8State = STATE_STABLE_HIGH;
+            ui8ReturnValue= HIGH;
+           break;
+    }
+    return ui8ReturnValue;
+}
+/* //Function without wait time
+uint8_t isPressedSW0()
+{
+    static uint8_t ui8State = STATE_STABLE_HIGH; //default state
+    switch(ui8State)
+    {             
+        case STATE_STABLE_HIGH:
+            if(digitalRead(SW0)==LOW)
+            {
+                ui8State = STATE_INSTABLE_HIGH;
+            }
+            //digitalWrite(LED1, HIGH);
+            return HIGH;
+            break;
+                
+        case STATE_INSTABLE_HIGH:
+            if(digitalRead(SW0)==LOW)
+            {
+                ui8State = STATE_STABLE_LOW;
+                //digitalWrite(LED1, LOW);
+                return LOW;
+            }
+            else
+            {
+                ui8State = STATE_STABLE_HIGH;
+                //digitalWrite(LED1, HIGH);
+                return HIGH;
+            }
+            break;
+        
+        case STATE_STABLE_LOW:
+            if(digitalRead(SW0)==HIGH)
+            {
+                //digitalWrite(LED1, LOW);
+                ui8State = STATE_INSTABLE_LOW;
+            }
+            return LOW;
+            break;
+                
+        case STATE_INSTABLE_LOW:
+            if(digitalRead(SW0)==HIGH)
+            {
+                ui8State = STATE_STABLE_HIGH;
+                //digitalWrite(LED1, HIGH);
+                return HIGH;
+            }
+            else
+            {
+                //digitalWrite(LED1, LOW);
+                ui8State = STATE_STABLE_LOW;
+                return LOW;
+            }            
+            break;
+        default:
+            ui8State = STATE_STABLE_HIGH;
+            //digitalWrite(LED1, HIGH);
+            return HIGH;
+           break;
+    }
+    return HIGH;
+}*/

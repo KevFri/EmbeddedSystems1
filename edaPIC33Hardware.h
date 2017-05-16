@@ -166,6 +166,11 @@
 #define SW202 SW2
 #define SW203 SW3
 
+#define STATE_STABLE_HIGH   0
+#define STATE_INSTABLE_HIGH 1
+#define STATE_STABLE_LOW    2
+#define STATE_INSTABLE_LOW  3
+
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
  * @brief it is possible to enable the internal pullup / pulldown resistors with the mode INPUT_PULLUP, INPUT_PULLDOWN
@@ -200,3 +205,5 @@ void digitalToggle(const uint8_t ui8Port);
  */
 uint8_t digitalRead(const uint8_t ui8Port);
 #endif	/* EDAPIC33HARDWARE_H */
+
+uint8_t isPressedSW0();

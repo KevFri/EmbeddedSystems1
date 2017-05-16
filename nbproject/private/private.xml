@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Oscillator.h</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33BlinkLed.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/nbproject/Makefile-impl.mk</file>
+            <file>file:/C:/Temp/EmbeddedSystems/nbproject/Makefile-default.mk</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.h</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Timer.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Timer.h</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33SystemTime.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/MainFSM.c</file>
         </group>
     </open-files>
 </project-private>
