@@ -166,6 +166,20 @@
 #define SW202 SW2
 #define SW203 SW3
 
+//* LCD Ports
+#define LCD_D0 RE_0
+#define LCD_D1 RE_1
+#define LCD_D2 RE_2
+#define LCD_D3 RE_3
+#define LCD_D4 RE_4
+#define LCD_D5 RE_5
+#define LCD_D6 RE_6
+#define LCD_D7 RE_7
+#define LCD_E RD_4
+#define LCD_RW RD_5
+#define LCD_RS RB_15
+
+
 #define STATE_STABLE_HIGH   0
 #define STATE_INSTABLE_HIGH 1
 #define STATE_STABLE_LOW    2
@@ -206,4 +220,11 @@ void digitalToggle(const uint8_t ui8Port);
 uint8_t digitalRead(const uint8_t ui8Port);
 #endif	/* EDAPIC33HARDWARE_H */
 
+/** 
+ * @brief Funktion zum Auswerten des Tasters SW0 (Pin 96)
+ * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Funktionsaufrufe].
+ * @details Funktion Entprellt den Taster SWO (Pin 96)
+ * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ */
+extern const uint16_t cui16DebounceTime;
 uint8_t isPressedSW0();

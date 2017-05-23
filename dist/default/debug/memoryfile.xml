@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/EmbeddedSystems.production.elf">
+  <executable name="dist/default/debug/EmbeddedSystems.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>53248</length>
-      <used>156</used>
-      <free>53092</free>
+      <used>238</used>
+      <free>53010</free>
     </memory>
     <memory name="program">
       <units>bytes</units>

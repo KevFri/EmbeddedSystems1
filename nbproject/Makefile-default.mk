@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c edaPIC33BlinkLed.c MainFSM.c
+SOURCEFILES_QUOTED_IF_SPACED=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c edaPIC33BlinkLed.c MainLCD.c edaPIC33LCD.c edaPIC33OtherStuff.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/edaPIC33BlinkLed.o ${OBJECTDIR}/MainFSM.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/edaPIC33Hardware.o.d ${OBJECTDIR}/edaPIC33Timer.o.d ${OBJECTDIR}/edaPIC33SystemTime.o.d ${OBJECTDIR}/edaPIC33BlinkLed.o.d ${OBJECTDIR}/MainFSM.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/edaPIC33BlinkLed.o ${OBJECTDIR}/MainLCD.o ${OBJECTDIR}/edaPIC33LCD.o ${OBJECTDIR}/edaPIC33OtherStuff.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/edaPIC33Hardware.o.d ${OBJECTDIR}/edaPIC33Timer.o.d ${OBJECTDIR}/edaPIC33SystemTime.o.d ${OBJECTDIR}/edaPIC33BlinkLed.o.d ${OBJECTDIR}/MainLCD.o.d ${OBJECTDIR}/edaPIC33LCD.o.d ${OBJECTDIR}/edaPIC33OtherStuff.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/edaPIC33BlinkLed.o ${OBJECTDIR}/MainFSM.o
+OBJECTFILES=${OBJECTDIR}/edaPIC33Hardware.o ${OBJECTDIR}/edaPIC33Timer.o ${OBJECTDIR}/edaPIC33SystemTime.o ${OBJECTDIR}/edaPIC33BlinkLed.o ${OBJECTDIR}/MainLCD.o ${OBJECTDIR}/edaPIC33LCD.o ${OBJECTDIR}/edaPIC33OtherStuff.o
 
 # Source Files
-SOURCEFILES=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c edaPIC33BlinkLed.c MainFSM.c
+SOURCEFILES=edaPIC33Hardware.c edaPIC33Timer.c edaPIC33SystemTime.c edaPIC33BlinkLed.c MainLCD.c edaPIC33LCD.c edaPIC33OtherStuff.c
 
 
 CFLAGS=
@@ -116,12 +116,26 @@ ${OBJECTDIR}/edaPIC33BlinkLed.o: edaPIC33BlinkLed.c  nbproject/Makefile-${CND_CO
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33BlinkLed.c  -o ${OBJECTDIR}/edaPIC33BlinkLed.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33BlinkLed.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33BlinkLed.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/MainFSM.o: MainFSM.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/MainLCD.o: MainLCD.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MainFSM.o.d 
-	@${RM} ${OBJECTDIR}/MainFSM.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MainFSM.c  -o ${OBJECTDIR}/MainFSM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainFSM.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/MainFSM.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/MainLCD.o.d 
+	@${RM} ${OBJECTDIR}/MainLCD.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MainLCD.c  -o ${OBJECTDIR}/MainLCD.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainLCD.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/MainLCD.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33LCD.o: edaPIC33LCD.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33LCD.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33LCD.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33LCD.c  -o ${OBJECTDIR}/edaPIC33LCD.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33LCD.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33LCD.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33OtherStuff.o: edaPIC33OtherStuff.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33OtherStuff.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33OtherStuff.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33OtherStuff.c  -o ${OBJECTDIR}/edaPIC33OtherStuff.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33OtherStuff.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33OtherStuff.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/edaPIC33Hardware.o: edaPIC33Hardware.c  nbproject/Makefile-${CND_CONF}.mk
@@ -152,12 +166,26 @@ ${OBJECTDIR}/edaPIC33BlinkLed.o: edaPIC33BlinkLed.c  nbproject/Makefile-${CND_CO
 	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33BlinkLed.c  -o ${OBJECTDIR}/edaPIC33BlinkLed.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33BlinkLed.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/edaPIC33BlinkLed.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/MainFSM.o: MainFSM.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/MainLCD.o: MainLCD.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MainFSM.o.d 
-	@${RM} ${OBJECTDIR}/MainFSM.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MainFSM.c  -o ${OBJECTDIR}/MainFSM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainFSM.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/MainFSM.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/MainLCD.o.d 
+	@${RM} ${OBJECTDIR}/MainLCD.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MainLCD.c  -o ${OBJECTDIR}/MainLCD.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MainLCD.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/MainLCD.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33LCD.o: edaPIC33LCD.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33LCD.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33LCD.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33LCD.c  -o ${OBJECTDIR}/edaPIC33LCD.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33LCD.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33LCD.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/edaPIC33OtherStuff.o: edaPIC33OtherStuff.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/edaPIC33OtherStuff.o.d 
+	@${RM} ${OBJECTDIR}/edaPIC33OtherStuff.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  edaPIC33OtherStuff.c  -o ${OBJECTDIR}/edaPIC33OtherStuff.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/edaPIC33OtherStuff.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/edaPIC33OtherStuff.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

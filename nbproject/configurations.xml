@@ -10,6 +10,8 @@
       <itemPath>edaPIC33Oscillator.h</itemPath>
       <itemPath>edaPIC33BlinkLed.h</itemPath>
       <itemPath>edaPIC33FiniteStateMachine.h</itemPath>
+      <itemPath>edaPIC33LCD.h</itemPath>
+      <itemPath>edaPIC33OtherStuff.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,6 +33,10 @@
       <itemPath>MainNonBlocking.c</itemPath>
       <itemPath>edaPIC33BlinkLed.c</itemPath>
       <itemPath>MainFSM.c</itemPath>
+      <itemPath>MainLCD.c</itemPath>
+      <itemPath>edaPIC33LCD.c</itemPath>
+      <itemPath>edaPIC33OtherStuff.c</itemPath>
+      <itemPath>MainLCD_old.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -200,6 +206,30 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <item path="MainFSM.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="MainLCD_old.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <item path="MainNonBlocking.c" ex="true" overriding="false">
         <C30>
         </C30>
@@ -351,6 +381,18 @@
         </C30Global>
       </item>
       <item path="TimerMain.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="edaPIC33Hardware.h" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
