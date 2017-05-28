@@ -30,131 +30,131 @@
 #define OUTPUT           3
 
 //*edaPIC33 definitions
-#define RG_15    1
+#define RG15    1
 //#define VDD     2
-#define RE_5     3
-#define RE_6     4
-#define RE_7     5
-#define RC_1     6
-#define RC_2     7
-#define RC_3     8
-#define RC_4     9
-#define RG_6     10
-#define RG_7     11
-#define RG_8     12
+#define RE5     3
+#define RE6     4
+#define RE7     5
+#define RC1     6
+#define RC2     7
+#define RC3     8
+#define RC4     9
+#define RG6     10
+#define RG7     11
+#define RG8     12
 //#define MCLR    13
-#define RG_9     14
+#define RG9     14
 //#define VSS     15
 //#define VDD     16
-#define RA_0     17
-#define RE_8     18
-#define RE_9     19
-#define RB_5     20
-#define RB_4     21
-#define RB_3     22
-#define RB_2     23
-#define RB_1     24
-#define RB_0     25
-#define RB_6     26
-#define RB_7     27
-#define RA_9     28
-#define RA_10    29
+#define RA0     17
+#define RE8     18
+#define RE9     19
+#define RB5     20
+#define RB4     21
+#define RB3     22
+#define RB2     23
+#define RB1     24
+#define RB0     25
+#define RB6     26
+#define RB7     27
+#define RA9     28
+#define RA10    29
 //#define AVDD    30
 //#define AVSS    31
-#define RB_8     32
-#define RB_9     33
-#define RB_10    34
-#define RB_11    35
+#define RB8     32
+#define RB9     33
+#define RB10    34
+#define RB11    35
 //#define VSS     36
 //#define VDD     37
-#define RA_1     38
-#define RF_13    39
-#define RF_12    40
-#define RB_12    41
-#define RB_13    42
-#define RB_14    43
-#define RB_15    44
+#define RA1     38
+#define RF13    39
+#define RF12    40
+#define RB12    41
+#define RB13    42
+#define RB14    43
+#define RB15    44
 //#define VSS     45
 //#define VDD     46  
-#define RD_14    47
-#define RD_15    48
-#define RF_4     49
-#define RF_5     50
-#define RF_3     51
-#define RF_2     52
-#define RF_8     53
+#define RD14    47
+#define RD15    48
+#define RF4     49
+#define RF5     50
+#define RF3     51
+#define RF2     52
+#define RF8     53
 //#define VBUS    54
 //#define VUSB3V3 55
-#define RG_3     56
-#define RG_2     57
-#define RA_2     58
-#define RA_3     59
-#define RA_4     60
-#define RA_5     61
+#define RG3     56
+#define RG2     57
+#define RA2     58
+#define RA3     59
+#define RA4     60
+#define RA5     61
 //#define VDD     62
-#define RC_12    63
-#define RC_15    64
+#define RC12    63
+#define RC15    64
 //#define VSS     65
-#define RA_14    66
-#define RA_15    67
-#define RD_8     68
-#define RD_9     69
-#define RD_10    70
-#define RD_11    71
-#define RD_0     72
-#define RC_13    73
-#define RC_14    74
+#define RA14    66
+#define RA15    67
+#define RD8     68
+#define RD9     69
+#define RD10    70
+#define RD11    71
+#define RD0     72
+#define RC13    73
+#define RC14    74
 //#define VSS     75
-#define RD_1     76
-#define RD_2     77
-#define RD_3     78
-#define RD_12    79
-#define RD_13    80
-#define RD_4     81
-#define RD_5     82
-#define RD_6     83
-#define RD_7     84
+#define RD1     76
+#define RD2     77
+#define RD3     78
+#define RD12    79
+#define RD13    80
+#define RD4     81
+#define RD5     82
+#define RD6     83
+#define RD7     84
 //#define VCAP    85
 //#define VDD     86
-#define RF_0     87
-#define RF_1     88
-#define RG_1     89
-#define RG_0     90
-#define RA_6     91
-#define RA_7     92
-#define RE_0     93
-#define RE_1     94
-#define RG_14    95
-#define RG_12    96
-#define RG_13    97
-#define RE_2     98
-#define RE_3     99
-#define RE_4     100
+#define RF0     87
+#define RF1     88
+#define RG1     89
+#define RG0     90
+#define RA6     91
+#define RA7     92
+#define RE0     93
+#define RE1     94
+#define RG14    95
+#define RG12    96
+#define RG13    97
+#define RE2     98
+#define RE3     99
+#define RE4     100
 
 //*Push-Buttons
-#define SW0 RG_12
-#define SW1 RG_13
-#define SW2 RG_14
-#define SW3 RG_15
+#define SW0 RG12
+#define SW1 RG13
+#define SW2 RG14
+#define SW3 RG15
 
 //*Incremental Encoder
-#define INCA  RG_0
-#define INCB  RG_1
-#define INCSW RG_9
+#define INCA  RG0
+#define INCB  RG1
+#define INCSW RG9
 
 //* DIP Switches
-#define DIP0  RG_6 
-#define DIP1  RG_7
+#define DIP0  RG6 
+#define DIP1  RG7
 
 //* PIEZO
-#define PIEZO RG_8
+#define PIEZO RG8
 #define Piezo PIEZO
 
 //*On Board LEDs
-#define LED0 RB_8
-#define LED1 RB_9
-#define LED2 RB_10
-#define LED3 RB_11
+#define LED0 RB8
+#define LED1 RB9
+#define LED2 RB10
+#define LED3 RB11
 #define D200 LED0
 #define D201 LED1
 #define D202 LED2 
@@ -167,23 +167,25 @@
 #define SW203 SW3
 
 //* LCD Ports
-#define LCD_D0 RE_0
-#define LCD_D1 RE_1
-#define LCD_D2 RE_2
-#define LCD_D3 RE_3
-#define LCD_D4 RE_4
-#define LCD_D5 RE_5
-#define LCD_D6 RE_6
-#define LCD_D7 RE_7
-#define LCD_E RD_4
-#define LCD_RW RD_5
-#define LCD_RS RB_15
+#define LCD_D0 RE0
+#define LCD_D1 RE1
+#define LCD_D2 RE2
+#define LCD_D3 RE3
+#define LCD_D4 RE4
+#define LCD_D5 RE5
+#define LCD_D6 RE6
+#define LCD_D7 RE7
+#define LCD_E RD4
+#define LCD_RW RD5
+#define LCD_RS RB15
 
 
 #define STATE_STABLE_HIGH   0
 #define STATE_INSTABLE_HIGH 1
 #define STATE_STABLE_LOW    2
 #define STATE_INSTABLE_LOW  3
+
+
 
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
@@ -215,7 +217,7 @@ void digitalToggle(const uint8_t ui8Port);
 /** 
  * @brief reads the digital pin.
  * @param uint8_t ui8Port   Number of the pin to read.
- * @attention ...
+ * @attention not implemented for each pin
  */
 uint8_t digitalRead(const uint8_t ui8Port);
 #endif	/* EDAPIC33HARDWARE_H */
@@ -228,3 +230,35 @@ uint8_t digitalRead(const uint8_t ui8Port);
  */
 extern const uint16_t cui16DebounceTime;
 uint8_t isPressedSW0();
+
+#define STATE_A0_B0 0
+#define STATE_A1_B0 1
+#define STATE_A0_B1 2
+#define STATE_A1_B1 3
+
+#define LEFT -1
+#define RIGTH 1
+#define IDLE 0
+
+
+/** 
+ * @brief Incrementalencoder
+ * @param void
+ * @return -1: Links, 0:unverändert, 1:Rechts
+ * @details Funktionen wertet den Inkrementalencoder auf dem Board auf. Funktion muss zyklisch aufgerufen werden, damit ein drehen festgestellt werden kann
+ * @attention Funktion muss zur initalisierung (mindestens) zweimal aufgerufen werden um den STATE richtig zu definieren!
+ * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
+ */
+int8_t rotatoryEncode();
+
+uint8_t getBitNumb(uint8_t Port);
+uint16_t* getpTRIS(uint8_t Port);
+uint16_t* getpPORT(uint8_t Port);
+uint16_t* getpLAT(uint8_t Port);
+uint16_t* getpODC(uint8_t Port);
+uint16_t* getpCNEN(uint8_t Port);
+uint16_t* getpCNPU(uint8_t Port);
+uint16_t* getpCNPD(uint8_t Port);
+uint16_t* getpANSEL(uint8_t Port);
+void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
+uint8_t getBit(uint16_t* pui16Var, uint8_t ui8Bit);

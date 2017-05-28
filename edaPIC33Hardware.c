@@ -1203,7 +1203,14 @@ void digitalWrite(const uint8_t ui8Port,const uint8_t ui8Value)
                 LATBbits.LATB15=LOW;
             else
                 LATBbits.LATB15=HIGH;
-            break;            
+            break;
+            
+        case INCSW:
+            if(ui8Value==LOW)
+                LATGbits.LATG9=LOW;
+            else
+                LATGbits.LATG9=HIGH;
+            break;
             
         default:
             break;      
@@ -1236,6 +1243,7 @@ void digitalToggle(const uint8_t ui8Port)
             break;
             
         default:
+            digitalWrite(ui8Port, !digitalRead(ui8Port));
             break;      
     }
 }
@@ -1420,6 +1428,183 @@ uint8_t isPressedSW0()
     }
     return ui8ReturnValue;
 }
+
+int8_t rotatoryEncode()
+{
+    static int8_t ui8Mode=IDLE;
+    //static uint8_t ui8State= (!digitalRead(INCA)) + 2*(!digitalRead(INCB));
+    static uint8_t ui8State=0;
+    int8_t i8Return = 0;
+    
+    switch(ui8State)
+    {
+        case STATE_A0_B0:
+            if((digitalRead(INCA))==1){
+                ui8State=STATE_A1_B0;
+                ui8Mode=RIGTH;
+            }
+            else if((digitalRead(INCB))==1)
+            {
+                ui8State=STATE_A0_B1;
+                ui8Mode=LEFT;
+            }
+            else
+            {
+                //nothing to do
+            } 
+            break;
+            
+        case STATE_A1_B0:
+            if((digitalRead(INCA))==0)
+            {
+                ui8State=STATE_A0_B0;
+                if(ui8Mode==LEFT)
+                {
+                    i8Return=LEFT;
+                    ui8Mode=IDLE;
+                }
+                else
+                {
+                    ui8Mode=IDLE;
+                }
+            }
+            else if((digitalRead(INCB))==1)
+            {
+                ui8State=STATE_A1_B1;
+                if(ui8Mode==RIGTH)
+                {
+                    i8Return=RIGTH;
+                    ui8Mode=IDLE;
+                }
+                else
+                {
+                    ui8Mode=IDLE;
+                }
+            }
+            else
+            {
+                //nothing to do
+            }                
+            break;
+            
+        case STATE_A0_B1:
+            if((digitalRead(INCA))==1)
+            {
+                ui8State=STATE_A1_B1;
+                if(ui8Mode==LEFT)
+                {
+                    i8Return=LEFT;
+                    ui8Mode=IDLE;
+                }
+                else
+                {
+                    ui8Mode=IDLE;
+                }
+            }
+            else if((digitalRead(INCB))==0)
+            {
+                ui8State=STATE_A0_B0;
+                if(ui8Mode==RIGTH)
+                {
+                    i8Return=RIGTH;
+                    ui8Mode=IDLE;
+                }
+                else
+                {
+                    ui8Mode=IDLE;
+                }
+            }
+            else
+            {
+                //nothing to do
+            }                
+            break;
+            break; //TODO delete
+            
+        case STATE_A1_B1:
+            if((digitalRead(INCA))==0){
+                ui8State=STATE_A0_B1;
+                ui8Mode=RIGTH;
+            }
+            else if((digitalRead(INCB))==0)
+            {
+                ui8State=STATE_A1_B0;
+                ui8Mode=LEFT;
+            }
+            else
+            {
+                //nothing to do
+            } 
+            break;
+
+        default:
+            break;
+    }
+    return i8Return;
+}
+/*
+int8_t rotatoryEncode()
+{
+    static uint8_t ui8PreState=0xFF;
+    static uint8_t ui8PrePreState=0xFF;
+    uint8_t ui8actualState;
+    int8_t i8Return=0;
+    
+    uint8_t A;
+    if (digitalRead(A)==0)
+        A=1;
+    else
+        A=0;
+    
+    uint8_t B;
+    if (digitalRead(B)==0)
+        B=1;
+    else
+        B=0;
+    
+    if( A==0 && B==0 )
+    {
+        ui8actualState=STATE_A0_B0;
+    }
+    else if( A==1 && B==0 )
+    {
+        ui8actualState=STATE_A1_B0;
+    }
+    else if( A==0 && B==1 )
+    {
+        ui8actualState=STATE_A0_B1;
+    }
+    else if( A==1 && B==1 )
+    {
+        ui8actualState=STATE_A1_B1;
+    }     
+    else
+    {
+      //tritt nicht ein
+    }
+    
+    if( ui8PrePreState == STATE_A0_B0 && ui8PreState == STATE_A1_B0)
+    {
+        i8Return = 1;
+    }
+    else if( ui8PrePreState == STATE_A1_B1 && ui8PreState == STATE_A0_B1)
+    {
+        i8Return = 1;
+    }
+    else if( ui8PrePreState == STATE_A0_B0 && ui8PreState == STATE_A0_B1)
+    {
+        i8Return = -1;
+    }
+    else if( ui8PrePreState == STATE_A1_B1 && ui8PreState == STATE_A1_B0)
+    {
+        i8Return = -1;
+    }
+        
+    ui8PrePreState = ui8PreState;
+    ui8PreState = ui8actualState;
+    return i8Return;
+}*/
+
 /* //Function without wait time
 uint8_t isPressedSW0()
 {
@@ -1481,3 +1666,4 @@ uint8_t isPressedSW0()
     }
     return HIGH;
 }*/
+
