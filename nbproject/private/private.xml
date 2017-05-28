@@ -5,10 +5,18 @@
         <group>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33LCD.h</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33LCD.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/IncrementalMain.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33BlinkLed.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33FiniteStateMachine.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/nbproject/Makefile-impl.mk</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33BlinkLed.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Oscillator.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33OtherStuff.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/MainLCD.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/nbproject/Makefile-default.mk</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33SystemTime.c</file>
-            <file>file:/C:/Program%20Files%20(x86)/Microchip/xc16/v1.31/support/dsPIC33E/h/p33EP512MU810.h</file>
         </group>
     </open-files>
 </project-private>

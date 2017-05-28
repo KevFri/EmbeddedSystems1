@@ -85,7 +85,7 @@ void Treppenlichtautomat(uint8_t ui8SwitchState, uint8_t ui8LedPin, const uint32
     ui8OldSwitchState=ui8SwitchState;
 }
 
-
+/*
 void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCycle)
 {
     static uint8_t ui8Count=0;
@@ -106,6 +106,33 @@ void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCy
         if(ui8Count >= ui8OffTime)
         {
             digitalWrite(ui8Pin, HIGH);
+            ui8Count=0;
+        }        
+    }    
+}*/
+
+void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCycle)
+{
+    static uint8_t ui8Count=0;
+    static uint8_t ui8OutputState=LOW;
+    uint8_t ui8OnTime  = (uint8_t)((((uint16_t)cui8PeriodTime)*((uint16_t) ui8DutyCycle)/100));
+    uint8_t ui8OffTime = cui8PeriodTime-ui8OnTime;
+    ui8Count++;
+    if(ui8OutputState == HIGH)
+    {  
+        if(ui8Count >= ui8OnTime)
+        {
+            digitalWrite(ui8Pin, LOW);
+            ui8OutputState=LOW;
+            ui8Count=0;
+        }
+    }
+    else //ui8OutputState == LOW
+    {
+        if(ui8Count >= ui8OffTime)
+        {
+            digitalWrite(ui8Pin, HIGH);
+            ui8OutputState=HIGH;
             ui8Count=0;
         }        
     }    
