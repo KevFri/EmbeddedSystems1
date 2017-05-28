@@ -39,24 +39,78 @@ extern "C" {
 
 extern char ShadowString[32]; 
 
-
+/** 
+ * @brief Initialisiere LCD Display
+ * @param void
+ * @return void
+ * @details Funktion initialisiert das LCD Display.  Legt Pin Modes fest, initialisiert display mit cursor blink off & cursor off
+ * @attention Blocking Code
+ */
 void initMyLCD();
 
-//void configMyLCDport();
-
+/** 
+ * @brief clockLCDenable
+ * @param void
+ * @return void
+ * @details Funktion setzt setzt den Enable Eingang des LCD auf High und 4 Taktzyklen Später wieder auf Low
+ */
 void clockLCDenable();
-    
+
+/** 
+ * @brief Sendet Character an den LCD
+ * @param char c Character der an den LCD gesendet werden soll
+ * @return void
+ * @attention Blocking Code!
+ */
 void putcLCD(char c);
 
+/** 
+ * @brief Sendet String an den LCD
+ * @param char* pData String der an den LCD gesendet werden soll
+ * @return void
+ * @attention Blocking Code!
+ */
 void putsLCD(char* pData);
 
+/** 
+ * @brief Sendet ein Command an den LCD
+ * @param uint8_t ui8data Command das an den LCD gesendet werden
+ * @return void
+ * @attention Blocking Code!
+ */
 void sendCommandLCD(uint8_t ui8data);
 
-//readBusyFlagAndAddressLCD() has to be checked after calling this function!
+/** 
+ * @brief Sendet ein Command an den LCD
+ * @param uint8_t ui8data Command das an den LCD gesendet werden
+ * @return void
+ * @attention NonBlocking Code!, readBusyFlagAndAddressLCD() has to be checked after calling this function!
+ */
+
 void sendCommandLCDNonBlocking(uint8_t ui8data);
 
+/** 
+ * @brief Sendet Daten an den LCD
+ * @param uint8_t ui8data Daten die an den LCD gesendet werden sollen
+ * @return void
+ * @attention Blocking Code!
+ */
 void writeDataLCD(uint8_t ui8data);
 
+/** 
+ * @brief Sendet Daten an den LCD
+ * @param uint8_t ui8data Daten die an den LCD gesendet werden sollen
+ * @return void
+ * @attention NonBlocking Code!, readBusyFlagAndAddressLCD() has to be checked after calling this function!
+ */
+void writeDataLCDNonBlocking(uint8_t ui8data);
+
+/** 
+ * @brief setzt DDRAM Adresse des LCD's
+ * @param uint8_t ui8data Daten die an den LCD gesendet werden sollen
+ * @return void
+ * @attention Blocking Code!
+ */
 void setDDRAMAddressLCD(uint8_t ui8address);
 
 uint8_t readBusyFlagLCD();
@@ -68,6 +122,8 @@ void printShadowStorageToLCD();
 void clearShadowString();
 
 void writeShadowStringToLCD();
+
+void setLineLCD(const char* pStr, uint8_t ui8Line);
 
 void setLCDLine1(const char* pString);
 

@@ -3,8 +3,8 @@
 #include <string.h>
 
 char ShadowString[32];  
-char* pShadowStringLine1 = &ShadowString[0];
-char* pShadowStringLine2 = &ShadowString[16];
+//char* pShadowStringLine1 = &ShadowString[0];
+//char* pShadowStringLine2 = &ShadowString[16];
 
 //uint8_t ui8LineUpdateFlag=0; // Bit0: Line1, Bit1: Line2
 
@@ -91,6 +91,20 @@ void writeDataLCD(uint8_t ui8data)
     RS = 0;         // negate register select to 0
     //Delay_Us( Delay200uS_count );   // 200uS delay
     //Delay_Us( Delay200uS_count );   // 200uS delay
+    uint16_t ui16I=0;
+    while(ui16I++<4651)Nop();
+}
+
+void writeDataLCDNonBlocking(uint8_t ui8data)
+{
+    RW = 0;         // ensure RW is 0
+    RS = 1;         // assert register select to 1
+    DATA &= 0xFF00; // prepare RD0 - RD7 set RE7-RE0 to LOW
+    DATA |= ui8data;   // data byte to lcd,  write data to RE7-RE0
+    clockLCDenable();
+    RS = 0;         // negate register select to 0
+    //Delay_Us( Delay200uS_count );   // 200uS delay
+    //Delay_Us( Delay200uS_count );   // 200uS delay
     //uint16_t ui16I=0;
     //while(ui16I++<4651)Nop();
 }
@@ -114,13 +128,12 @@ void setDDRAMAddressLCD(uint8_t ui8address)
 
 uint8_t readBusyFlagLCD()
 {
-  //  CNPDEbits.CNPDB8=1;     //enable weak pulldown
-  //  TRISEbits.TRISB8=1;     //Pin B8: Digital Output   0 for Output / 1 for Input 
+ 
     uint8_t ui8ReturnValue=0;
     RS = 0;
     RW = 1;
-   
-   
+
+   //set RE7-RE0 to PinMode Digital Input, Pulldown
    ANSELE &= 0xFF00;
    CNENE &= 0xFF00;
    CNPUE &= 0xFF00;
@@ -130,12 +143,14 @@ uint8_t readBusyFlagLCD()
    
    clockLCDenable();
    
-   if(PORTE&0x0080)   //if(digitalRead(RE_7))
+   //read busy flag
+   if(PORTE&0x0080) 
    {
        ui8ReturnValue=1;
        
    }
    
+    //set RE7-RE0 to PinMode Digital Output
    ANSELE &= 0xFF00;
    CNENE &= 0xFF00;
    CNPUE &= 0xFF00;  
@@ -144,7 +159,6 @@ uint8_t readBusyFlagLCD()
 
     RS = 0;
     RW = 0;
-    LATBbits.LATB8=ui8ReturnValue;
    return ui8ReturnValue;
 }
 
@@ -223,7 +237,7 @@ void writeShadowStringToLCD()
                 
                 if(ShadowString[ui8Position] != '\0' && ui8Position<16)
                 {
-                    writeDataLCD((uint8_t) ShadowString[ui8Position]);
+                    writeDataLCDNonBlocking((uint8_t) ShadowString[ui8Position]);
                     ui8Position++;
                 }
                 else
@@ -288,14 +302,23 @@ void writeShadowStringToLCD()
     }   
 }
 
+void setLineLCD(const char* pStr, uint8_t ui8Line)
+{
+    if(ui8Line==1)
+        strncpy(&ShadowString[0],pStr,16);
+    else if(ui8Line == 2)
+        strncpy(&ShadowString[16],pStr,16);
+    else; //do nothing
+}
+
 void setLCDLine1(const char* pString)
 {   
-    strncpy(pShadowStringLine1,pString,16);
+    strncpy(&ShadowString[0],pString,16);
     //ui8LineUpdateFlag |= 0x01; //set Flag
 }
 void setLCDLine2(const char* pString)
 {
-    strncpy(pShadowStringLine2,pString,16);
+    strncpy(&ShadowString[16],pString,16);
     //ui8LineUpdateFlag |= 0x02; //set Flag
 }
 

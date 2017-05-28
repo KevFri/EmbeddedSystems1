@@ -102,26 +102,21 @@ int main() {
 
     char str[16];
     
-    
+    rotatoryEncode();
+    rotatoryEncode();
+        
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
     /* Endless Loop */
     while(1){
         LATBbits.LATB9=1; //set LED to 1, to measure work time
 
-        /*
-       if((ui32Time%1000) == 0)
-       {
-           //sprintf(str,"Pi: %.6f", 3.141);
-           //sprintf(str,"Time: %u", ui32Time);
-           sprintf( str, "%lu", ui32Time );
-           setLCDLine2(str);
-       }*/
-        if(ui32Time%1000 == 0)
-        {
-            sprintf( str, "Runtime %2lu:%2lu", ui32Time/60000,(ui32Time/1000)%60 );
+        
+        LATBbits.LATB8=1;
+        sprintf( str, "Runtime %2lu:%2lu", ui32Time/60000,(ui32Time/1000)%60 );
+        //sprintf( str, "Pi %.6f", 3.141 );
             setLCDLine2(str);
-        }
-
+        LATBbits.LATB8=0;
+        
        
         //setLCDLine1("Embedded");
         //setLCDLine2("Systems");
