@@ -87,7 +87,7 @@ int main() {
     //initial LCD Display, clear LCD and set cursor home
     initMyLCD();
     home_clr();
-    clearShadowString();
+    clearLCDStorage();
     
     //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
@@ -121,7 +121,7 @@ int main() {
         //setLCDLine1("Embedded");
         //setLCDLine2("Systems");
         
-        writeShadowStringToLCD();
+        SendDataToLCD();
         ui32Time++; //increase ms counter
         LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms

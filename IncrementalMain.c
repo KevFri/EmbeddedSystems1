@@ -100,7 +100,7 @@ int main() {
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
     home_clr();
-    clearShadowString();
+    clearLCDStorage();
     //setLCDLine1("EmbeddedSystems1");
     char str[16]; //string used for sprintf functions
             
@@ -128,7 +128,7 @@ int main() {
         if( i16Rotate==10 )
             digitalWrite(PIEZO, ui32Time%2);
               
-        writeShadowStringToLCD();
+        SendDataToLCD();
         ui32Time++; //increase ms counter
         //LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
