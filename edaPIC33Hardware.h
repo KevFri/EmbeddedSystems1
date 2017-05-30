@@ -230,6 +230,7 @@ uint8_t digitalRead(const uint8_t ui8Port);
  */
 extern const uint16_t cui16DebounceTime;
 uint8_t isPressedSW0();
+uint8_t isPressed(uint8_t ui8Port);
 
 #define STATE_A0_B0 0
 #define STATE_A1_B0 1
@@ -249,8 +250,7 @@ uint8_t isPressedSW0();
  * @attention Funktion muss zur initalisierung (mindestens) zweimal aufgerufen werden um den STATE richtig zu definieren!
  * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
  */
-int8_t rotatoryEncode();
-
+int8_t rotaryEncode();
 
 uint16_t* getpTRIS(uint8_t Port);
 uint16_t* getpPORT(uint8_t Port);
@@ -261,5 +261,5 @@ uint16_t* getpCNPU(uint8_t Port);
 uint16_t* getpCNPD(uint8_t Port);
 uint16_t* getpANSEL(uint8_t Port);
 void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
-uint8_t getBit(uint16_t* pui16Var, uint8_t ui8Bit);
+uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
 uint8_t getPortBitNumb(uint8_t Port);

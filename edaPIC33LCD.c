@@ -2,9 +2,9 @@
 #include "edaPIC33Hardware.h"
 #include <string.h>
 
-char ShadowString[32];  
-//char* pShadowStringLine1 = &ShadowString[0];
-//char* pShadowStringLine2 = &ShadowString[16];
+char DataString[32];  
+//char* pDataStringLine1 = &DataString[0];
+//char* pDataStringLine2 = &DataString[16];
 
 //uint8_t ui8LineUpdateFlag=0; // Bit0: Line1, Bit1: Line2
 
@@ -55,8 +55,6 @@ void initMyLCD()
     sendCommandLCD( 0x0C );                // Display on control, cursor blink off (0x0C), cursor off
     sendCommandLCD( 0x06 );                // entry mode set (0x06), increment cursor, no shift 
 }
-
-
 
 void sendCommandLCD(uint8_t ui8data)
 {
@@ -207,8 +205,8 @@ void putncLCD(char* pData, uint8_t ui8n)
 
 void clearLCDStorage()
 {
-    ShadowString[0]='\0';
-    ShadowString[16]='\0';
+    uint8_t i;
+    for(i=0;i<32;DataString[i++]=' ');
 }
 
 #define STATE_WRITE_LINE_1 0
@@ -216,7 +214,7 @@ void clearLCDStorage()
 #define STATE_WRITE_LINE_1_SPACES 2
 #define STATE_WRITE_LINE_2_SPACES 3
 //#define STATE_IDLE 4
-
+/*
 void SendDataToLCD()
 {
     //static variables
@@ -234,9 +232,9 @@ void SendDataToLCD()
         {          
             case STATE_WRITE_LINE_1:
                 
-                if(ShadowString[ui8Position] != '\0' && ui8Position<16)
+                if(DataString[ui8Position] != '\0' && ui8Position<16)
                 {
-                    writeDataLCDNonBlocking((uint8_t) ShadowString[ui8Position]);
+                    writeDataLCDNonBlocking((uint8_t) DataString[ui8Position]);
                     ui8Position++;
                 }
                 else
@@ -269,9 +267,9 @@ void SendDataToLCD()
             
             case STATE_WRITE_LINE_2:
                 
-                if(ShadowString[ui8Position] != '\0' && ui8Position<32)
+                if(DataString[ui8Position] != '\0' && ui8Position<32)
                 {
-                    writeDataLCD((uint8_t) ShadowString[ui8Position]);
+                    writeDataLCD((uint8_t) DataString[ui8Position]);
                     ui8Position++;
                 }
                 else
@@ -300,130 +298,193 @@ void SendDataToLCD()
         }
     }   
 }
+*/
 
+/*
 void setLineLCD(const char* pStr, uint8_t ui8Line)
 {
     if(ui8Line==1)
-        strncpy(&ShadowString[0],pStr,16);
+        strncpy(&DataString[0],pStr,16);
     else if(ui8Line == 2)
-        strncpy(&ShadowString[16],pStr,16);
+        strncpy(&DataString[16],pStr,16);
     else; //do nothing
 }
 
 void setLCDLine1(const char* pString)
 {   
-    strncpy(&ShadowString[0],pString,16);
+    strncpy(&DataString[0],pString,16);
     //ui8LineUpdateFlag |= 0x01; //set Flag
 }
 void setLCDLine2(const char* pString)
 {
-    strncpy(&ShadowString[16],pString,16);
+    strncpy(&DataString[16],pString,16);
     //ui8LineUpdateFlag |= 0x02; //set Flag
 }
+*/
 
-/* old Function
-void writeShadowStringToLCD()
+void SendDataToLCD()
 {
-    //static variables
-    static uint8_t ui8Position=0;
-    static uint8_t ui8State=0;
+        static uint8_t ui8position = 0;
+    static uint8_t ui8setCursor = 0;
     
-    if (readBusyFlagAndAddressLCD())
+    //READS BUSY FLAG IF LCD IS READY TO GET CHAR
+    if(readBusyFlagLCD() == 0)
     {
-        return; //break if LCD is busy
+        //CHECKS THE CURSOR POSITION
+        if(ui8setCursor == 1)
+        {
+            //CHECKS WHICH LINE HAS BEEN WRITTEN AND WHICH IS NEXT
+            if(ui8position == 16)
+            {
+                //WRITES TO SECOND LINE
+                sendCommandLCDNonBlocking(0xC0);
+            }
+            else
+            {
+                //WRITES TO FIRST LINE
+                sendCommandLCDNonBlocking(0x02);
+                ui8position = 0;
+            }
+            ui8setCursor = 0;
+            return;
+        }
+        
+        //ACUTALLY WRITES DATA TO LCD; 
+        writeDataLCDNonBlocking((uint8_t) DataString[ui8position]);
+        ui8position++;
+        
+        //IF POSITION IS END OF LINE THE CURSOR HAS TO BE SET TO THE OTHER LINE
+        if(ui8position == 16 || ui8position == 32)
+        {
+            ui8setCursor = 1;
+        }
     }
+}
+
+void setLCDLine(const char* pStr, uint8_t ui8Line)
+{
+    //write to storage
+    uint8_t ui8counter = 0;
+    //*ui8dataPoint = 0;
+    char* pStorage;
+    if(ui8Line==1)
+        pStorage=&DataString[0];
+    else if(ui8Line==2)
+        pStorage=&DataString[16];
     else
+        return;
+        
+    //strncpy(*cStorage[32], *ui8dataPoint, 32);
+    //differentiate between two lines
+    
+    //Schreibt die Daten in den Schattenspeicher
+    while(pStr[ui8counter] != '\0' && ui8counter < 16)
+    {
+        pStorage[ui8counter] = pStr[ui8counter];
+        ui8counter++;
+    }
+        
+    //Springt hier nur rein, falls das Endezeichen vor dem Ende des Speichers kommt
+    while(ui8counter < 16)
+    {
+        pStorage[ui8counter] = ' ';
+        ui8counter++;
+    }
+}
+
+void setLCDLine1(const char* pString)
+{
+    setLCDLine(pString,1);
+}
+
+void setLCDLine2(const char* pString)
+{
+    setLCDLine(pString,2);
+}
+
+
+
+#define STATE_SET_POSITION 1
+#define STATE_SET_CHAR 0
+
+
+void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState )
+{
+    static int8_t i8Position = 0;
+    static uint8_t ui8State = STATE_SET_CHAR;
+    static uint8_t ui8SWStateOld=0;
+    static char c = 0;
+    static uint8_t ui8BlinkMode=0;
+    
+    if(c==0)
+        c=DataString[i8Position];
+    
+    static uint16_t ui16Calls=0;
+    ui16Calls++;
+    
+    //ui8OldSwitchState == HIGH && ui8SwitchState == LOW
+    if( ui8SWStateOld == LOW && ui8SWState==HIGH )
     {
         switch(ui8State)
         {
-            case STATE_IDLE:
-                if(ui8LineUpdateFlag&0x01)
-                {
-                    
-                    sendCommandLCDNonBlocking(0x02);//home_it(); //set cursor line 1
-                    ui8State = STATE_WRITE_LINE_1;
-                    ui8Position=0;
-                }
-                else if(ui8LineUpdateFlag&0x02)
-                {
-                   
-                   sendCommandLCDNonBlocking( 0xC0 ); //line_2(); //set cursor line 2
-                   ui8State = STATE_WRITE_LINE_2;
-                   ui8Position=16;
-                }
+            case STATE_SET_CHAR:
+                ui8State=STATE_SET_POSITION;
                 break;
-            
-            case STATE_WRITE_LINE_1:
                 
-                if(ShadowString[ui8Position] != '\0' && ui8Position<16)
-                {
-                    writeDataLCD((uint8_t) ShadowString[ui8Position]);
-                    ui8Position++;
-                }
-                else
-                {
-                    if(ui8Position == 16)
-                    {
-                        sendCommandLCDNonBlocking( 0xC0 ); //line_2(); //set cursor line 
-                        ui8State = STATE_WRITE_LINE_2;
-                    }
-                    else                       
-                        ui8State=STATE_WRITE_LINE_1_SPACES;
-                }
-                
-                break;
-            
-            case STATE_WRITE_LINE_1_SPACES:
-                
-                if(ui8Position<16)
-                {
-                    writeDataLCD((uint8_t) ' ');
-                    ui8Position++;
-                }
-                else
-                {
-                    if(ui8LineUpdateFlag&0x02)
-                    {
-                       sendCommandLCDNonBlocking( 0xC0 ); //line_2(); //set cursor line 
-                       ui8State = STATE_WRITE_LINE_2;
-                       ui8Position=16;
-                    }
-                    else
-                    {
-                        ui8State = STATE_IDLE;
-                    }
-                    ui8LineUpdateFlag &= 0xFE; //clear Flag
-                }                
-                break;
-            
-            case STATE_WRITE_LINE_2:
-                
-                if(ShadowString[ui8Position] != '\0' && ui8Position<32)
-                {
-                    writeDataLCD((uint8_t) ShadowString[ui8Position]);
-                    ui8Position++;
-                }
-                else
-                {
-                    ui8State=STATE_WRITE_LINE_2_SPACES;
-                }
-                
-                break;
-            
-            case STATE_WRITE_LINE_2_SPACES:
-                
-                if(ui8Position<32)
-                {
-                    writeDataLCD((uint8_t) ' ');
-                    ui8Position++;
-                }
-                else
-                {
-                    ui8State = STATE_IDLE;
-                    ui8LineUpdateFlag &= 0xFD; //clear Flag
-                }                
-                break;
+            case STATE_SET_POSITION:
+                ui8State=STATE_SET_CHAR;
+                break;           
         }
-    }   
+    }
+    
+    switch(ui8State)
+    {
+            case STATE_SET_POSITION:
+                
+                if(ui8BlinkMode==0)
+                {
+                    i8Position += i8RotaryEncode;
+                    if(i8Position >= 32)
+                        i8Position=0;             
+                    if(i8Position<0)
+                        i8Position=31;
+                    
+                    c=DataString[i8Position];
+                }
+                                
+
+                              
+                break;
+                
+            case STATE_SET_CHAR:
+                
+                c = c+i8RotaryEncode;
+                if(c<32)
+                    c=126;
+                else if(c>126)
+                    c=32;
+                
+                break;
+                
+        default:
+            break;
+    } 
+    if(ui16Calls >= 700)
+    {
+        if(c!=' ')
+            DataString[i8Position]=' ';
+        else
+            DataString[i8Position]='_';
+        ui8BlinkMode=1;
+        if(ui16Calls>=800)
+            ui16Calls=0;
+            
+    }
+    else
+    {
+        DataString[i8Position]=c;
+        ui8BlinkMode=0;
+    }
+        
+    ui8SWStateOld=ui8SWState;
 }
-*/

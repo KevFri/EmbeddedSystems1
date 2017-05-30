@@ -157,14 +157,14 @@ void clearLCDStorage();
 void SendDataToLCD();
 
 /** 
- * @brief setLineLCD
+ * @brief setLCDLine
  * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
  * @param uint8_t ui8Line Zeile in welcher der String gespeichert werden soll
  * @return void
  * @detail Funktion kopiert einen String in den Schattenspeicher des LCDs
  * @attention Funktion überschreibt den Schattenspeicher des LCDs
  */
-void setLineLCD(const char* pStr, uint8_t ui8Line);
+void setLCDLine(const char* pStr, uint8_t ui8Line);
 
 /** 
  * @brief setLCDLine1
@@ -185,6 +185,9 @@ void setLCDLine1(const char* pString);
 void setLCDLine2(const char* pString);
 
 //void putCharLCD(char c);
+
+
+void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState );
 
 #ifdef	__cplusplus
 }

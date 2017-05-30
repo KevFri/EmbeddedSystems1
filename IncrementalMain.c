@@ -72,6 +72,9 @@ int main() {
     pinMode(SW2, INPUT_PULLUP);
     pinMode(SW3, INPUT_PULLUP);
     
+    pinMode(DIP0, INPUT_PULLUP);
+    pinMode(DIP1, INPUT_PULLUP);
+    
     //set LED pinmodes
     pinMode(LED0,OUTPUT);
     pinMode(LED1,OUTPUT);
@@ -89,9 +92,8 @@ int main() {
     pinMode(INCB, INPUT_PULLUP);
     pinMode(INCSW, INPUT_PULLUP);
     //call rotatoryEncode function two times to initalize state
-    rotatoryEncode();
-    rotatoryEncode();
-    int8_t i16Rotate=0;
+    rotaryEncode();
+    rotaryEncode();
     
     //set Pin Mode for PIEZO
     pinMode(PIEZO,OUTPUT);
@@ -101,8 +103,8 @@ int main() {
     initMyLCD();
     home_clr();
     clearLCDStorage();
-    //setLCDLine1("EmbeddedSystems1");
-    char str[16]; //string used for sprintf functions
+    setLCDLine("ABCDEFGHIJKLMNOP",1);
+    setLCDLine("abcdefghijkl",2);
             
     //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
@@ -114,19 +116,17 @@ int main() {
 
         //sprintf( str, "Runtime %2lu:%2lu", ui32Time/60000,(ui32Time/1000)%60 );
         //sprintf( str, "Pi %.6f", 3.141 );
-        digitalWrite(LED0, digitalRead(INCSW));
+        uint8_t ui8SWState = !isPressed(INCSW);
+        int8_t i8RotaryEncode = rotaryEncode();
+        digitalWrite(LED0, ui8SWState);
         digitalWrite(LED2, digitalRead(INCB));
         digitalWrite(LED3, digitalRead(INCA));
+        //digitalWrite(LED2, digitalRead(DIP0));
+        //digitalWrite(LED3, digitalRead(DIP1));
         
         
-        i16Rotate += rotatoryEncode();
-        sprintf(str, "Rotations: %d", i16Rotate);
-        setLCDLine2(str);
-        
-       //SoftwarePwm(PIEZO,25, (int8_t)(i16Rotate) );
-       
-        if( i16Rotate==10 )
-            digitalWrite(PIEZO, ui32Time%2);
+        Schreibmaschine( i8RotaryEncode, ui8SWState );
+ 
               
         SendDataToLCD();
         ui32Time++; //increase ms counter

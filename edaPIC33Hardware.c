@@ -19,7 +19,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
     switch(ui8Mode)
     {
         case INPUT:
-            setBit(pANSEL, getPortBitNumb(ui8Port), 0);
+            setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
@@ -27,7 +27,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             break;
             
         case INPUT_PULLUP:
-            setBit(pANSEL, getPortBitNumb(ui8Port), 0);
+            setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 1);
@@ -35,7 +35,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             break;
             
         case INPUT_PULLDOWN:
-            setBit(pANSEL, getPortBitNumb(ui8Port), 0);
+            setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
@@ -43,7 +43,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             break;
             
         case OUTPUT:
-            setBit(pANSEL, getPortBitNumb(ui8Port), 0);
+            setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 0);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
@@ -73,7 +73,7 @@ void digitalToggle(const uint8_t ui8Port)
 
 uint8_t digitalRead(const uint8_t ui8Port)
 {
-    return getBit(getpPORT(ui8Port), getPortBitNumb(ui8Port));
+    return getBit(*getpPORT(ui8Port), getPortBitNumb(ui8Port));
     //return (*getpPORT(ui8Port) & ( 1 << getPortBitNumb(ui8Port) )) >> getPortBitNumb(ui8Port);
 }
 
@@ -365,9 +365,9 @@ void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value)
     }
 }
 
-uint8_t getBit(uint16_t* pui16Var, uint8_t ui8Bit)
+uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit)
 {
-    return (*pui16Var & ( 1 << ui8Bit )) >> ui8Bit;
+    return (ui16Var & ( 1 << ui8Bit )) >> ui8Bit;
 }
 
 const uint16_t cui16DebounceTime=1;
@@ -442,11 +442,83 @@ uint8_t isPressedSW0()
     return ui8ReturnValue;
 }
 
-int8_t rotatoryEncode()
+uint8_t isPressed(uint8_t ui8Port)
+{
+    static uint8_t ui8State = STATE_STABLE_HIGH; //default state
+    static uint16_t ui16Counter=0;
+    uint8_t ui8ReturnValue=1;
+    switch(ui8State)
+    {             
+        case STATE_STABLE_HIGH:
+            if(digitalRead(ui8Port)==LOW)
+            {
+                ui8State = STATE_INSTABLE_HIGH;
+                ui16Counter=0;
+            }
+            ui8ReturnValue= HIGH;
+            break;
+                
+        case STATE_INSTABLE_HIGH:
+            ui16Counter++;
+            if(digitalRead(ui8Port)==LOW)
+            {
+                if( ui16Counter>=cui16DebounceTime )
+                {
+                    ui8State = STATE_STABLE_LOW;
+                    ui8ReturnValue= LOW;
+                }
+                else
+                    ui8ReturnValue= HIGH;
+
+            }
+            else
+            {
+                ui8State = STATE_STABLE_HIGH;
+                ui8ReturnValue= HIGH;
+            }
+            break;
+        
+        case STATE_STABLE_LOW:
+            if(digitalRead(ui8Port)==HIGH)
+            {
+                ui8State = STATE_INSTABLE_LOW;
+                ui16Counter=0;
+            }
+            ui8ReturnValue= LOW;
+            break;
+                
+        case STATE_INSTABLE_LOW:
+            ui16Counter++;
+            if(digitalRead(ui8Port)==HIGH)
+            {
+                if(ui16Counter >= cui16DebounceTime)
+                {
+                    ui8State = STATE_STABLE_HIGH;
+                    ui8ReturnValue= HIGH;
+                }
+                else
+                    ui8ReturnValue= LOW;
+            }
+            else
+            {
+                ui8State = STATE_STABLE_LOW;
+                ui8ReturnValue= LOW;
+            }            
+            break;
+        default:
+            ui8State = STATE_STABLE_HIGH;
+            ui8ReturnValue= HIGH;
+           break;
+    }
+    return ui8ReturnValue;
+}
+
+
+int8_t rotaryEncode()
 {
     static int8_t ui8Mode=IDLE;
     //static uint8_t ui8State= (!digitalRead(INCA)) + 2*(!digitalRead(INCB));
-    static uint8_t ui8State=0;
+    static uint8_t ui8State=STATE_A0_B0;
     int8_t i8Return = 0;
     
     switch(ui8State)
