@@ -113,20 +113,75 @@ void writeDataLCDNonBlocking(uint8_t ui8data);
  */
 void setDDRAMAddressLCD(uint8_t ui8address);
 
+/** 
+ * @brief read busy flag
+ * @param void
+ * @return uint8_t BusyFlag
+ * @details function reads the busy flag from lcd controller 1:controller is busy
+ */
 uint8_t readBusyFlagLCD();
 
+/** 
+ * @brief Sendet n Zeichen eines Strings an den LCD
+ * @param char* pData String der an den LCD gesendet werden soll
+ * @param uint8_t ui8n Anzahl der Zeichen die auf dem LCD angezeigt werden
+ * @return void
+ * @attention Blocking Code!
+ */
 void putncLCD(char* pData, uint8_t ui8n);
 
-void printShadowStorageToLCD();
+/** 
+ * @brief Sendet n Zeichen eines Strings an den LCD
+ * @param char* pData String der an den LCD gesendet werden soll
+ * @param uint8_t ui8n Anzahl der Zeichen die auf dem LCD angezeigt werden
+ * @return void
+ * @attention Blocking Code!
+ */
+void SendDataToLCD();
 
-void clearShadowString();
+/** 
+ * @brief clear LCD char storage
+ * @param void
+ * @return void
+ * @details Funktion überschreibt den Schattenspeicher des LCDs
+ */
+void clearLCDStorage();
 
-void writeShadowStringToLCD();
+/** 
+ * @brief Send Data to LCD
+ * @param void
+ * @return void
+ * @details Funktion sendet bei jedem Aufruf einen Character des Schattenspeichers an den LCD
+ * @attention Funktion muss zyklisch aufgerufen werden. Non-Blocking Funktion, liest das Busy Flag des LCD aus
+ */
+void SendDataToLCD();
 
+/** 
+ * @brief setLineLCD
+ * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
+ * @param uint8_t ui8Line Zeile in welcher der String gespeichert werden soll
+ * @return void
+ * @detail Funktion kopiert einen String in den Schattenspeicher des LCDs
+ * @attention Funktion überschreibt den Schattenspeicher des LCDs
+ */
 void setLineLCD(const char* pStr, uint8_t ui8Line);
 
+/** 
+ * @brief setLCDLine1
+ * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
+ * @return void
+ * @detail Funktion kopiert einen String in den Schattenspeicher (Line1) des LCDs
+ * @attention Funktion überschreibt den Schattenspeicher des LCDs
+ */
 void setLCDLine1(const char* pString);
 
+/** 
+ * @brief setLCDLine2
+ * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
+ * @return void
+ * @detail Funktion kopiert einen String in den Schattenspeicher (Line2) des LCDs
+ * @attention Funktion überschreibt den Schattenspeicher des LCDs
+ */
 void setLCDLine2(const char* pString);
 
 //void putCharLCD(char c);

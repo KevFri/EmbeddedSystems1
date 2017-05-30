@@ -12,7 +12,6 @@ void initMyLCD()
 {
     // 15mS delay after Vdd reaches nnVdc before proceeding with LCD initialization
     // not always required and is based on system Vdd rise rate
-    //Delay( Delay_15mS_Cnt );        // 15ms delay
     uint16_t ui16I=0;
     while(ui16I++<0xFFFF)Nop();
 
@@ -206,7 +205,7 @@ void putncLCD(char* pData, uint8_t ui8n)
         writeDataLCD(pData[ui8Count++]);
 }
 
-void clearShadowString()
+void clearLCDStorage()
 {
     ShadowString[0]='\0';
     ShadowString[16]='\0';
@@ -218,7 +217,7 @@ void clearShadowString()
 #define STATE_WRITE_LINE_2_SPACES 3
 //#define STATE_IDLE 4
 
-void writeShadowStringToLCD()
+void SendDataToLCD()
 {
     //static variables
     static uint8_t ui8Position=0;
