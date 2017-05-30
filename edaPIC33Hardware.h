@@ -251,7 +251,7 @@ uint8_t isPressedSW0();
  */
 int8_t rotatoryEncode();
 
-uint8_t getBitNumb(uint8_t Port);
+
 uint16_t* getpTRIS(uint8_t Port);
 uint16_t* getpPORT(uint8_t Port);
 uint16_t* getpLAT(uint8_t Port);
@@ -262,3 +262,4 @@ uint16_t* getpCNPD(uint8_t Port);
 uint16_t* getpANSEL(uint8_t Port);
 void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
 uint8_t getBit(uint16_t* pui16Var, uint8_t ui8Bit);
+uint8_t getPortBitNumb(uint8_t Port);
