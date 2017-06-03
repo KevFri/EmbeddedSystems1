@@ -37,6 +37,12 @@ extern "C" {
 #define home_it()       sendCommandLCD( 0x02 )
 #define line_2()        sendCommandLCD( 0xC0 ) //0b 1100 0000
 
+//dijasio    
+#define SetLCDG(a) sendCommandLCD((a&0x3F)|0x40)
+#define SetLCDC(a) sendCommandLCD((a&0x7F)|0x80)
+#define putLCD(d) writeDataLCD(d)
+
+
 extern char ShadowString[32]; 
 
 /** 
@@ -131,15 +137,6 @@ uint8_t readBusyFlagLCD();
 void putncLCD(char* pData, uint8_t ui8n);
 
 /** 
- * @brief Sendet n Zeichen eines Strings an den LCD
- * @param char* pData String der an den LCD gesendet werden soll
- * @param uint8_t ui8n Anzahl der Zeichen die auf dem LCD angezeigt werden
- * @return void
- * @attention Blocking Code!
- */
-void SendDataToLCD();
-
-/** 
  * @brief clear LCD char storage
  * @param void
  * @return void
@@ -188,6 +185,8 @@ void setLCDLine2(const char* pString);
 
 
 void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState );
+
+void createNewChar();
 
 #ifdef	__cplusplus
 }

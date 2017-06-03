@@ -73,11 +73,11 @@ Program Memory  [Origin = 0x200, Length = 0x55600]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3ba           0x597  (1431)
-.const                       0x5ba                0x20            0x30  (48)
-.text                        0x5da              0x2b68          0x411c  (16668)
-.dinit                      0x3142                0x36            0x51  (81)
+.const                       0x5ba                0x14            0x1e  (30)
+.text                        0x5ce              0x2c1e          0x422d  (16941)
+.dinit                      0x31ec                0x36            0x51  (81)
 
-                 Total program memory used (bytes):         0x4734  (18228) 3%
+                 Total program memory used (bytes):         0x4833  (18483) 3%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x1fc]
@@ -140,8 +140,8 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000248                  __data_init_extended
                   0x000248                  __data_init
+                  0x000248                  __data_init_extended
                   0x0002fa                  __DefaultInterrupt
                   0x000300                  ___udivsi3
                   0x00036c                  ___udivmoddi3
@@ -151,84 +151,85 @@ External Symbols in Program Memory (by address):
                   0x0004c8                  ___moddi3
                   0x000524                  ___muldi3
                   0x000576                  ___umuldi3
-                  0x0005d8                  _cui16DebounceTime
-                  0x0005da                  _pinMode
-                  0x000716                  _digitalWrite
-                  0x00074c                  _digitalToggle
-                  0x000766                  _digitalRead
-                  0x000782                  _getPortBitNumb
-                  0x0009b8                  _getpTRIS
-                  0x000c44                  _getpPORT
-                  0x000ed0                  _getpLAT
-                  0x00115c                  _getpODC
-                  0x0012ee                  _getpCNEN
-                  0x00157a                  _getpCNPU
-                  0x001806                  _getpCNPD
-                  0x001a92                  _getpANSEL
-                  0x001cd2                  _setBit
-                  0x001d18                  _getBit
-                  0x001d34                  _isPressedSW0
-                  0x001de8                  _isPressed
-                  0x001e9e                  _rotaryEncode
-                  0x001f90                  _configTimer1PWM
-                  0x001fa4                  _onCycleTimer1PWM
-                  0x001faa                  _configTimer1PWM_1kHz
-                  0x00201c                  _onCycleTimer1PWM_1kHz
-                  0x00205c                  _setTimer1PWM_DutyCycleParam
-                  0x0020a2                  _config16BitTimer
-                  0x002558                  _start16BitTimer
-                  0x0025b8                  _stop16BitTimer
-                  0x002618                  _setPeriodRegister16BitTimer
-                  0x00268c                  _disableInterrupt16BitTimer
-                  0x0026ec                  _enableInterrupt16BitTimer
-                  0x00274c                  _clearInterruptFlag16BitTimer
-                  0x0027ac                  _initMyLCD
-                  0x00287a                  _sendCommandLCD
-                  0x0028b4                  _sendCommandLCDNonBlocking
-                  0x0028d2                  _writeDataLCD
-                  0x00290e                  _writeDataLCDNonBlocking
-                  0x00292e                  _clockLCDenable
-                  0x002940                  _setDDRAMAddressLCD
-                  0x002948                  _readBusyFlagLCD
-                  0x0029c4                  _putcLCD
-                  0x0029d0                  _putsLCD
-                  0x0029ea                  _putncLCD
-                  0x002a0e                  _clearLCDStorage
-                  0x002a2c                  _SendDataToLCD
-                  0x002a7a                  _setLCDLine
-                  0x002adc                  _setLCDLine1
-                  0x002aea                  _setLCDLine2
-                  0x002af8                  _Schreibmaschine
-                  0x002bfc                  _blinkLed0
-                  0x002c26                  _blinkLed1
-                  0x002c50                  _blinkLed2
-                  0x002c7a                  _blinkLed3
-                  0x002ca4                  _measureToggleTimeSW0
-                  0x002cd6                  _measureToggleTimeSW1
-                  0x002d08                  _measureToggleTimeSW2
-                  0x002d3a                  _measureToggleTimeSW3
-                  0x002d6c                  _measureToggleTimeSW
-                  0x002da8                  _blinkLed
-                  0x002dee                  _FlipFlopLED0
-                  0x002e0c                  _digitalCountLED0to3
-                  0x002e54                  _Treppenlichtautomat
-                  0x002f1c                  _SoftwarePwm
-                  0x002f78                  _configOscillator
-                  0x002fcc                  _main
-                  0x0030a8                  _configSystemTimeMillis
-                  0x0030d4                  __T1Interrupt
-                  0x0030fa                  _getSystemTimeMillis
-                  0x003126                  _clearSystemTimeMillis
+                  0x0005cc                  _cui16DebounceTime
+                  0x0005ce                  _pinMode
+                  0x00070a                  _digitalWrite
+                  0x000740                  _digitalToggle
+                  0x00075a                  _digitalRead
+                  0x000776                  _getPortBitNumb
+                  0x0009ac                  _getpTRIS
+                  0x000c38                  _getpPORT
+                  0x000ec4                  _getpLAT
+                  0x001150                  _getpODC
+                  0x0012e2                  _getpCNEN
+                  0x00156e                  _getpCNPU
+                  0x0017fa                  _getpCNPD
+                  0x001a86                  _getpANSEL
+                  0x001cc6                  _setBit
+                  0x001d0c                  _getBit
+                  0x001d28                  _isPressedSW0
+                  0x001ddc                  _isPressed
+                  0x001e92                  _rotaryEncode
+                  0x001f84                  _configTimer1PWM
+                  0x001f98                  _onCycleTimer1PWM
+                  0x001f9e                  _configTimer1PWM_1kHz
+                  0x002010                  _onCycleTimer1PWM_1kHz
+                  0x002050                  _setTimer1PWM_DutyCycleParam
+                  0x002096                  _config16BitTimer
+                  0x00254c                  _start16BitTimer
+                  0x0025ac                  _stop16BitTimer
+                  0x00260c                  _setPeriodRegister16BitTimer
+                  0x002680                  _disableInterrupt16BitTimer
+                  0x0026e0                  _enableInterrupt16BitTimer
+                  0x002740                  _clearInterruptFlag16BitTimer
+                  0x0027a0                  _initMyLCD
+                  0x00286e                  _sendCommandLCD
+                  0x0028a8                  _sendCommandLCDNonBlocking
+                  0x0028c6                  _writeDataLCD
+                  0x002902                  _writeDataLCDNonBlocking
+                  0x002922                  _clockLCDenable
+                  0x002934                  _setDDRAMAddressLCD
+                  0x00293c                  _readBusyFlagLCD
+                  0x0029b8                  _putcLCD
+                  0x0029c4                  _putsLCD
+                  0x0029de                  _putncLCD
+                  0x002a02                  _clearLCDStorage
+                  0x002a20                  _SendDataToLCD
+                  0x002a6e                  _setLCDLine
+                  0x002ad0                  _setLCDLine1
+                  0x002ade                  _setLCDLine2
+                  0x002aec                  _Schreibmaschine
+                  0x002bf0                  _createNewChar
+                  0x002cbe                  _blinkLed0
+                  0x002ce8                  _blinkLed1
+                  0x002d12                  _blinkLed2
+                  0x002d3c                  _blinkLed3
+                  0x002d66                  _measureToggleTimeSW0
+                  0x002d98                  _measureToggleTimeSW1
+                  0x002dca                  _measureToggleTimeSW2
+                  0x002dfc                  _measureToggleTimeSW3
+                  0x002e2e                  _measureToggleTimeSW
+                  0x002e6a                  _blinkLed
+                  0x002eb0                  _FlipFlopLED0
+                  0x002ece                  _digitalCountLED0to3
+                  0x002f16                  _Treppenlichtautomat
+                  0x002fde                  _SoftwarePwm
+                  0x00303a                  _configOscillator
+                  0x00308e                  _main
+                  0x003152                  _configSystemTimeMillis
+                  0x00317e                  __T1Interrupt
+                  0x0031a4                  _getSystemTimeMillis
+                  0x0031d0                  _clearSystemTimeMillis
 
 External Symbols in Program Memory (by name):
 
-                  0x002dee                  _FlipFlopLED0
-                  0x002af8                  _Schreibmaschine
-                  0x002a2c                  _SendDataToLCD
-                  0x002f1c                  _SoftwarePwm
-                  0x002e54                  _Treppenlichtautomat
+                  0x002eb0                  _FlipFlopLED0
+                  0x002aec                  _Schreibmaschine
+                  0x002a20                  _SendDataToLCD
+                  0x002fde                  _SoftwarePwm
+                  0x002f16                  _Treppenlichtautomat
                   0x0002fa                  __DefaultInterrupt
-                  0x0030d4                  __T1Interrupt
+                  0x00317e                  __T1Interrupt
                   0x000468                  ___divdi3
                   0x0004c8                  ___moddi3
                   0x000524                  ___muldi3
@@ -241,68 +242,69 @@ External Symbols in Program Memory (by name):
                   0x000248                  __data_init_extended
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x002da8                  _blinkLed
-                  0x002bfc                  _blinkLed0
-                  0x002c26                  _blinkLed1
-                  0x002c50                  _blinkLed2
-                  0x002c7a                  _blinkLed3
-                  0x00274c                  _clearInterruptFlag16BitTimer
-                  0x002a0e                  _clearLCDStorage
-                  0x003126                  _clearSystemTimeMillis
-                  0x00292e                  _clockLCDenable
-                  0x0020a2                  _config16BitTimer
-                  0x002f78                  _configOscillator
-                  0x0030a8                  _configSystemTimeMillis
-                  0x001f90                  _configTimer1PWM
-                  0x001faa                  _configTimer1PWM_1kHz
-                  0x0005d8                  _cui16DebounceTime
-                  0x002e0c                  _digitalCountLED0to3
-                  0x000766                  _digitalRead
-                  0x00074c                  _digitalToggle
-                  0x000716                  _digitalWrite
-                  0x00268c                  _disableInterrupt16BitTimer
-                  0x0026ec                  _enableInterrupt16BitTimer
-                  0x001d18                  _getBit
-                  0x000782                  _getPortBitNumb
-                  0x0030fa                  _getSystemTimeMillis
-                  0x001a92                  _getpANSEL
-                  0x0012ee                  _getpCNEN
-                  0x001806                  _getpCNPD
-                  0x00157a                  _getpCNPU
-                  0x000ed0                  _getpLAT
-                  0x00115c                  _getpODC
-                  0x000c44                  _getpPORT
-                  0x0009b8                  _getpTRIS
-                  0x0027ac                  _initMyLCD
-                  0x001de8                  _isPressed
-                  0x001d34                  _isPressedSW0
-                  0x002fcc                  _main
-                  0x002d6c                  _measureToggleTimeSW
-                  0x002ca4                  _measureToggleTimeSW0
-                  0x002cd6                  _measureToggleTimeSW1
-                  0x002d08                  _measureToggleTimeSW2
-                  0x002d3a                  _measureToggleTimeSW3
-                  0x001fa4                  _onCycleTimer1PWM
-                  0x00201c                  _onCycleTimer1PWM_1kHz
-                  0x0005da                  _pinMode
-                  0x0029c4                  _putcLCD
-                  0x0029ea                  _putncLCD
-                  0x0029d0                  _putsLCD
-                  0x002948                  _readBusyFlagLCD
-                  0x001e9e                  _rotaryEncode
-                  0x00287a                  _sendCommandLCD
-                  0x0028b4                  _sendCommandLCDNonBlocking
-                  0x001cd2                  _setBit
-                  0x002940                  _setDDRAMAddressLCD
-                  0x002a7a                  _setLCDLine
-                  0x002adc                  _setLCDLine1
-                  0x002aea                  _setLCDLine2
-                  0x002618                  _setPeriodRegister16BitTimer
-                  0x00205c                  _setTimer1PWM_DutyCycleParam
-                  0x002558                  _start16BitTimer
-                  0x0025b8                  _stop16BitTimer
-                  0x0028d2                  _writeDataLCD
-                  0x00290e                  _writeDataLCDNonBlocking
+                  0x002e6a                  _blinkLed
+                  0x002cbe                  _blinkLed0
+                  0x002ce8                  _blinkLed1
+                  0x002d12                  _blinkLed2
+                  0x002d3c                  _blinkLed3
+                  0x002740                  _clearInterruptFlag16BitTimer
+                  0x002a02                  _clearLCDStorage
+                  0x0031d0                  _clearSystemTimeMillis
+                  0x002922                  _clockLCDenable
+                  0x002096                  _config16BitTimer
+                  0x00303a                  _configOscillator
+                  0x003152                  _configSystemTimeMillis
+                  0x001f84                  _configTimer1PWM
+                  0x001f9e                  _configTimer1PWM_1kHz
+                  0x002bf0                  _createNewChar
+                  0x0005cc                  _cui16DebounceTime
+                  0x002ece                  _digitalCountLED0to3
+                  0x00075a                  _digitalRead
+                  0x000740                  _digitalToggle
+                  0x00070a                  _digitalWrite
+                  0x002680                  _disableInterrupt16BitTimer
+                  0x0026e0                  _enableInterrupt16BitTimer
+                  0x001d0c                  _getBit
+                  0x000776                  _getPortBitNumb
+                  0x0031a4                  _getSystemTimeMillis
+                  0x001a86                  _getpANSEL
+                  0x0012e2                  _getpCNEN
+                  0x0017fa                  _getpCNPD
+                  0x00156e                  _getpCNPU
+                  0x000ec4                  _getpLAT
+                  0x001150                  _getpODC
+                  0x000c38                  _getpPORT
+                  0x0009ac                  _getpTRIS
+                  0x0027a0                  _initMyLCD
+                  0x001ddc                  _isPressed
+                  0x001d28                  _isPressedSW0
+                  0x00308e                  _main
+                  0x002e2e                  _measureToggleTimeSW
+                  0x002d66                  _measureToggleTimeSW0
+                  0x002d98                  _measureToggleTimeSW1
+                  0x002dca                  _measureToggleTimeSW2
+                  0x002dfc                  _measureToggleTimeSW3
+                  0x001f98                  _onCycleTimer1PWM
+                  0x002010                  _onCycleTimer1PWM_1kHz
+                  0x0005ce                  _pinMode
+                  0x0029b8                  _putcLCD
+                  0x0029de                  _putncLCD
+                  0x0029c4                  _putsLCD
+                  0x00293c                  _readBusyFlagLCD
+                  0x001e92                  _rotaryEncode
+                  0x00286e                  _sendCommandLCD
+                  0x0028a8                  _sendCommandLCDNonBlocking
+                  0x001cc6                  _setBit
+                  0x002934                  _setDDRAMAddressLCD
+                  0x002a6e                  _setLCDLine
+                  0x002ad0                  _setLCDLine1
+                  0x002ade                  _setLCDLine2
+                  0x00260c                  _setPeriodRegister16BitTimer
+                  0x002050                  _setTimer1PWM_DutyCycleParam
+                  0x00254c                  _start16BitTimer
+                  0x0025ac                  _stop16BitTimer
+                  0x0028c6                  _writeDataLCD
+                  0x002902                  _writeDataLCDNonBlocking
 
 Memory Configuration
 
@@ -439,56 +441,56 @@ __FUID0
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x5b0c
+.debug_info       0x000000       0x5c7d
  *(.debug_info)
  .debug_info      0x000000       0x2b71 build/default/production/edaPIC33Timer.o
  .debug_info      0x002b71        0x889 build/default/production/edaPIC33SystemTime.o
  .debug_info      0x0033fa        0x3d1 build/default/production/edaPIC33BlinkLed.o
- .debug_info      0x0037cb        0xd6d build/default/production/edaPIC33LCD.o
- .debug_info      0x004538        0x36e build/default/production/edaPIC33OtherStuff.o
- .debug_info      0x0048a6        0x5f0 build/default/production/IncrementalMain.o
- .debug_info      0x004e96        0xc76 build/default/production/edaPIC33Hardware.o
+ .debug_info      0x0037cb        0xd8a build/default/production/edaPIC33LCD.o
+ .debug_info      0x004555        0x36e build/default/production/edaPIC33OtherStuff.o
+ .debug_info      0x0048c3        0x744 build/default/production/IncrementalMain.o
+ .debug_info      0x005007        0xc76 build/default/production/edaPIC33Hardware.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x80b
+.debug_abbrev     0x000000        0x815
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x1b7 build/default/production/edaPIC33Timer.o
  .debug_abbrev    0x0001b7        0x120 build/default/production/edaPIC33SystemTime.o
  .debug_abbrev    0x0002d7         0xb5 build/default/production/edaPIC33BlinkLed.o
- .debug_abbrev    0x00038c        0x197 build/default/production/edaPIC33LCD.o
- .debug_abbrev    0x000523         0x8f build/default/production/edaPIC33OtherStuff.o
- .debug_abbrev    0x0005b2        0x103 build/default/production/IncrementalMain.o
- .debug_abbrev    0x0006b5        0x156 build/default/production/edaPIC33Hardware.o
+ .debug_abbrev    0x00038c        0x1aa build/default/production/edaPIC33LCD.o
+ .debug_abbrev    0x000536         0x8f build/default/production/edaPIC33OtherStuff.o
+ .debug_abbrev    0x0005c5         0xfa build/default/production/IncrementalMain.o
+ .debug_abbrev    0x0006bf        0x156 build/default/production/edaPIC33Hardware.o
 
-.debug_line       0x000000        0xc2e
+.debug_line       0x000000        0xc63
  *(.debug_line)
  .debug_line      0x000000        0x2c0 build/default/production/edaPIC33Timer.o
  .debug_line      0x0002c0        0x11e build/default/production/edaPIC33SystemTime.o
  .debug_line      0x0003de        0x105 build/default/production/edaPIC33BlinkLed.o
- .debug_line      0x0004e3        0x1ca build/default/production/edaPIC33LCD.o
- .debug_line      0x0006ad         0xd3 build/default/production/edaPIC33OtherStuff.o
- .debug_line      0x000780        0x143 build/default/production/IncrementalMain.o
- .debug_line      0x0008c3        0x36b build/default/production/edaPIC33Hardware.o
+ .debug_line      0x0004e3        0x202 build/default/production/edaPIC33LCD.o
+ .debug_line      0x0006e5         0xd3 build/default/production/edaPIC33OtherStuff.o
+ .debug_line      0x0007b8        0x140 build/default/production/IncrementalMain.o
+ .debug_line      0x0008f8        0x36b build/default/production/edaPIC33Hardware.o
 
-.debug_frame      0x000000        0x7f4
+.debug_frame      0x000000        0x810
  *(.debug_frame)
  .debug_frame     0x000000        0x164 build/default/production/edaPIC33Timer.o
  .debug_frame     0x000164         0x8c build/default/production/edaPIC33SystemTime.o
  .debug_frame     0x0001f0        0x12c build/default/production/edaPIC33BlinkLed.o
- .debug_frame     0x00031c        0x1f0 build/default/production/edaPIC33LCD.o
- .debug_frame     0x00050c         0x84 build/default/production/edaPIC33OtherStuff.o
- .debug_frame     0x000590         0x4c build/default/production/IncrementalMain.o
- .debug_frame     0x0005dc        0x218 build/default/production/edaPIC33Hardware.o
+ .debug_frame     0x00031c        0x20c build/default/production/edaPIC33LCD.o
+ .debug_frame     0x000528         0x84 build/default/production/edaPIC33OtherStuff.o
+ .debug_frame     0x0005ac         0x4c build/default/production/IncrementalMain.o
+ .debug_frame     0x0005f8        0x218 build/default/production/edaPIC33Hardware.o
 
-.debug_str        0x000000        0x2fe
+.debug_str        0x000000        0x307
  *(.debug_str)
  .debug_str       0x000000        0x194 build/default/production/edaPIC33Timer.o
  .debug_str       0x000194         0x77 build/default/production/edaPIC33SystemTime.o
  .debug_str       0x00020b         0x2a build/default/production/edaPIC33BlinkLed.o
  .debug_str       0x000235         0x39 build/default/production/edaPIC33LCD.o
  .debug_str       0x00026e         0x2e build/default/production/edaPIC33OtherStuff.o
- .debug_str       0x00029c         0x16 build/default/production/IncrementalMain.o
- .debug_str       0x0002b2         0x4c build/default/production/edaPIC33Hardware.o
+ .debug_str       0x00029c         0x1f build/default/production/IncrementalMain.o
+ .debug_str       0x0002bb         0x4c build/default/production/edaPIC33Hardware.o
 
 .debug_loc
  *(.debug_loc)
@@ -497,7 +499,7 @@ __FUID0
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x65f
+                  0x000000        0x671
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000        0x194 build/default/production/edaPIC33Timer.o
@@ -506,13 +508,13 @@ __FUID0
  .debug_pubnames
                   0x000262         0xd3 build/default/production/edaPIC33BlinkLed.o
  .debug_pubnames
-                  0x000335        0x159 build/default/production/edaPIC33LCD.o
+                  0x000335        0x16b build/default/production/edaPIC33LCD.o
  .debug_pubnames
-                  0x00048e         0x63 build/default/production/edaPIC33OtherStuff.o
+                  0x0004a0         0x63 build/default/production/edaPIC33OtherStuff.o
  .debug_pubnames
-                  0x0004f1         0x47 build/default/production/IncrementalMain.o
+                  0x000503         0x47 build/default/production/IncrementalMain.o
  .debug_pubnames
-                  0x000538        0x127 build/default/production/edaPIC33Hardware.o
+                  0x00054a        0x127 build/default/production/edaPIC33Hardware.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -3233,7 +3235,7 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x0000a8        0x59e
+                  0x0000a8        0x5b0
  .debug_pubtypes
                   0x0000a8        0x33e build/default/production/edaPIC33Timer.o
  .debug_pubtypes
@@ -3245,38 +3247,38 @@ LOAD data_init
  .debug_pubtypes
                   0x000560         0x38 build/default/production/edaPIC33OtherStuff.o
  .debug_pubtypes
-                  0x000598         0x78 build/default/production/IncrementalMain.o
+                  0x000598         0x8a build/default/production/IncrementalMain.o
  .debug_pubtypes
-                  0x000610         0x36 build/default/production/edaPIC33Hardware.o
+                  0x000622         0x36 build/default/production/edaPIC33Hardware.o
 
 __c30_signature
-                  0x000646         0x4e
+                  0x000658         0x4e
  __c30_signature
-                  0x000646          0x6 build/default/production/edaPIC33Timer.o
+                  0x000658          0x6 build/default/production/edaPIC33Timer.o
  __c30_signature
-                  0x00064c          0x6 build/default/production/edaPIC33SystemTime.o
+                  0x00065e          0x6 build/default/production/edaPIC33SystemTime.o
  __c30_signature
-                  0x000652          0x6 build/default/production/edaPIC33BlinkLed.o
+                  0x000664          0x6 build/default/production/edaPIC33BlinkLed.o
  __c30_signature
-                  0x000658          0x6 build/default/production/edaPIC33LCD.o
+                  0x00066a          0x6 build/default/production/edaPIC33LCD.o
  __c30_signature
-                  0x00065e          0x6 build/default/production/edaPIC33OtherStuff.o
+                  0x000670          0x6 build/default/production/edaPIC33OtherStuff.o
  __c30_signature
-                  0x000664          0x6 build/default/production/IncrementalMain.o
+                  0x000676          0x6 build/default/production/IncrementalMain.o
  __c30_signature
-                  0x00066a          0x6 build/default/production/edaPIC33Hardware.o
+                  0x00067c          0x6 build/default/production/edaPIC33Hardware.o
  __c30_signature
-                  0x000670          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o)
+                  0x000682          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o)
  __c30_signature
-                  0x000676          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_extended.o)
+                  0x000688          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_extended.o)
  __c30_signature
-                  0x00067c          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(udivsi3.epeo)
+                  0x00068e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(udivsi3.epeo)
  __c30_signature
-                  0x000682          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
+                  0x000694          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
  __c30_signature
-                  0x000688          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
+                  0x00069a          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(muldi3.epeo)
  __c30_signature
-                  0x00068e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
+                  0x0006a0          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(umuldi3.epeo)
 
 .nbss               0x1000         0x46
  .nbss              0x1000         0x18 build/default/production/edaPIC33BlinkLed.o
@@ -3304,86 +3306,87 @@ __c30_signature
  .ivt._T1Interrupt
                   0x00001a          0x2 build/default/production/edaPIC33SystemTime.o
 
-.const              0x85ba         0x20 load address 0x0005ba  
- .const             0x85ba         0x1e build/default/production/IncrementalMain.o
- .const             0x85d8          0x2 build/default/production/edaPIC33Hardware.o
-                    0x85d8                  _cui16DebounceTime
+.const              0x85ba         0x14 load address 0x0005ba  
+ .const             0x85ba         0x12 build/default/production/IncrementalMain.o
+ .const             0x85cc          0x2 build/default/production/edaPIC33Hardware.o
+                    0x85cc                  _cui16DebounceTime
 
-.text             0x0005da       0x2b68
- .text            0x0005da       0x19b6 build/default/production/edaPIC33Hardware.o
-                  0x0005da                  _pinMode
-                  0x000716                  _digitalWrite
-                  0x00074c                  _digitalToggle
-                  0x000766                  _digitalRead
-                  0x000782                  _getPortBitNumb
-                  0x0009b8                  _getpTRIS
-                  0x000c44                  _getpPORT
-                  0x000ed0                  _getpLAT
-                  0x00115c                  _getpODC
-                  0x0012ee                  _getpCNEN
-                  0x00157a                  _getpCNPU
-                  0x001806                  _getpCNPD
-                  0x001a92                  _getpANSEL
-                  0x001cd2                  _setBit
-                  0x001d18                  _getBit
-                  0x001d34                  _isPressedSW0
-                  0x001de8                  _isPressed
-                  0x001e9e                  _rotaryEncode
- .text            0x001f90        0x81c build/default/production/edaPIC33Timer.o
-                  0x001f90                  _configTimer1PWM
-                  0x001fa4                  _onCycleTimer1PWM
-                  0x001faa                  _configTimer1PWM_1kHz
-                  0x00201c                  _onCycleTimer1PWM_1kHz
-                  0x00205c                  _setTimer1PWM_DutyCycleParam
-                  0x0020a2                  _config16BitTimer
-                  0x002558                  _start16BitTimer
-                  0x0025b8                  _stop16BitTimer
-                  0x002618                  _setPeriodRegister16BitTimer
-                  0x00268c                  _disableInterrupt16BitTimer
-                  0x0026ec                  _enableInterrupt16BitTimer
-                  0x00274c                  _clearInterruptFlag16BitTimer
- .text            0x0027ac        0x450 build/default/production/edaPIC33LCD.o
-                  0x0027ac                  _initMyLCD
-                  0x00287a                  _sendCommandLCD
-                  0x0028b4                  _sendCommandLCDNonBlocking
-                  0x0028d2                  _writeDataLCD
-                  0x00290e                  _writeDataLCDNonBlocking
-                  0x00292e                  _clockLCDenable
-                  0x002940                  _setDDRAMAddressLCD
-                  0x002948                  _readBusyFlagLCD
-                  0x0029c4                  _putcLCD
-                  0x0029d0                  _putsLCD
-                  0x0029ea                  _putncLCD
-                  0x002a0e                  _clearLCDStorage
-                  0x002a2c                  _SendDataToLCD
-                  0x002a7a                  _setLCDLine
-                  0x002adc                  _setLCDLine1
-                  0x002aea                  _setLCDLine2
-                  0x002af8                  _Schreibmaschine
- .text            0x002bfc        0x1f2 build/default/production/edaPIC33BlinkLed.o
-                  0x002bfc                  _blinkLed0
-                  0x002c26                  _blinkLed1
-                  0x002c50                  _blinkLed2
-                  0x002c7a                  _blinkLed3
-                  0x002ca4                  _measureToggleTimeSW0
-                  0x002cd6                  _measureToggleTimeSW1
-                  0x002d08                  _measureToggleTimeSW2
-                  0x002d3a                  _measureToggleTimeSW3
-                  0x002d6c                  _measureToggleTimeSW
-                  0x002da8                  _blinkLed
- .text            0x002dee        0x18a build/default/production/edaPIC33OtherStuff.o
-                  0x002dee                  _FlipFlopLED0
-                  0x002e0c                  _digitalCountLED0to3
-                  0x002e54                  _Treppenlichtautomat
-                  0x002f1c                  _SoftwarePwm
- .text            0x002f78        0x130 build/default/production/IncrementalMain.o
-                  0x002f78                  _configOscillator
-                  0x002fcc                  _main
- .text            0x0030a8         0x9a build/default/production/edaPIC33SystemTime.o
-                  0x0030a8                  _configSystemTimeMillis
-                  0x0030d4                  __T1Interrupt
-                  0x0030fa                  _getSystemTimeMillis
-                  0x003126                  _clearSystemTimeMillis
+.text             0x0005ce       0x2c1e
+ .text            0x0005ce       0x19b6 build/default/production/edaPIC33Hardware.o
+                  0x0005ce                  _pinMode
+                  0x00070a                  _digitalWrite
+                  0x000740                  _digitalToggle
+                  0x00075a                  _digitalRead
+                  0x000776                  _getPortBitNumb
+                  0x0009ac                  _getpTRIS
+                  0x000c38                  _getpPORT
+                  0x000ec4                  _getpLAT
+                  0x001150                  _getpODC
+                  0x0012e2                  _getpCNEN
+                  0x00156e                  _getpCNPU
+                  0x0017fa                  _getpCNPD
+                  0x001a86                  _getpANSEL
+                  0x001cc6                  _setBit
+                  0x001d0c                  _getBit
+                  0x001d28                  _isPressedSW0
+                  0x001ddc                  _isPressed
+                  0x001e92                  _rotaryEncode
+ .text            0x001f84        0x81c build/default/production/edaPIC33Timer.o
+                  0x001f84                  _configTimer1PWM
+                  0x001f98                  _onCycleTimer1PWM
+                  0x001f9e                  _configTimer1PWM_1kHz
+                  0x002010                  _onCycleTimer1PWM_1kHz
+                  0x002050                  _setTimer1PWM_DutyCycleParam
+                  0x002096                  _config16BitTimer
+                  0x00254c                  _start16BitTimer
+                  0x0025ac                  _stop16BitTimer
+                  0x00260c                  _setPeriodRegister16BitTimer
+                  0x002680                  _disableInterrupt16BitTimer
+                  0x0026e0                  _enableInterrupt16BitTimer
+                  0x002740                  _clearInterruptFlag16BitTimer
+ .text            0x0027a0        0x51e build/default/production/edaPIC33LCD.o
+                  0x0027a0                  _initMyLCD
+                  0x00286e                  _sendCommandLCD
+                  0x0028a8                  _sendCommandLCDNonBlocking
+                  0x0028c6                  _writeDataLCD
+                  0x002902                  _writeDataLCDNonBlocking
+                  0x002922                  _clockLCDenable
+                  0x002934                  _setDDRAMAddressLCD
+                  0x00293c                  _readBusyFlagLCD
+                  0x0029b8                  _putcLCD
+                  0x0029c4                  _putsLCD
+                  0x0029de                  _putncLCD
+                  0x002a02                  _clearLCDStorage
+                  0x002a20                  _SendDataToLCD
+                  0x002a6e                  _setLCDLine
+                  0x002ad0                  _setLCDLine1
+                  0x002ade                  _setLCDLine2
+                  0x002aec                  _Schreibmaschine
+                  0x002bf0                  _createNewChar
+ .text            0x002cbe        0x1f2 build/default/production/edaPIC33BlinkLed.o
+                  0x002cbe                  _blinkLed0
+                  0x002ce8                  _blinkLed1
+                  0x002d12                  _blinkLed2
+                  0x002d3c                  _blinkLed3
+                  0x002d66                  _measureToggleTimeSW0
+                  0x002d98                  _measureToggleTimeSW1
+                  0x002dca                  _measureToggleTimeSW2
+                  0x002dfc                  _measureToggleTimeSW3
+                  0x002e2e                  _measureToggleTimeSW
+                  0x002e6a                  _blinkLed
+ .text            0x002eb0        0x18a build/default/production/edaPIC33OtherStuff.o
+                  0x002eb0                  _FlipFlopLED0
+                  0x002ece                  _digitalCountLED0to3
+                  0x002f16                  _Treppenlichtautomat
+                  0x002fde                  _SoftwarePwm
+ .text            0x00303a        0x118 build/default/production/IncrementalMain.o
+                  0x00303a                  _configOscillator
+                  0x00308e                  _main
+ .text            0x003152         0x9a build/default/production/edaPIC33SystemTime.o
+                  0x003152                  _configSystemTimeMillis
+                  0x00317e                  __T1Interrupt
+                  0x0031a4                  _getSystemTimeMillis
+                  0x0031d0                  _clearSystemTimeMillis
 
-.dinit            0x003142         0x36
- .dinit           0x003142         0x36 data_init
+.dinit            0x0031ec         0x36
+ .dinit           0x0031ec         0x36 data_init

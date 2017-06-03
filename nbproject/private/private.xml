@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33LCD.h</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33LCD.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/IncrementalMain.c</file>
-            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
         </group>
     </open-files>
 </project-private>

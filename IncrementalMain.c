@@ -101,17 +101,19 @@ int main() {
      
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
-    home_clr();
     clearLCDStorage();
-    setLCDLine("ABCDEFGHIJKLMNOP",1);
-    setLCDLine("abcdefghijkl",2);
-            
+    setLCDLine(" EmbeddedSystems",1);
+    setLCDLine("",2);
+    //createNewChar();
+    home_clr();
+    
     //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
-    
+  
     /* Endless Loop */
     while(1){
+
         //LATBbits.LATB9=1; //set LED to 1, to measure work time
 
         //sprintf( str, "Runtime %2lu:%2lu", ui32Time/60000,(ui32Time/1000)%60 );
@@ -130,7 +132,7 @@ int main() {
               
         SendDataToLCD();
         ui32Time++; //increase ms counter
-        //LATBbits.LATB9=0; //set LED to 0, to measure work time
+        LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
         {
             ClrWdt();   //clear watchdog timer

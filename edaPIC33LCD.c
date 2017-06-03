@@ -349,8 +349,10 @@ void SendDataToLCD()
             return;
         }
         
-        //ACUTALLY WRITES DATA TO LCD; 
+        //ACUTALLY WRITES DATA TO LCD;
+
         writeDataLCDNonBlocking((uint8_t) DataString[ui8position]);
+        
         ui8position++;
         
         //IF POSITION IS END OF LINE THE CURSOR HAS TO BE SET TO THE OTHER LINE
@@ -487,4 +489,111 @@ void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState )
     }
         
     ui8SWStateOld=ui8SWState;
+}
+
+#define SetLCDG(a) sendCommandLCD((a&0x3F)|0x40)
+#define SetLCDC(a) sendCommandLCD((a&0x7F)|0x80)
+#define putLCD(d) writeDataLCD(d)
+
+void createNewChar()
+{
+    /*
+    sendCommandLCD(0x40); //set pointer to beginn auf CGRAM
+    RS=1;
+    RW=0;
+    
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0b111111);
+    writeDataLCD(0);
+    
+    sendCommandLCD(0x40+14);
+    
+    
+    RS=0;
+    RW=0;*/
+    
+    SetLCDG(0);
+
+    /*
+    {
+    putLCD(0x00);
+    putLCD(0x17);
+    putLCD(0x14);
+    putLCD(0x1F);
+    putLCD(0x05);
+    putLCD(0x1D);
+    putLCD(0x00);    
+    putLCD(0); 
+    }
+
+    */
+    
+    //0
+    putLCD(0b10000);
+    putLCD(0b01000);
+    putLCD(0b00100);
+    putLCD(0b00010);
+    putLCD(0b00001);
+    putLCD(0b00010);
+    putLCD(0b00100);
+    putLCD(0);
+    
+    //1
+    putLCD(0x11111);
+    putLCD(0x11111);
+    putLCD(0x11111);
+    putLCD(0x11111);
+    putLCD(0x11111);
+    putLCD(0x11111);
+    putLCD(0x11111);    
+    putLCD(0);
+    
+    //2
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
+    putLCD(0);
+    
+    //3
+    putLCD(0b11111);
+    putLCD(0b10001);
+    putLCD(0b10101);
+    putLCD(0b10101);
+    putLCD(0b10101);
+    putLCD(0b10001);
+    putLCD(0b11111);
+    putLCD(0);
+
+    //4
+    putLCD(0b00000);
+    putLCD(0b10001);
+    putLCD(0b00100);
+    putLCD(0b00100);
+    putLCD(0b10001);
+    putLCD(0b01110);
+    putLCD(0b00000);
+    putLCD(0);
+
+    //5
+    putLCD(0b00000);
+    putLCD(0b10001);
+    putLCD(0b00100);
+    putLCD(0b00100);
+    putLCD(0b01110);
+    putLCD(0b10001);
+    putLCD(0b00000);
+    putLCD(0);
+    
+
+    
+    SetLCDC(0x40);
 }
