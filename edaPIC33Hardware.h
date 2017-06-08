@@ -28,6 +28,10 @@
 #define INPUT_PULLDOWN   1
 #define INPUT_PULLUP     2
 #define OUTPUT           3
+#define ANALOG_INPUT     4
+#define ANALOG_OUTPUT    5
+#define ANALOG_INPUT_PULLDOWN  6
+#define ANALOG_INPUT_PULLUP    7
 
 //*edaPIC33 definitions
 #define RG15    1
@@ -131,6 +135,40 @@
 #define RE3     99
 #define RE4     100
 
+//*analog pin definitions
+#define AN0     RB0
+#define AN1     RB1
+#define AN2     RB2   
+#define AN3     RB3
+#define AN4     RB4
+#define AN5     RB5
+#define AN6     RB6
+#define AN7     RB7
+#define AN8     RB8
+#define AN9     RB9
+#define AN10    RB10
+#define AN11    RB11
+#define AN12    RB12
+#define AN13    RB13
+#define AN14    RB14
+#define AN15    RB15
+#define AN16    RC1
+#define AN17    RC2        
+#define AN18    RC3
+#define AN19    RC4
+#define AN20    RE8
+#define AN21    RE9
+#define AN22    RA6  
+#define AN23    RA7
+#define AN24    RE0
+#define AN25    RE1
+#define AN26    RE2
+#define AN27    RE3
+#define AN28    RE4
+#define AN29    RE5
+#define AN30    RE6
+#define AN31    RE7
+
 //*Push-Buttons
 #define SW0 RG12
 #define SW1 RG13
@@ -192,8 +230,8 @@
  * @brief it is possible to enable the internal pullup / pulldown resistors with the mode INPUT_PULLUP, INPUT_PULLDOWN
  * @param uint8_t ui8Port   Number of the Port to configure.
  * @param uint8_t ui8Mode   Mode to configure.
- * @details Provided modes: INPUT, INPUT_PULLUP, INPUT_PULLDOWN, OUTPUT
- * @attention   pinMode is not implemented for all pins (right now)
+ * @details Provided modes: INPUT, INPUT_PULLUP, INPUT_PULLDOWN, OUTPUT, ANALOG_INPUT, ANALOG_OUTPUT
+ * @attention   pinMode is implemented for all register pins
  */
 void pinMode(const uint8_t ui8Port,const  uint8_t ui8Mode);
 
@@ -263,3 +301,8 @@ uint16_t* getpANSEL(uint8_t Port);
 void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
 uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
 uint8_t getPortBitNumb(uint8_t Port);
+
+//in engineering:
+void InitADC1();
+int16_t analogRead(uint8_t ui8Port);
+uint8_t getAnalogPortBitNumb(uint8_t Port);

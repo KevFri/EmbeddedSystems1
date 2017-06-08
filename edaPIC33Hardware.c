@@ -49,13 +49,43 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             break;
+            
+        case ANALOG_OUTPUT:
+            setBit(pANSEL,getPortBitNumb(ui8Port), 1);
+            setBit(pTRIS, getPortBitNumb(ui8Port), 0);      
+            setBit(pCNEN, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPU, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            break;
+
+        case ANALOG_INPUT:
+            setBit(pANSEL,getPortBitNumb(ui8Port), 1);
+            setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
+            setBit(pCNEN, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPU, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            break;
+
+        case ANALOG_INPUT_PULLDOWN:
+            setBit(pANSEL,getPortBitNumb(ui8Port), 1);
+            setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
+            setBit(pCNEN, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPU, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPD, getPortBitNumb(ui8Port), 1);
+            break;   
+
+        case ANALOG_INPUT_PULLUP:
+            setBit(pANSEL,getPortBitNumb(ui8Port), 1);
+            setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
+            setBit(pCNEN, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPU, getPortBitNumb(ui8Port), 1);
+            setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            break;               
         
         default:
             break;
     }
 }
-
-                
               
 void digitalWrite(const uint8_t ui8Port,const uint8_t ui8Value)
 {  
@@ -628,131 +658,66 @@ int8_t rotaryEncode()
     return i8Return;
 }
 
-/*
-int8_t rotatoryEncode()
+//in engineering:
+void InitADC1()
 {
-    static uint8_t ui8PreState=0xFF;
-    static uint8_t ui8PrePreState=0xFF;
-    uint8_t ui8actualState;
-    int8_t i8Return=0;
-    
-    uint8_t A;
-    if (digitalRead(A)==0)
-        A=1;
-    else
-        A=0;
-    
-    uint8_t B;
-    if (digitalRead(B)==0)
-        B=1;
-    else
-        B=0;
-    
-    if( A==0 && B==0 )
-    {
-        ui8actualState=STATE_A0_B0;
-    }
-    else if( A==1 && B==0 )
-    {
-        ui8actualState=STATE_A1_B0;
-    }
-    else if( A==0 && B==1 )
-    {
-        ui8actualState=STATE_A0_B1;
-    }
-    else if( A==1 && B==1 )
-    {
-        ui8actualState=STATE_A1_B1;
-    }     
-    else
-    {
-      //tritt nicht ein
-    }
-    
-    //return 0 if change hasn't changed
-    if(ui8actualState==ui8PreState)
-        return 0;
-  
-    if( ui8PrePreState == STATE_A0_B0 && ui8PreState == STATE_A1_B0)
-    {
-        i8Return = 1;
-    }
-    else if( ui8PrePreState == STATE_A1_B1 && ui8PreState == STATE_A0_B1)
-    {
-        i8Return = 1;
-    }
-    else if( ui8PrePreState == STATE_A0_B0 && ui8PreState == STATE_A0_B1)
-    {
-        i8Return = -1;
-    }
-    else if( ui8PrePreState == STATE_A1_B1 && ui8PreState == STATE_A1_B0)
-    {
-        i8Return = -1;
-    }
-        
-    ui8PrePreState = ui8PreState;
-    ui8PreState = ui8actualState;
-    return i8Return;
-}*/
+    AD1CON1 = 0x0004;
+    AD1CON2 = 0x0000;
+    AD1CON3 = 0x000F;
+    AD1CON4 = 0x0000;
+    AD1CHS123 = 0x0000;
+    AD1CSSH = 0x0000;
+    AD1CSSL = 0x0000;
+    AD1CON1bits.ADON = 1;
+}
 
-/* //Function without wait time
-uint8_t isPressedSW0()
+int16_t analogRead(uint8_t ui8Port)
 {
-    static uint8_t ui8State = STATE_STABLE_HIGH; //default state
-    switch(ui8State)
-    {             
-        case STATE_STABLE_HIGH:
-            if(digitalRead(SW0)==LOW)
-            {
-                ui8State = STATE_INSTABLE_HIGH;
-            }
-            //digitalWrite(LED1, HIGH);
-            return HIGH;
-            break;
-                
-        case STATE_INSTABLE_HIGH:
-            if(digitalRead(SW0)==LOW)
-            {
-                ui8State = STATE_STABLE_LOW;
-                //digitalWrite(LED1, LOW);
-                return LOW;
-            }
-            else
-            {
-                ui8State = STATE_STABLE_HIGH;
-                //digitalWrite(LED1, HIGH);
-                return HIGH;
-            }
-            break;
-        
-        case STATE_STABLE_LOW:
-            if(digitalRead(SW0)==HIGH)
-            {
-                //digitalWrite(LED1, LOW);
-                ui8State = STATE_INSTABLE_LOW;
-            }
-            return LOW;
-            break;
-                
-        case STATE_INSTABLE_LOW:
-            if(digitalRead(SW0)==HIGH)
-            {
-                ui8State = STATE_STABLE_HIGH;
-                //digitalWrite(LED1, HIGH);
-                return HIGH;
-            }
-            else
-            {
-                //digitalWrite(LED1, LOW);
-                ui8State = STATE_STABLE_LOW;
-                return LOW;
-            }            
-            break;
-        default:
-            ui8State = STATE_STABLE_HIGH;
-            //digitalWrite(LED1, HIGH);
-            return HIGH;
-           break;
+    AD1CHS0 = getAnalogPortBitNumb(ui8Port);
+    AD1CON1bits.SAMP=0;         //start sampling, automatic conversion will follow
+    while(!AD1CON1bits.DONE);   //wait to complete conversion
+    AD1CON1bits.DONE = 0;
+    return ADC1BUF0;            //return conversion result
+}
+
+
+uint8_t getAnalogPortBitNumb(uint8_t Port)
+{
+    switch(Port)
+    {
+    	case AN0:     return 0;
+        case AN1:     return 1;
+        case AN2:     return 2;   
+        case AN3:     return 3;
+        case AN4:     return 4;
+        case AN5:     return 5;
+        case AN6:     return 6;
+        case AN7:     return 7;
+        case AN8:     return 8;
+        case AN9:     return 9;
+        case AN10:    return 10;
+        case AN11:    return 11;
+        case AN12:    return 12;
+        case AN13:    return 13;
+        case AN14:    return 14;
+        case AN15:    return 15;
+        case AN16:    return 16;
+        case AN17:    return 17;        
+        case AN18:    return 18;
+        case AN19:    return 19;
+        case AN20:    return 20;
+        case AN21:    return 21;
+        case AN22:    return 22;  
+        case AN23:    return 23;
+        case AN24:    return 24;
+        case AN25:    return 25;
+        case AN26:    return 26;
+        case AN27:    return 27;
+        case AN28:    return 28;
+        case AN29:    return 29;
+        case AN30:    return 30;
+        case AN31:    return 31;
+        default:      break;
     }
-    return HIGH;
-}*/
+    return 0;
+}
