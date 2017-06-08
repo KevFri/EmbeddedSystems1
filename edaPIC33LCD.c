@@ -122,7 +122,6 @@ void setDDRAMAddressLCD(uint8_t ui8address)
     
 }
 
-
 uint8_t readBusyFlagLCD()
 {
  
@@ -158,17 +157,6 @@ uint8_t readBusyFlagLCD()
     RW = 0;
    return ui8ReturnValue;
 }
-
-
-
-/*void putcLCD(uint8_t *buffer, uint8_t ui8count)
-{
-    while (ui8count)
-    {
-        writeDataLCD(*buffer++);
-        ui8count--;
-    }
-}*/
 
 void putcLCD(char c)
 {
@@ -208,119 +196,6 @@ void clearLCDStorage()
     uint8_t i;
     for(i=0;i<32;DataString[i++]=' ');
 }
-
-#define STATE_WRITE_LINE_1 0
-#define STATE_WRITE_LINE_2 1
-#define STATE_WRITE_LINE_1_SPACES 2
-#define STATE_WRITE_LINE_2_SPACES 3
-//#define STATE_IDLE 4
-/*
-void SendDataToLCD()
-{
-    //static variables
-    static uint8_t ui8Position=0;
-    static uint8_t ui8State=0;
-    
-    if (readBusyFlagLCD())
-    {
-        //return; //break if LCD is busy
-    }
-    else
-    {
-        //LATBbits.LATB8=0;
-        switch(ui8State)
-        {          
-            case STATE_WRITE_LINE_1:
-                
-                if(DataString[ui8Position] != '\0' && ui8Position<16)
-                {
-                    writeDataLCDNonBlocking((uint8_t) DataString[ui8Position]);
-                    ui8Position++;
-                }
-                else
-                {
-                    if(ui8Position == 16)
-                    {
-                        sendCommandLCDNonBlocking( 0xC0 ); //line_2(); //set cursor line 
-                        ui8State = STATE_WRITE_LINE_2;
-                    }
-                    else                       
-                        ui8State=STATE_WRITE_LINE_1_SPACES;
-                }
-                
-                break;
-            
-            case STATE_WRITE_LINE_1_SPACES:
-                
-                if(ui8Position<16)
-                {
-                    writeDataLCD((uint8_t) ' ');
-                    ui8Position++;
-                }
-                else
-                {
-                       sendCommandLCDNonBlocking( 0xC0 ); //line_2(); //set cursor line 
-                       ui8State = STATE_WRITE_LINE_2;
-                       ui8Position=16;
-                }                
-                break;
-            
-            case STATE_WRITE_LINE_2:
-                
-                if(DataString[ui8Position] != '\0' && ui8Position<32)
-                {
-                    writeDataLCD((uint8_t) DataString[ui8Position]);
-                    ui8Position++;
-                }
-                else
-                {
-                    ui8State=STATE_WRITE_LINE_2_SPACES;
-                }
-                
-                break;
-            
-            case STATE_WRITE_LINE_2_SPACES:
-                
-                if(ui8Position<32)
-                {
-                    writeDataLCD((uint8_t) ' ');
-                    ui8Position++;
-                }
-                else
-                {
-                    sendCommandLCDNonBlocking( 0x02 );
-                    ui8State = STATE_WRITE_LINE_1;
-                    ui8Position=0;
-                    
-                    //ui8LineUpdateFlag &= 0xFD; //clear Flag
-                }                
-                break;
-        }
-    }   
-}
-*/
-
-/*
-void setLineLCD(const char* pStr, uint8_t ui8Line)
-{
-    if(ui8Line==1)
-        strncpy(&DataString[0],pStr,16);
-    else if(ui8Line == 2)
-        strncpy(&DataString[16],pStr,16);
-    else; //do nothing
-}
-
-void setLCDLine1(const char* pString)
-{   
-    strncpy(&DataString[0],pString,16);
-    //ui8LineUpdateFlag |= 0x01; //set Flag
-}
-void setLCDLine2(const char* pString)
-{
-    strncpy(&DataString[16],pString,16);
-    //ui8LineUpdateFlag |= 0x02; //set Flag
-}
-*/
 
 void SendDataToLCD()
 {
@@ -404,14 +279,11 @@ void setLCDLine2(const char* pString)
     setLCDLine(pString,2);
 }
 
-
-
-#define STATE_SET_POSITION 1
-#define STATE_SET_CHAR 0
-
-
 void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState )
 {
+    #define STATE_SET_POSITION 1
+    #define STATE_SET_CHAR 0
+
     static int8_t i8Position = 0;
     static uint8_t ui8State = STATE_SET_CHAR;
     static uint8_t ui8SWStateOld=0;
@@ -491,31 +363,11 @@ void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState )
     ui8SWStateOld=ui8SWState;
 }
 
-#define SetLCDG(a) sendCommandLCD((a&0x3F)|0x40)
-#define SetLCDC(a) sendCommandLCD((a&0x7F)|0x80)
-#define putLCD(d) writeDataLCD(d)
-
 void createNewChar()
 {
-    /*
-    sendCommandLCD(0x40); //set pointer to beginn auf CGRAM
-    RS=1;
-    RW=0;
-    
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0b111111);
-    writeDataLCD(0);
-    
-    sendCommandLCD(0x40+14);
-    
-    
-    RS=0;
-    RW=0;*/
+    #define SetLCDG(a) sendCommandLCD((a&0x3F)|0x40)
+    #define SetLCDC(a) sendCommandLCD((a&0x7F)|0x80)
+    #define putLCD(d) writeDataLCD(d)
     
     SetLCDG(0);
 
@@ -544,13 +396,13 @@ void createNewChar()
     putLCD(0);
     
     //1
-    putLCD(0x11111);
-    putLCD(0x11111);
-    putLCD(0x11111);
-    putLCD(0x11111);
-    putLCD(0x11111);
-    putLCD(0x11111);
-    putLCD(0x11111);    
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
+    putLCD(0b10101);
+    putLCD(0b01010);
     putLCD(0);
     
     //2
