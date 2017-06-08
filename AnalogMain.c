@@ -91,18 +91,21 @@ int main() {
     pinMode(INCA, INPUT_PULLUP);
     pinMode(INCB, INPUT_PULLUP);
     pinMode(INCSW, INPUT_PULLUP);
-    //call rotatoryEncode function two times to initalize state
-    rotaryEncode();
+    rotaryEncode();    //call rotatoryEncode function two times to initalize state
     rotaryEncode();
     
     //set Pin Mode for PIEZO
     pinMode(PIEZO,OUTPUT);
     digitalWrite(PIEZO, LOW);
+    
+    pinMode(AN0, ANALOG_INPUT);
+    pinMode(AN1, ANALOG_INPUT);
+    InitADC1();
      
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
     clearLCDStorage();
-    setLCDLine(" EmbeddedSystems",1);
+    setLCDLine("EmbeddedSystems",1);
     setLCDLine("",2);
     //createNewChar();
     home_clr();
@@ -111,25 +114,30 @@ int main() {
     configSystemTimeMillis();
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
   
+    char str[16];
+    
     /* Endless Loop */
     while(1){
 
-        //LATBbits.LATB9=1; //set LED to 1, to measure work time
+        LATBbits.LATB9=1; //set LED to 1, to measure work time
 
-        //sprintf( str, "Runtime %2lu:%2lu", ui32Time/60000,(ui32Time/1000)%60 );
-        //sprintf( str, "Pi %.6f", 3.141 );
-        uint8_t ui8SWState = !isPressed(INCSW);
-        int8_t i8RotaryEncode = rotaryEncode();
-        digitalWrite(LED0, ui8SWState);
-        digitalWrite(LED2, digitalRead(INCB));
-        digitalWrite(LED3, digitalRead(INCA));
-        //digitalWrite(LED2, digitalRead(DIP0));
-        //digitalWrite(LED3, digitalRead(DIP1));
+
+        int16_t value;
         
+        LATBbits.LATB8=1;
+        value = analogRead(AN0);
+        LATBbits.LATB8=0;
+        sprintf(str,"%d",value );
+        setLCDLine(str,1);
         
-        Schreibmaschine( i8RotaryEncode, ui8SWState );
- 
-              
+        LATBbits.LATB10=1;
+        value = analogRead(AN1);
+        LATBbits.LATB10=0;
+        sprintf(str,"%d",value );
+        setLCDLine(str,2);
+        
+        //setLCDLine("Zweite Teile",2);
+        
         SendDataToLCD();
         ui32Time++; //increase ms counter
         LATBbits.LATB9=0; //set LED to 0, to measure work time

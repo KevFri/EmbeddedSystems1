@@ -102,7 +102,7 @@ int main() {
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
     clearLCDStorage();
-    setLCDLine(" EmbeddedSystems",1);
+    setLCDLine("EmbeddedSystems",1);
     setLCDLine("",2);
     //createNewChar();
     home_clr();
