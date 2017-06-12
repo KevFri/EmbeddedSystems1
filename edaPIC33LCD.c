@@ -197,7 +197,7 @@ void clearLCDStorage()
     for(i=0;i<32;DataString[i++]=' ');
 }
 
-void SendDataToLCD()
+void sendDataToLCD()
 {
         static uint8_t ui8position = 0;
     static uint8_t ui8setCursor = 0;

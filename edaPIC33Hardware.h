@@ -207,13 +207,6 @@
 #define LCD_RW RD5
 #define LCD_RS RB15
 
-
-#define STATE_STABLE_HIGH   0
-#define STATE_INSTABLE_HIGH 1
-#define STATE_STABLE_LOW    2
-#define STATE_INSTABLE_LOW  3
-
-
 //* I/O Port Modes for pinMode Function
 #define DIGITAL_INPUT           0    
 #define DIGITAL_INPUT_PULLDOWN  1 
@@ -270,16 +263,6 @@ extern const uint16_t cui16DebounceTime;
 uint8_t isPressedSW0();
 uint8_t isPressed(uint8_t ui8Port);
 
-#define STATE_A0_B0 0
-#define STATE_A1_B0 1
-#define STATE_A0_B1 2
-#define STATE_A1_B1 3
-
-#define LEFT -1
-#define RIGTH 1
-#define IDLE 0
-
-
 /** 
  * @brief Incrementalencoder
  * @param void
@@ -289,6 +272,9 @@ uint8_t isPressed(uint8_t ui8Port);
  * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
  */
 int8_t rotaryEncode();
+#define LEFT -1
+#define RIGTH 1
+#define IDLE 0
 
 uint16_t* getpTRIS(uint8_t Port);
 uint16_t* getpPORT(uint8_t Port);

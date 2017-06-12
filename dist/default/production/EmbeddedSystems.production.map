@@ -231,7 +231,7 @@ External Symbols in Program Memory (by address):
                   0x0034fc                  _putsLCD
                   0x003516                  _putncLCD
                   0x00353a                  _clearLCDStorage
-                  0x003558                  _SendDataToLCD
+                  0x003558                  _sendDataToLCD
                   0x0035a6                  _setLCDLine
                   0x003608                  _setLCDLine1
                   0x003616                  _setLCDLine2
@@ -264,7 +264,6 @@ External Symbols in Program Memory (by name):
                   0x0039e8                  _FlipFlopLED0
                   0x00291c                  _InitADC1
                   0x003624                  _Schreibmaschine
-                  0x003558                  _SendDataToLCD
                   0x003b16                  _SoftwarePwm
                   0x003a4e                  _Treppenlichtautomat
                   0x0002fe                  __DefaultInterrupt
@@ -344,6 +343,7 @@ External Symbols in Program Memory (by name):
                   0x00282a                  _rotaryEncode
                   0x0033a6                  _sendCommandLCD
                   0x0033e0                  _sendCommandLCDNonBlocking
+                  0x003558                  _sendDataToLCD
                   0x00265e                  _setBit
                   0x00346c                  _setDDRAMAddressLCD
                   0x0035a6                  _setLCDLine
@@ -3479,7 +3479,7 @@ __c30_signature
                   0x0034fc                  _putsLCD
                   0x003516                  _putncLCD
                   0x00353a                  _clearLCDStorage
-                  0x003558                  _SendDataToLCD
+                  0x003558                  _sendDataToLCD
                   0x0035a6                  _setLCDLine
                   0x003608                  _setLCDLine1
                   0x003616                  _setLCDLine2

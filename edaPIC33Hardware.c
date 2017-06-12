@@ -18,7 +18,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
     uint16_t* pODC =   getpODC(ui8Port);     //open drain select Bit, 0: digital output, 1:open drain output
     
     switch(ui8Mode)
-    {   //set ANSEL, TRIS, CNEN, CNPU and CNPD bit
+    {   //set ANSEL, TRIS, CNEN, CNPU, CNPD and ODC bit
         case DIGITAL_INPUT:
             setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
@@ -417,6 +417,10 @@ uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit)
     return (ui16Var & ( 1 << ui8Bit )) >> ui8Bit;
 }
 
+#define STATE_STABLE_HIGH   0
+#define STATE_INSTABLE_HIGH 1
+#define STATE_STABLE_LOW    2
+#define STATE_INSTABLE_LOW  3
 const uint16_t cui16DebounceTime=1;
 uint8_t isPressedSW0()
 {
@@ -488,7 +492,6 @@ uint8_t isPressedSW0()
     }
     return ui8ReturnValue;
 }
-
 uint8_t isPressed(uint8_t ui8Port)
 {
     static uint8_t ui8State = STATE_STABLE_HIGH; //default state
@@ -560,7 +563,10 @@ uint8_t isPressed(uint8_t ui8Port)
     return ui8ReturnValue;
 }
 
-
+#define STATE_A0_B0 0
+#define STATE_A1_B0 1
+#define STATE_A0_B1 2
+#define STATE_A1_B1 3
 int8_t rotaryEncode()
 {
     static int8_t ui8Mode=IDLE;
@@ -685,6 +691,7 @@ void InitADC1()
     AD1CHS123 = 0x0000;
     AD1CSSH = 0x0000;
     AD1CSSL = 0x0000;
+    //AD1CON1bits.AD12B = 1; //select 12Bit Mode, 0:10Bit Mode, 1:12Bit Mode
     AD1CON1bits.ADON = 1;
 }
 

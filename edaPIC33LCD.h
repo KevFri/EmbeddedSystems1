@@ -151,7 +151,7 @@ void clearLCDStorage();
  * @details Funktion sendet bei jedem Aufruf einen Character des Schattenspeichers an den LCD
  * @attention Funktion muss zyklisch aufgerufen werden. Non-Blocking Funktion, liest das Busy Flag des LCD aus
  */
-void SendDataToLCD();
+void sendDataToLCD();
 
 /** 
  * @brief setLCDLine

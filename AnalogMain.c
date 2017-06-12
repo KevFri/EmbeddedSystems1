@@ -98,7 +98,7 @@ int main() {
         setLCDLine(str,2);
         
         
-        SendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
+        sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
