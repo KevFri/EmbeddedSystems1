@@ -10,44 +10,58 @@
 
 void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
 {
-    uint16_t* pTRIS = getpTRIS(ui8Port);    //Output/Input select, 0:output, 1:input
-    uint16_t* pCNEN = getpCNEN(ui8Port);    //Change Notification Interrupt Enable Bit, 0:disabled, 1:enabled
-    uint16_t* pCNPU = getpCNPU(ui8Port);    //Pull-Up enable Bit, 0:disabled, 1:enabled
-    uint16_t* pCNPD = getpCNPD(ui8Port);    //Pull-Down enable Bit, 0:disabled, 1:enabled
-    uint16_t* pANSEL = getpANSEL(ui8Port);  //Analog select Bit, 0: digital, 1:analog
+    uint16_t* pTRIS =  getpTRIS(ui8Port);    //Output/Input select, 0:output, 1:input
+    uint16_t* pCNEN =  getpCNEN(ui8Port);    //Change Notification Interrupt Enable Bit, 0:disabled, 1:enabled
+    uint16_t* pCNPU =  getpCNPU(ui8Port);    //Pull-Up enable Bit, 0:disabled, 1:enabled
+    uint16_t* pCNPD =  getpCNPD(ui8Port);    //Pull-Down enable Bit, 0:disabled, 1:enabled
+    uint16_t* pANSEL = getpANSEL(ui8Port);   //Analog select Bit, 0: digital, 1:analog
+    uint16_t* pODC =   getpODC(ui8Port);     //open drain select Bit, 0: digital output, 1:open drain output
     
     switch(ui8Mode)
-    {
-        case INPUT:
+    {   //set ANSEL, TRIS, CNEN, CNPU and CNPD bit
+        case DIGITAL_INPUT:
             setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;
             
-        case INPUT_PULLUP:
+        case DIGITAL_INPUT_PULLUP:
             setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 1);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;
             
-        case INPUT_PULLDOWN:
+        case DIGITAL_INPUT_PULLDOWN:
             setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 1);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 1);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;
             
-        case OUTPUT:
+        case DIGITAL_OUTPUT:
             setBit(pANSEL,getPortBitNumb(ui8Port), 0);
             setBit(pTRIS, getPortBitNumb(ui8Port), 0);      
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            break;
+            
+        case OPEN_DRAIN_OUTPUT:
+            setBit(pANSEL,getPortBitNumb(ui8Port), 0);
+            setBit(pTRIS, getPortBitNumb(ui8Port), 0);      
+            setBit(pCNEN, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPU, getPortBitNumb(ui8Port), 0);
+            setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 1);
             break;
             
         case ANALOG_OUTPUT:
@@ -56,6 +70,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;
 
         case ANALOG_INPUT:
@@ -64,6 +79,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;
 
         case ANALOG_INPUT_PULLDOWN:
@@ -72,6 +88,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 1);
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
             break;   
 
         case ANALOG_INPUT_PULLUP:
@@ -80,8 +97,9 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNEN, getPortBitNumb(ui8Port), 0);
             setBit(pCNPU, getPortBitNumb(ui8Port), 1);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
-            break;               
-        
+            setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            break;
+                    
         default:
             break;
     }
@@ -90,11 +108,10 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
 void digitalWrite(const uint8_t ui8Port,const uint8_t ui8Value)
 {  
     if(ui8Value)
-        setBit(getpLAT(ui8Port), getPortBitNumb(ui8Port), 1);
+        setBit(getpLAT(ui8Port), getPortBitNumb(ui8Port), 1); //set output to 1 if value is true (unlike zero)
     else
-        setBit(getpLAT(ui8Port), getPortBitNumb(ui8Port), 0);
+        setBit(getpLAT(ui8Port), getPortBitNumb(ui8Port), 0); //set output to 0 if value is false (zero)
 }
-
 
 void digitalToggle(const uint8_t ui8Port)
 {

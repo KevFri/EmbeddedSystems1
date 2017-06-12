@@ -23,16 +23,6 @@
 #define HIGH    1 //Logical HIGH
 #define LOW     0 //Logical LOW
 
-//* I/O Port Modes
-#define INPUT            0
-#define INPUT_PULLDOWN   1
-#define INPUT_PULLUP     2
-#define OUTPUT           3
-#define ANALOG_INPUT     4
-#define ANALOG_OUTPUT    5
-#define ANALOG_INPUT_PULLDOWN  6
-#define ANALOG_INPUT_PULLUP    7
-
 //*edaPIC33 definitions
 #define RG15    1
 //#define VDD     2
@@ -224,6 +214,16 @@
 #define STATE_INSTABLE_LOW  3
 
 
+//* I/O Port Modes for pinMode Function
+#define DIGITAL_INPUT           0    
+#define DIGITAL_INPUT_PULLDOWN  1 
+#define DIGITAL_INPUT_PULLUP    2 
+#define DIGITAL_OUTPUT          3
+#define OPEN_DRAIN_OUTPUT       4
+#define ANALOG_INPUT            5
+#define ANALOG_OUTPUT           6    
+#define ANALOG_INPUT_PULLDOWN   7 
+#define ANALOG_INPUT_PULLUP     8
 
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.

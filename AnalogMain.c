@@ -25,6 +25,7 @@
 #include "edaPIC33Oscillator.h"
 #include "edaPIC33LCD.h"        //edaPIC33 LCD Library
 #include "edaPIC33OtherStuff.h" //other Functions
+#include "edaPIC33Setup.h"
 
 
 /* ***********************
@@ -64,51 +65,11 @@
  */
 int main() {
     
+    //config oscillator PLL with external 8Mhz crystal
     configOscillator();
-    
-    //set switch pinmodes
-    pinMode(SW0, INPUT_PULLUP);
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
-    
-    pinMode(DIP0, INPUT_PULLUP);
-    pinMode(DIP1, INPUT_PULLUP);
-    
-    //set LED pinmodes
-    pinMode(LED0,OUTPUT);
-    pinMode(LED1,OUTPUT);
-    pinMode(LED2,OUTPUT);
-    pinMode(LED3,OUTPUT);
 
-    //set LEDs to low (default value)
-    digitalWrite(LED0, LOW);
-    digitalWrite(LED1, LOW);
-    digitalWrite(LED2, LOW);
-    digitalWrite(LED3, LOW);
-    
-    //set Pin Modes for Incremental
-    pinMode(INCA, INPUT_PULLUP);
-    pinMode(INCB, INPUT_PULLUP);
-    pinMode(INCSW, INPUT_PULLUP);
-    rotaryEncode();    //call rotatoryEncode function two times to initalize state
-    rotaryEncode();
-    
-    //set Pin Mode for PIEZO
-    pinMode(PIEZO,OUTPUT);
-    digitalWrite(PIEZO, LOW);
-    
-    pinMode(AN0, ANALOG_INPUT);
-    pinMode(AN1, ANALOG_INPUT);
-    InitADC1();
-     
-    //initial LCD Display, clear LCD and set cursor home, clear Shadow String
-    initMyLCD();
-    clearLCDStorage();
-    setLCDLine("EmbeddedSystems",1);
-    setLCDLine("",2);
-    //createNewChar();
-    home_clr();
+    //setup pinMode for switches, led, LCD, rotatory encode,...
+    setupEdaPIC33Board();
     
     //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
@@ -136,9 +97,8 @@ int main() {
         sprintf(str,"%d",value );
         setLCDLine(str,2);
         
-        //setLCDLine("Zweite Teile",2);
         
-        SendDataToLCD();
+        SendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms

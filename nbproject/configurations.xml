@@ -11,6 +11,7 @@
       <itemPath>edaPIC33BlinkLed.h</itemPath>
       <itemPath>edaPIC33LCD.h</itemPath>
       <itemPath>edaPIC33OtherStuff.h</itemPath>
+      <itemPath>edaPIC33Setup.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -38,6 +39,7 @@
       <itemPath>IncrementalMain.c</itemPath>
       <itemPath>edaPIC33Hardware.c</itemPath>
       <itemPath>AnalogMain.c</itemPath>
+      <itemPath>edaPIC33Setup.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -208,6 +210,16 @@
         <property key="save-temps" value="false"/>
       </C30Global>
       <item path="IncrementalMain.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="MainFSM.c" ex="true" overriding="false">
         <C30>
