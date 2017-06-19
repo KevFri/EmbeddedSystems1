@@ -464,3 +464,15 @@ char* createFortschrittsbalken(char *pStr, int16_t i16Value)
             pStr[i] = ' '; 
         return pStr;
 }
+
+char* createFortschrittsbalken2(char *pStr, uint16_t ui16Value, uint16_t ui16MaxValue)
+{
+        uint8_t i;
+        uint16_t uiDivider = ui16MaxValue/16;
+        for(i=0; i<(ui16Value/uiDivider);i++)
+            pStr[i] = 0xFF; 
+        pStr[i++] = (uint8_t)((ui16Value%uiDivider)/(uiDivider/5));
+        for(; i<16;i++)
+            pStr[i] = ' '; 
+        return pStr;
+}

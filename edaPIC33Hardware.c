@@ -16,6 +16,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
     uint16_t* pCNPD =  getpCNPD(ui8Port);    //Pull-Down enable Bit, 0:disabled, 1:enabled
     uint16_t* pANSEL = getpANSEL(ui8Port);   //Analog select Bit, 0: digital, 1:analog
     uint16_t* pODC =   getpODC(ui8Port);     //open drain select Bit, 0: digital output, 1:open drain output
+    uint16_t* pIOCON = getpIOCON(ui8Port);   //GPIO/PWM select: 0:GPIO module controls pins, 1:PWM module controls
     
     switch(ui8Mode)
     {   //set ANSEL, TRIS, CNEN, CNPU, CNPD and ODC bit
@@ -26,6 +27,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
             
         case DIGITAL_INPUT_PULLUP:
@@ -35,6 +37,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 1);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
             
         case DIGITAL_INPUT_PULLDOWN:
@@ -44,6 +47,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 1);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
             
         case DIGITAL_OUTPUT:
@@ -53,6 +57,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
             
         case OPEN_DRAIN_OUTPUT:
@@ -62,6 +67,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 1);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
             
         case ANALOG_OUTPUT:
@@ -71,6 +77,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
 
         case ANALOG_INPUT:
@@ -80,6 +87,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;
 
         case ANALOG_INPUT_PULLDOWN:
@@ -89,6 +97,7 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 0);
             setBit(pCNPD, getPortBitNumb(ui8Port), 1);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
             break;   
 
         case ANALOG_INPUT_PULLUP:
@@ -98,6 +107,11 @@ void pinMode(const uint8_t ui8Port,const uint8_t ui8Mode)
             setBit(pCNPU, getPortBitNumb(ui8Port), 1);
             setBit(pCNPD, getPortBitNumb(ui8Port), 0);
             setBit(pODC,  getPortBitNumb(ui8Port), 0);
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 0);
+            break;
+            
+        case PWM_OUTPUT:
+            setBit(pIOCON,  getPwmPinEnRegisterBitNumb(ui8Port), 1);
             break;
                     
         default:
@@ -682,7 +696,7 @@ int8_t rotaryEncode()
 }
 
 //in engineering:
-void InitADC1()
+void initADC1()
 {
     AD1CON1 = 0x0004;
     AD1CON2 = 0x0000;
@@ -706,7 +720,6 @@ int16_t analogRead(uint8_t ui8Port)
     AD1CON1bits.DONE = 0;
     return ADC1BUF0;            //return conversion result
 }
-
 
 uint8_t getAnalogPortBitNumb(uint8_t Port)
 {
@@ -749,13 +762,13 @@ uint8_t getAnalogPortBitNumb(uint8_t Port)
     return 0;
 }
 
-
-void initPWMModul()
+void initPwmModul()
 {
     /* Set PWM Period on Primary Time Base */
     //PTPER = 1023;
-    PTPER = 60000;
-    /* Set Phase Shift to zero*/
+    // Set PWM Perios with Function: void setPwmPeriodValue(uint16_t ui16PeriodValue)
+    
+    /* Set all Phase Shift to zero*/
     PHASE1 = 0;
     SPHASE1 = 0;
     PHASE2 = 0;
@@ -768,33 +781,21 @@ void initPWMModul()
     SPHASE5 = 0;
     PHASE6 = 0;
     SPHASE6 = 0;
+    
     /* Set Duty Cycles */
- /*
-    PDC1 = 100;
-    SDC1 = 200;
-    PDC2 = 300;
-    SDC2 = 400;
-    PDC3 = 500;
-    SDC3 = 600;
-    PDC4 = 100;
-    SDC4 = 200;
-    PDC5 = 30000;
-    SDC5 = 30000;
-    PDC6 = 30000;
-    SDC6 = 30000;
-*/
+    //set duty cycles with function setPwmDutyCycle
     
     /* Set Dead Time Values */
     DTR1 = DTR2 = DTR3 = DTR4 = DTR5 = DTR6 =0;
     ALTDTR1 = ALTDTR2 = ALTDTR3 = ALTDTR4 = ALTDTR5 = ALTDTR6 =0;
+    
+      
     /* Set PWM Mode to Independent */
+    // GPIO module controls PWM Pins
+    // PinMode has to be set to PWM_OUTPUT with function PinMode(Pin, PWM_OUTPUT)
+    IOCON1 = IOCON2 = IOCON3 = IOCON4 = IOCON5 = IOCON6 = 0x0C00;
     
-    //TODO IOCONx Bit15/14 setzen in abhängigkeit des zu konfigurierenden pins --> pin mode aufnehmen, 
-    // für andere pins pin mode auch ändern falls pwm eingestellt war...
-    //, digital write funktion, PTPER value anpassen
     
-    IOCON1 = IOCON2 = IOCON3 = IOCON4 = 0;
-    IOCON5 = IOCON6 =0xCC00;
     /* Set Primary Time Base, Edge-Aligned Mode and Independent Duty Cycles */
     PWMCON1 = PWMCON2 = PWMCON3 = PWMCON4 = PWMCON5 = PWMCON6 = 0x0000;
     /* Configure Faults */
@@ -806,4 +807,68 @@ void initPWMModul()
     
     uint16_t i=0;
     for(i=0; i<1000; i++) Nop();
+}
+
+void setPwmPeriodValue(uint16_t ui16PeriodValue)
+{
+    PTPER=ui16PeriodValue;
+}
+
+uint16_t* getpIOCON(uint8_t Port)
+{
+   if(Port==RE0 || Port==RE0 )
+       return (uint16_t*) &IOCON1;
+   if(Port==RE2 || Port==RE3 )
+       return (uint16_t*) &IOCON2;
+   if(Port==RE4 || Port==RE5 )
+       return (uint16_t*) &IOCON3;
+   if(Port==RE6 || Port==RE7 )
+       return (uint16_t*) &IOCON4;
+   if(Port==RC1 || Port==RC2 )
+       return (uint16_t*) &IOCON5;
+   if(Port==RC3 || Port==RC4 )
+       return (uint16_t*) &IOCON6;   
+   return 0;
+}
+
+uint8_t getPwmPinEnRegisterBitNumb(uint8_t Port)
+{
+    switch(Port)
+    {
+		case RC1:  return 14;
+		case RC2:  return 15;
+		case RC3:  return 14;
+		case RC4:  return 15;
+	
+		case RE0:  return 14;
+		case RE1:  return 15;
+		case RE2:  return 14;
+		case RE3:  return 15;
+		case RE4:  return 14;
+		case RE5:  return 15;
+		case RE6:  return 14;
+		case RE7:  return 15;     
+    }
+    return 0;
+}
+
+void setPwmDutyCycle(uint8_t ui8Port, uint16_t ui16DutyCycle)
+{
+    switch(ui8Port)
+    {
+		case RC1:  SDC5 = ui16DutyCycle; break;
+		case RC2:  PDC5 = ui16DutyCycle; break;
+		case RC3:  SDC6 = ui16DutyCycle; break;
+		case RC4:  PDC6 = ui16DutyCycle; break;
+	
+		case RE0:  SDC1 = ui16DutyCycle; break;
+		case RE1:  PDC1 = ui16DutyCycle; break;
+		case RE2:  SDC2 = ui16DutyCycle; break;
+		case RE3:  PDC2 = ui16DutyCycle; break;
+		case RE4:  SDC3 = ui16DutyCycle; break;
+		case RE5:  PDC3 = ui16DutyCycle; break;
+		case RE6:  SDC4 = ui16DutyCycle; break;
+		case RE7:  PDC4 = ui16DutyCycle; break;
+        default:  break;
+    }
 }

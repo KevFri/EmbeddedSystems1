@@ -192,6 +192,8 @@ void createNewChar();
 
 char* createFortschrittsbalken(char *pStr, int16_t i16Value);
 
+char* createFortschrittsbalken2(char *pStr, uint16_t ui16Value, uint16_t ui16MaxValue);
+
 #ifdef	__cplusplus
 }
 #endif

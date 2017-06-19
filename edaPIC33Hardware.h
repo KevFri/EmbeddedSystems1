@@ -26,9 +26,9 @@
 //*edaPIC33 definitions
 #define RG15    1
 //#define VDD     2
-#define RE5     3
-#define RE6     4
-#define RE7     5
+#define RE5     3  //pin is used for LCD Communication!
+#define RE6     4  //pin is used for LCD Communication!
+#define RE7     5  //pin is used for LCD Communication!
 #define RC1     6
 #define RC2     7
 #define RC3     8
@@ -116,14 +116,14 @@
 #define RG0     90
 #define RA6     91
 #define RA7     92
-#define RE0     93
-#define RE1     94
+#define RE0     93  //pin is used for LCD Communication!
+#define RE1     94  //pin is used for LCD Communication!
 #define RG14    95
 #define RG12    96
 #define RG13    97
-#define RE2     98
-#define RE3     99
-#define RE4     100
+#define RE2     98  //pin is used for LCD Communication!
+#define RE3     99  //pin is used for LCD Communication!
+#define RE4     100 //pin is used for LCD Communication!
 
 //*analog pin definitions
 #define AN0     RB0
@@ -150,32 +150,27 @@
 #define AN21    RE9
 #define AN22    RA6  
 #define AN23    RA7
-#define AN24    RE0
-#define AN25    RE1
-#define AN26    RE2
-#define AN27    RE3
-#define AN28    RE4
-#define AN29    RE5
-#define AN30    RE6
-#define AN31    RE7
+#define AN24    RE0  //pin is used for LCD Communication!
+#define AN25    RE1  //pin is used for LCD Communication!
+#define AN26    RE2  //pin is used for LCD Communication!
+#define AN27    RE3  //pin is used for LCD Communication!
+#define AN28    RE4  //pin is used for LCD Communication!
+#define AN29    RE5  //pin is used for LCD Communication!
+#define AN30    RE6  //pin is used for LCD Communication!
+#define AN31    RE7  //pin is used for LCD Communication!
 
-#define PWM1L   RE0
-#define PWM1H   RE1
-#define PWM2L   RE2
-#define PWM2H   RE3
-#define PWM3L   RE4
-#define PWM3H   RE5
-#define PWM4L   RE6
-#define PWM4H   RE7
+#define PWM1L   RE0  //pin is used for LCD Communication!
+#define PWM1H   RE1  //pin is used for LCD Communication!
+#define PWM2L   RE2  //pin is used for LCD Communication!
+#define PWM2H   RE3  //pin is used for LCD Communication!
+#define PWM3L   RE4  //pin is used for LCD Communication!
+#define PWM3H   RE5  //pin is used for LCD Communication!
+#define PWM4L   RE6  //pin is used for LCD Communication!
+#define PWM4H   RE7  //pin is used for LCD Communication!
 #define PWM5L   RC1
 #define PWM5H   RC2
 #define PWM6L   RC3
 #define PWM6H   RC4
-
-
-
-
-
 
 
 //*Push-Buttons
@@ -235,7 +230,8 @@
 #define ANALOG_INPUT            5
 #define ANALOG_OUTPUT           6    
 #define ANALOG_INPUT_PULLDOWN   7 
-#define ANALOG_INPUT_PULLUP     8
+#define ANALOG_INPUT_PULLUP     8 
+#define PWM_OUTPUT              9
 
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
@@ -302,14 +298,20 @@ uint16_t* getpCNEN(uint8_t Port);
 uint16_t* getpCNPU(uint8_t Port);
 uint16_t* getpCNPD(uint8_t Port);
 uint16_t* getpANSEL(uint8_t Port);
+uint16_t* getpIOCON(uint8_t Port);
+
 void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
 uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
 uint8_t getPortBitNumb(uint8_t Port);
 
-void InitADC1();
+void initADC1();
 int16_t analogRead(uint8_t ui8Port);
 uint8_t getAnalogPortBitNumb(uint8_t Port);
 
-void initPWMModul();
+void initPwmModul();
+void setPwmPeriodValue(uint16_t ui16PeriodValue);
+uint8_t getPwmPinEnRegisterBitNumb(uint8_t Port);
+void setPwmDutyCycle(uint8_t ui8Port, uint16_t ui16DutyCycle);
+
 
 #endif	/* EDAPIC33HARDWARE_H */

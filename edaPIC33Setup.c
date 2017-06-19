@@ -38,15 +38,16 @@ void setupEdaPIC33Board()
     digitalWrite(PIEZO, LOW);
     
     //initalize ADC1 to 10Bit mode and set pin modes for analog pins (potentiometers)
-    InitADC1();
+    initADC1();
     pinMode(AN0, ANALOG_INPUT);
     pinMode(AN1, ANALOG_INPUT);
     
-    initPWMModul();
-    pinMode(PWM5L, ANALOG_OUTPUT);
-    pinMode(PWM5H, ANALOG_OUTPUT);
-    pinMode(PWM6L, ANALOG_OUTPUT);
-    pinMode(PWM6H, ANALOG_OUTPUT);
+    initPwmModul();
+    setPwmPeriodValue(60000);
+    //pinMode(RC1, PWM_OUTPUT);
+    //pinMode(RC2, PWM_OUTPUT);
+    pinMode(RC3, PWM_OUTPUT);
+    //pinMode(RC4, PWM_OUTPUT);
     
 
     

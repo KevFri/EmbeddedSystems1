@@ -53,7 +53,7 @@
  * Definitions
  * ***********************
  */
-
+extern char DataString[32];  
 
 /* ***********************
  * Main
@@ -64,6 +64,7 @@
 /**
  * Main Function
  */
+
 int main() {
     
     //config oscillator PLL with external 8Mhz crystal
@@ -80,22 +81,16 @@ int main() {
     uint16_t var=30000;
     /* Endless Loop */
     while(1){
-
-        int16_t i16value;
-        /*i16value = analogRead(AN0);
-        sprintf(str,"Poti In:%d",i16value);
-        setLCDLine(str,1);*/
         
-        var=(uint16_t)( (int32_t)var +  (1000*(int32_t)rotaryEncode()));
+        var=(uint16_t)( (int32_t)var +  (500*(int32_t)rotaryEncode()));
         sprintf(str,"Inc:%u",var);
         setLCDLine(str,1);   
-        
-        i16value = analogRead(AN1);
-        sprintf(str,"PWM In:%d",i16value);
-        setLCDLine(str,2);
-        
+               
        //PDC1 = SDC1 = PDC2 = SDC2 = PDC3 = SDC3 =  PDC4 =    SDC4 =    PDC5 =     SDC5 =   PDC6 =  SDC6 = var;
-        PDC6 = var;
+        //PDC6 = var;
+        setPwmDutyCycle(RC3, var);
+        createFortschrittsbalken2(&DataString[16], var, PTPER);
+        
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
