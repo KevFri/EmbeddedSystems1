@@ -3,8 +3,6 @@
 #include <string.h>
 
 char DataString[32];  
-//char* pDataStringLine1 = &DataString[0];
-//char* pDataStringLine2 = &DataString[16];
 
 //uint8_t ui8LineUpdateFlag=0; // Bit0: Line1, Bit1: Line2
 
@@ -386,64 +384,70 @@ void createNewChar()
     */
     
     //0
-    putLCD(0b10000);
-    putLCD(0b01000);
-    putLCD(0b00100);
-    putLCD(0b00010);
-    putLCD(0b00001);
-    putLCD(0b00010);
-    putLCD(0b00100);
-    putLCD(0);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    putLCD(0b00000);
+    //putLCD(0);
     
     //1
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    putLCD(0b10000);
+    //putLCD(0);
     
     //2
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0b10101);
-    putLCD(0b01010);
-    putLCD(0);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    putLCD(0b11000);
+    //putLCD(0);
     
     //3
-    putLCD(0b11111);
-    putLCD(0b10001);
-    putLCD(0b10101);
-    putLCD(0b10101);
-    putLCD(0b10101);
-    putLCD(0b10001);
-    putLCD(0b11111);
-    putLCD(0);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    putLCD(0b11100);
+    //putLCD(0);
 
     //4
-    putLCD(0b00000);
-    putLCD(0b10001);
-    putLCD(0b00100);
-    putLCD(0b00100);
-    putLCD(0b10001);
-    putLCD(0b01110);
-    putLCD(0b00000);
-    putLCD(0);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    putLCD(0b11110);
+    //putLCD(0);
 
     //5
-    putLCD(0b00000);
-    putLCD(0b10001);
-    putLCD(0b00100);
-    putLCD(0b00100);
-    putLCD(0b01110);
-    putLCD(0b10001);
-    putLCD(0b00000);
-    putLCD(0);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    putLCD(0b11111);
+    //putLCD(0);
     
 
     

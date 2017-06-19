@@ -693,6 +693,9 @@ void InitADC1()
     AD1CSSL = 0x0000;
     //AD1CON1bits.AD12B = 1; //select 12Bit Mode, 0:10Bit Mode, 1:12Bit Mode
     AD1CON1bits.ADON = 1;
+    
+    uint16_t i=0;
+    for(i=0; i<1000; i++) Nop();
 }
 
 int16_t analogRead(uint8_t ui8Port)

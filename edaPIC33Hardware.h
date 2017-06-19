@@ -251,7 +251,6 @@ void digitalToggle(const uint8_t ui8Port);
  * @attention not implemented for each pin
  */
 uint8_t digitalRead(const uint8_t ui8Port);
-#endif	/* EDAPIC33HARDWARE_H */
 
 /** 
  * @brief Funktion zum Auswerten des Tasters SW0 (Pin 96)
@@ -288,7 +287,8 @@ void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
 uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
 uint8_t getPortBitNumb(uint8_t Port);
 
-//in engineering:
 void InitADC1();
 int16_t analogRead(uint8_t ui8Port);
 uint8_t getAnalogPortBitNumb(uint8_t Port);
+
+#endif	/* EDAPIC33HARDWARE_H */

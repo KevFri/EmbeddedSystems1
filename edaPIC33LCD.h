@@ -43,7 +43,9 @@ extern "C" {
 #define putLCD(d) writeDataLCD(d)
 
 
-extern char ShadowString[32]; 
+extern char DataString[32];
+extern char* pLCDDataStringLine1;
+extern char* pLCDDataStringLine2;
 
 /** 
  * @brief Initialisiere LCD Display

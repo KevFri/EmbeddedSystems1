@@ -67,19 +67,19 @@ int main() {
     configOscillator();
     
     //set switch pinmodes
-    pinMode(SW0, INPUT_PULLUP);
-    pinMode(SW1, INPUT_PULLUP);
-    pinMode(SW2, INPUT_PULLUP);
-    pinMode(SW3, INPUT_PULLUP);
+    pinMode(SW0, DIGITAL_INPUT_PULLUP);
+    pinMode(SW1, DIGITAL_INPUT_PULLUP);
+    pinMode(SW2, DIGITAL_INPUT_PULLUP);
+    pinMode(SW3, DIGITAL_INPUT_PULLUP);
     
-    pinMode(DIP0, INPUT_PULLUP);
-    pinMode(DIP1, INPUT_PULLUP);
+    pinMode(DIP0, DIGITAL_INPUT_PULLUP);
+    pinMode(DIP1, DIGITAL_INPUT_PULLUP);
     
     //set LED pinmodes
-    pinMode(LED0,OUTPUT);
-    pinMode(LED1,OUTPUT);
-    pinMode(LED2,OUTPUT);
-    pinMode(LED3,OUTPUT);
+    pinMode(LED0,DIGITAL_OUTPUT);
+    pinMode(LED1,DIGITAL_OUTPUT);
+    pinMode(LED2,DIGITAL_OUTPUT);
+    pinMode(LED3,DIGITAL_OUTPUT);
 
     //set LEDs to low (default value)
     digitalWrite(LED0, LOW);
@@ -88,15 +88,15 @@ int main() {
     digitalWrite(LED3, LOW);
     
     //set Pin Modes for Incremental
-    pinMode(INCA, INPUT_PULLUP);
-    pinMode(INCB, INPUT_PULLUP);
-    pinMode(INCSW, INPUT_PULLUP);
+    pinMode(INCA, DIGITAL_INPUT_PULLUP);
+    pinMode(INCB, DIGITAL_INPUT_PULLUP);
+    pinMode(INCSW, DIGITAL_INPUT_PULLUP);
     //call rotatoryEncode function two times to initalize state
     rotaryEncode();
     rotaryEncode();
     
     //set Pin Mode for PIEZO
-    pinMode(PIEZO,OUTPUT);
+    pinMode(PIEZO,DIGITAL_OUTPUT);
     digitalWrite(PIEZO, LOW);
      
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
@@ -130,7 +130,7 @@ int main() {
         Schreibmaschine( i8RotaryEncode, ui8SWState );
  
               
-        SendDataToLCD();
+        sendDataToLCD();
         ui32Time++; //increase ms counter
         LATBbits.LATB9=0; //set LED to 0, to measure work time
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms

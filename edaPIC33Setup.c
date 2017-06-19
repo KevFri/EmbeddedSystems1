@@ -44,6 +44,7 @@ void setupEdaPIC33Board()
     
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
+    createNewChar();
     clearLCDStorage();
     home_clr(); 
 }
