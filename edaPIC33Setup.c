@@ -42,6 +42,14 @@ void setupEdaPIC33Board()
     pinMode(AN0, ANALOG_INPUT);
     pinMode(AN1, ANALOG_INPUT);
     
+    initPWMModul();
+    pinMode(PWM5L, ANALOG_OUTPUT);
+    pinMode(PWM5H, ANALOG_OUTPUT);
+    pinMode(PWM6L, ANALOG_OUTPUT);
+    pinMode(PWM6H, ANALOG_OUTPUT);
+    
+
+    
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();
     createNewChar();

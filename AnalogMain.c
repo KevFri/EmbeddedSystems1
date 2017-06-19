@@ -47,10 +47,11 @@
  * Prototypes
  * ***********************
  */
+/*
 char* createFortschrittsbalken(char *pStr, int16_t i16Value);
 uint8_t createHystere(int16_t  i16InputValue);
 uint8_t createComparator(int16_t  i16InputValue);
-
+*/
 /* ***********************
  * Definitions
  * ***********************
@@ -106,7 +107,7 @@ int main() {
     return (EXIT_SUCCESS);  //never reached
 } //main()
 
-
+/*
 char* createFortschrittsbalken(char *pStr, int16_t i16Value)
 {
         uint8_t i; 
@@ -162,3 +163,4 @@ uint8_t createComparator(int16_t  i16InputValue)
     else
         return 0;
 }
+*/

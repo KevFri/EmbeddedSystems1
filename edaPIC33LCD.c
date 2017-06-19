@@ -453,3 +453,14 @@ void createNewChar()
     
     SetLCDC(0x40);
 }
+
+char* createFortschrittsbalken(char *pStr, int16_t i16Value)
+{
+        uint8_t i; 
+        for(i=0; i<(i16Value/64);i++)
+            pStr[i] = 0xFF; 
+        pStr[i++] = (uint8_t)(i16Value%64)/12;
+        for(; i<16;i++)
+            pStr[i] = ' '; 
+        return pStr;
+}

@@ -748,3 +748,62 @@ uint8_t getAnalogPortBitNumb(uint8_t Port)
     }
     return 0;
 }
+
+
+void initPWMModul()
+{
+    /* Set PWM Period on Primary Time Base */
+    //PTPER = 1023;
+    PTPER = 60000;
+    /* Set Phase Shift to zero*/
+    PHASE1 = 0;
+    SPHASE1 = 0;
+    PHASE2 = 0;
+    SPHASE2 = 0;
+    PHASE3 = 0;
+    SPHASE3 = 0;
+    PHASE4 = 0;
+    SPHASE4 = 0;
+    PHASE5 = 0;
+    SPHASE5 = 0;
+    PHASE6 = 0;
+    SPHASE6 = 0;
+    /* Set Duty Cycles */
+ /*
+    PDC1 = 100;
+    SDC1 = 200;
+    PDC2 = 300;
+    SDC2 = 400;
+    PDC3 = 500;
+    SDC3 = 600;
+    PDC4 = 100;
+    SDC4 = 200;
+    PDC5 = 30000;
+    SDC5 = 30000;
+    PDC6 = 30000;
+    SDC6 = 30000;
+*/
+    
+    /* Set Dead Time Values */
+    DTR1 = DTR2 = DTR3 = DTR4 = DTR5 = DTR6 =0;
+    ALTDTR1 = ALTDTR2 = ALTDTR3 = ALTDTR4 = ALTDTR5 = ALTDTR6 =0;
+    /* Set PWM Mode to Independent */
+    
+    //TODO IOCONx Bit15/14 setzen in abhängigkeit des zu konfigurierenden pins --> pin mode aufnehmen, 
+    // für andere pins pin mode auch ändern falls pwm eingestellt war...
+    //, digital write funktion, PTPER value anpassen
+    
+    IOCON1 = IOCON2 = IOCON3 = IOCON4 = 0;
+    IOCON5 = IOCON6 =0xCC00;
+    /* Set Primary Time Base, Edge-Aligned Mode and Independent Duty Cycles */
+    PWMCON1 = PWMCON2 = PWMCON3 = PWMCON4 = PWMCON5 = PWMCON6 = 0x0000;
+    /* Configure Faults */
+    FCLCON1 = FCLCON2 = FCLCON3 = FCLCON4 = FCLCON5 = FCLCON6 =0x0003;
+    /* 1:1 Prescaler */
+    PTCON2 = 0x0000;
+    /* Enable PWM Module */
+    PTCON = 0x8000;
+    
+    uint16_t i=0;
+    for(i=0; i<1000; i++) Nop();
+}

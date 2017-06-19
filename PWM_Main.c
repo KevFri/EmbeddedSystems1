@@ -47,9 +47,7 @@
  * Prototypes
  * ***********************
  */
-char* createFortschrittsbalken(char *pStr, int16_t i16Value);
-uint8_t createHystere(int16_t  i16InputValue);
-uint8_t createComparator(int16_t  i16InputValue);
+
 
 /* ***********************
  * Definitions
@@ -79,23 +77,25 @@ int main() {
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
   
     char str[16];
-    extern char DataString[32];
-    
-    
+    uint16_t var=30000;
     /* Endless Loop */
     while(1){
 
         int16_t i16value;
-        i16value = analogRead(AN0);
-        createFortschrittsbalken(&DataString[0], i16value);
-       
-        i16value = analogRead(AN1);
-        sprintf(str, "%d",i16value);
-        setLCDLine(str,1);
-        createFortschrittsbalken(&DataString[16], i16value);
-        digitalWrite(LED3,createHystere(i16value));
-        digitalWrite(LED2,createComparator(i16value));
+        /*i16value = analogRead(AN0);
+        sprintf(str,"Poti In:%d",i16value);
+        setLCDLine(str,1);*/
         
+        var=(uint16_t)( (int32_t)var +  (1000*(int32_t)rotaryEncode()));
+        sprintf(str,"Inc:%u",var);
+        setLCDLine(str,1);   
+        
+        i16value = analogRead(AN1);
+        sprintf(str,"PWM In:%d",i16value);
+        setLCDLine(str,2);
+        
+       //PDC1 = SDC1 = PDC2 = SDC2 = PDC3 = SDC3 =  PDC4 =    SDC4 =    PDC5 =     SDC5 =   PDC6 =  SDC6 = var;
+        PDC6 = var;
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
@@ -107,58 +107,3 @@ int main() {
 } //main()
 
 
-char* createFortschrittsbalken(char *pStr, int16_t i16Value)
-{
-        uint8_t i; 
-        for(i=0; i<(i16Value/64);i++)
-            pStr[i] = 0xFF; 
-        pStr[i++] = (uint8_t)(i16Value%64)/12;
-        for(; i<16;i++)
-            pStr[i] = ' '; 
-        return pStr;
-}
-
-#define HYSTERESE_ON 524
-#define HYSTERESE_OFF 500
-#define STATE_ON 1
-#define STATE_OFF 0
-uint8_t createHystere(int16_t  i16InputValue)
-{
-    static uint8_t ui8State = STATE_OFF;
-    
-    if(ui8State == STATE_OFF)
-    {
-        if(i16InputValue >= HYSTERESE_ON)
-        {
-            ui8State = STATE_ON;
-            return STATE_ON;
-        }
-        else
-        {
-            return STATE_OFF;
-        }
-        
-    }
-   else //(ui8State == STATE_ON)
-   {
-        if(i16InputValue <= HYSTERESE_OFF)
-        {
-            ui8State = STATE_OFF;
-            return STATE_OFF;
-        }
-        else
-        {
-            return STATE_ON;
-        }
-   }
-   return STATE_OFF;
-}
-
-#define COMPARATOR_THRESHOLD 512
-uint8_t createComparator(int16_t  i16InputValue)
-{
-    if(i16InputValue>=COMPARATOR_THRESHOLD)
-        return 1;
-    else
-        return 0;
-}

@@ -60,6 +60,9 @@ void Treppenlichtautomat(uint8_t ui8SwitchState, uint8_t ui8LedPin, const uint32
  */
 void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCycle);
 
+uint8_t createHystere(int16_t  i16InputValue);
+uint8_t createComparator(int16_t  i16InputValue);
+
 
 #ifdef	__cplusplus
 }

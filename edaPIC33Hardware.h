@@ -159,6 +159,25 @@
 #define AN30    RE6
 #define AN31    RE7
 
+#define PWM1L   RE0
+#define PWM1H   RE1
+#define PWM2L   RE2
+#define PWM2H   RE3
+#define PWM3L   RE4
+#define PWM3H   RE5
+#define PWM4L   RE6
+#define PWM4H   RE7
+#define PWM5L   RC1
+#define PWM5H   RC2
+#define PWM6L   RC3
+#define PWM6H   RC4
+
+
+
+
+
+
+
 //*Push-Buttons
 #define SW0 RG12
 #define SW1 RG13
@@ -290,5 +309,7 @@ uint8_t getPortBitNumb(uint8_t Port);
 void InitADC1();
 int16_t analogRead(uint8_t ui8Port);
 uint8_t getAnalogPortBitNumb(uint8_t Port);
+
+void initPWMModul();
 
 #endif	/* EDAPIC33HARDWARE_H */

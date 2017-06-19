@@ -40,6 +40,7 @@
       <itemPath>edaPIC33Hardware.c</itemPath>
       <itemPath>AnalogMain.c</itemPath>
       <itemPath>edaPIC33Setup.c</itemPath>
+      <itemPath>PWM_Main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -87,6 +88,8 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="AnalogMain.c" ex="true" overriding="false">
+      </item>
       <C30>
         <property key="code-model" value="default"/>
         <property key="const-model" value="default"/>

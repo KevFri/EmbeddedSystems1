@@ -138,3 +138,49 @@ void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCy
     }    
 }
 
+
+
+#define HYSTERESE_ON 524
+#define HYSTERESE_OFF 500
+#define STATE_ON 1
+#define STATE_OFF 0
+uint8_t createHystere(int16_t  i16InputValue)
+{
+    static uint8_t ui8State = STATE_OFF;
+    
+    if(ui8State == STATE_OFF)
+    {
+        if(i16InputValue >= HYSTERESE_ON)
+        {
+            ui8State = STATE_ON;
+            return STATE_ON;
+        }
+        else
+        {
+            return STATE_OFF;
+        }
+        
+    }
+   else //(ui8State == STATE_ON)
+   {
+        if(i16InputValue <= HYSTERESE_OFF)
+        {
+            ui8State = STATE_OFF;
+            return STATE_OFF;
+        }
+        else
+        {
+            return STATE_ON;
+        }
+   }
+   return STATE_OFF;
+}
+
+#define COMPARATOR_THRESHOLD 512
+uint8_t createComparator(int16_t  i16InputValue)
+{
+    if(i16InputValue>=COMPARATOR_THRESHOLD)
+        return 1;
+    else
+        return 0;
+}

@@ -190,6 +190,8 @@ void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState );
 
 void createNewChar();
 
+char* createFortschrittsbalken(char *pStr, int16_t i16Value);
+
 #ifdef	__cplusplus
 }
 #endif
