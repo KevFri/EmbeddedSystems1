@@ -78,19 +78,41 @@ int main() {
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
   
     char str[16];
-    uint16_t var=30000;
+    uint16_t var=0;
+    float curAvg=0;
+    uint32_t n=1;
     /* Endless Loop */
     while(1){
         
-        var=(uint16_t)( (int32_t)var +  (500*(int32_t)rotaryEncode()));
-        sprintf(str,"Inc:%u",var);
+        if(!digitalRead(INCSW) == 1)
+        {
+            n=1;
+            curAvg=0;
+        }  
+        else
+            var=(uint16_t)( (int32_t)var +  (64*(int32_t)rotaryEncode()));
+        
+        if(n<=10000)
+        {
+            //calculate Mean Value
+            curAvg = curAvg + ((float)analogRead(AN0) - curAvg)/(float)n;
+            n++;
+        }
+
+        
+        sprintf(str,"Out:%4u",var);
         setLCDLine(str,1);   
                
-       //PDC1 = SDC1 = PDC2 = SDC2 = PDC3 = SDC3 =  PDC4 =    SDC4 =    PDC5 =     SDC5 =   PDC6 =  SDC6 = var;
-        //PDC6 = var;
         setPwmDutyCycle(RC3, var);
-        createFortschrittsbalken2(&DataString[16], var, PTPER);
+
+        //createFortschrittsbalken2(&DataString[16], ui32Time, 0xFFFF);
         
+        setOutputCompareValues(OC1_Pin, 2048, 2*var);
+        
+        sprintf(str,"In:%3.4f",curAvg);
+        setLCDLine(str,2);  
+        //OC1RS =  var;
+        //OC1R =   OC1RS/3;  
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms

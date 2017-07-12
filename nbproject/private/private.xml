@@ -5,10 +5,11 @@
         <group>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Setup.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33LCD.c</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33OtherStuff.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/PWM_Main.c</file>
             <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Hardware.h</file>
-            <file>file:/C:/Program%20Files%20(x86)/Microchip/xc16/v1.31/support/dsPIC33E/h/p33EP512MU810.h</file>
+            <file>file:/C:/Temp/EmbeddedSystems/edaPIC33Timer.c</file>
         </group>
     </open-files>
 </project-private>

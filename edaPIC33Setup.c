@@ -43,13 +43,16 @@ void setupEdaPIC33Board()
     pinMode(AN1, ANALOG_INPUT);
     
     initPwmModul();
-    setPwmPeriodValue(60000);
+    setPwmPeriodValue(1000);
     //pinMode(RC1, PWM_OUTPUT);
     //pinMode(RC2, PWM_OUTPUT);
     pinMode(RC3, PWM_OUTPUT);
     //pinMode(RC4, PWM_OUTPUT);
     
-
+    //initOutputCompare();
+    initOutputComparePwm(OC1_Pin);
+    initOutputComparePwm(OC2_Pin);
+    EdaBoardOutputMapping();
     
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();

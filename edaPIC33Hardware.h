@@ -172,6 +172,85 @@
 #define PWM6L   RC3
 #define PWM6H   RC4
 
+#define RP64    RD0
+#define RP65    RD1
+#define RP66    RD2
+#define RP67    RD3
+#define RP69    RD5
+#define RP70    RD6
+#define RP71    RD7
+#define RP79    RD15
+#define RP80    RE0
+#define RP82    RE2
+#define RP84    RE4
+#define RP85    RE5
+#define RP87    RE7
+#define RP96    RF0
+#define RP97    RF1
+#define RP98    RF2
+#define RP99    RF3
+#define RP100   RF4
+#define RP101   RF5
+#define RP104   RF8
+#define RP108   RF12
+#define RP109   RF13
+#define RP112   RG0
+#define RP113   RG1
+#define RP118   RG6
+#define RP120   RG8
+#define RP125   RG13
+#define RP126   RG14
+#define RP127   RG15
+
+#define RPI17   RA1
+#define RPI18   RA2
+#define RPI19   RA3
+#define RPI20   RA4
+#define RPI21   RA5
+#define RPI22   RA6
+#define RPI23   RA7
+#define RPI30   RA14
+#define RPI31   RA15
+#define RPI38   RB6
+#define RPI39   RB7
+#define RPI40   RB8
+#define RPI41   RB9
+#define RPI42   RB10
+#define RPI43   RB11
+#define RPI44   RB12
+#define RPI45   RB13
+#define RPI46   RB14
+#define RPI47   RB15
+#define RPI60   RC12
+#define RPI61   RC13
+#define RPI72   RD8
+#define RPI73   RD9
+#define RPI74   RD10
+#define RPI75   RD11
+#define RPI76   RD12
+#define RPI77   RD13
+#define RPI78   RD14
+#define RPI81   RE1
+#define RPI83   RE3
+#define RPI124  RG12
+
+#define OC1_Pin    1
+#define OC2_Pin    2
+#define OC3_Pin    3
+#define OC4_Pin    4
+#define OC5_Pin    5
+#define OC6_Pin    6
+#define OC7_Pin    7
+#define OC8_Pin    8
+#define OC9_Pin    9
+#define OC10_Pin   10
+#define OC11_Pin   11
+#define OC12_Pin   12
+#define OC13_Pin   13
+#define OC14_Pin   14
+#define OC15_Pin   15
+#define OC16_Pin   16
+
 
 //*Push-Buttons
 #define SW0 RG12
@@ -313,5 +392,10 @@ void setPwmPeriodValue(uint16_t ui16PeriodValue);
 uint8_t getPwmPinEnRegisterBitNumb(uint8_t Port);
 void setPwmDutyCycle(uint8_t ui8Port, uint16_t ui16DutyCycle);
 
+void initOutputCompare();
+
+void initOutputComparePwm(uint8_t OC_Pin);
+void EdaBoardOutputMapping();
+void setOutputCompareValues(uint8_t OC_Pin, uint16_t ui16PeriodTime, uint16_t ui16HighTime);
 
 #endif	/* EDAPIC33HARDWARE_H */
