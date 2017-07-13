@@ -41,10 +41,10 @@ void digitalCountLED0to3(uint8_t ui8SwitchState);
  * @param  const uint32_t cui32OnTime Leuchtdauer nach Einschalten in Funktionsaufrufen
  * @param  const uint32_t cui32TurnOffTime Dimm-Dauer zum Ausschalten in Funktionsaufrufen
  * @details Treppenlichtautomat Funktion. Bei einer Zustandsnderung von 
- * @details ui8SwitchState wird die LED an ui8LedPin auf High geschaltet 
- * @details und leuchtet dann durchgehend für cui32OnTime [Funkionsaufrufe], 
- * @details anschließend wird die LED mit einer PWM gedimmt, bis diese vollständig 
- * @details aus ist (Zeitdauer: cui32TurnOffTime [Funktionsaufrufe]).  
+ *          ui8SwitchState wird die LED an ui8LedPin auf High geschaltet und 
+ *          leuchtet dann durchgehend für cui32OnTime [Funkionsaufrufe], 
+ *          anschließend wird die LED mit einer PWM gedimmt, bis diese 
+ *          vollständig aus ist (Zeitdauer: cui32TurnOffTime [Funktionsaufrufe]).  
  * @attention Die Funktion muss zyklisch mit einem konstanten Intervall aufgerufen werden!
  */
 void Treppenlichtautomat(uint8_t ui8SwitchState, uint8_t ui8LedPin, const uint32_t cui32OnTime, const uint32_t cui32TurnOffTime);
@@ -62,6 +62,11 @@ void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCy
 
 uint8_t createHystere(int16_t  i16InputValue);
 uint8_t createComparator(int16_t  i16InputValue);
+
+
+void sinusGenerator(uint8_t OutputComparePort);
+void sawtoothGenerator(uint8_t OutputComparePort);
+void triangleGenerator(uint8_t OutputComparePort);
 
 
 #ifdef	__cplusplus
