@@ -122,4 +122,3 @@ void setTimer1PWM_DutyCycleParam(uint32_t ui32FOSC, uint8_t ui8DutyCycle);
 
 
 #endif	/* edaPIC33Timer_H */
-

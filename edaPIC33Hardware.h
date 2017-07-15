@@ -251,7 +251,6 @@
 #define OC15_Pin   15
 #define OC16_Pin   16
 
-
 //*Push-Buttons
 #define SW0 RG12
 #define SW1 RG13
@@ -312,12 +311,16 @@
 #define ANALOG_INPUT_PULLUP     8 
 #define PWM_OUTPUT              9
 
+#define PWM0    OC1_Pin
+#define PWM1    OC2_Pin
+#define Aout0   PWM0
+#define Aout1   PWM1
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
  * @brief it is possible to enable the internal pullup / pulldown resistors with the mode INPUT_PULLUP, INPUT_PULLDOWN
  * @param uint8_t ui8Port   Number of the Port to configure.
  * @param uint8_t ui8Mode   Mode to configure.
- * @details Provided modes: INPUT, INPUT_PULLUP, INPUT_PULLDOWN, OUTPUT, ANALOG_INPUT, ANALOG_OUTPUT
+ * @details Provided modes: INPUT, INPUT_PULLUP, INPUT_PULLDOWN, OUTPUT, ANALOG_INPUT, ANALOG_OUTPUT, ANALOG_INPUT_PULLDOWN, ANALOG_INPUT_PULLUP, PWM_OUTPUT
  * @attention   pinMode is implemented for all register pins
  */
 void pinMode(const uint8_t ui8Port,const  uint8_t ui8Mode);
@@ -328,38 +331,50 @@ void pinMode(const uint8_t ui8Port,const  uint8_t ui8Mode);
  * @param uint8_t ui8Value  Value to write. Ether HIGH or LOL
  * @details Provided values: HIGH, LOW, 1,0
  * @attention Each Value of ui8Value unlike zero writes HIGH to the Outputport
- * @attention digitalWrite is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ * @attention digitalWrite is implemented for all register pins
  */
 void digitalWrite(const uint8_t ui8Port,const  uint8_t ui8Value);
 
 /** 
  * @brief toggles the digital pin
  * @param uint8_t ui8Port   Number of the pin to toggle.
- * @attention digitalToggle is only implemented for the pins 32-35 and 12 (LED0-3 and PIEZO)  (right now)
+ * @attention Port has to be defined as Output first
+ * @attention digitalToggle is implemented for all register pins
  */
 void digitalToggle(const uint8_t ui8Port);
 
 /** 
  * @brief reads the digital pin.
  * @param uint8_t ui8Port   Number of the pin to read.
- * @attention not implemented for each pin
+ * @attention digitalRead is implemented for all register pins
  */
 uint8_t digitalRead(const uint8_t ui8Port);
 
 /** 
- * @brief Funktion zum Auswerten des Tasters SW0 (Pin 96)
+ * @brief Funktion zum Entprellen des Tasters SW0 (Pin 96)
  * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Funktionsaufrufe].
  * @details Funktion Entprellt den Taster SWO (Pin 96)
  * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ * @attention SW0 muss vorher als Eingang deklariert werden
  */
-extern const uint16_t cui16DebounceTime;
 uint8_t isPressedSW0();
+
+/** 
+ * @brief Funktion zum Entprellen eines beliebigen Tasters/Schalter)
+ * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Einheit: Funktionsaufrufe].
+ * @details Funktion Entprellt den Taster SWO (Pin 96)
+ * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ * @attention Funktion kann nur für einen Pin verwendet werden
+ * @attention Pin muss vorher als Eingang deklariert werden
+ */
 uint8_t isPressed(uint8_t ui8Port);
+extern const uint16_t cui16DebounceTime;
+
 
 /** 
  * @brief Incrementalencoder
  * @param void
- * @return -1: Links, 0:unverändert, 1:Rechts
+ * @return int8_t value: -1: Links, 0:unverändert, 1:Rechts
  * @details Funktionen wertet den Inkrementalencoder auf dem Board auf. Funktion muss zyklisch aufgerufen werden, damit ein drehen festgestellt werden kann
  * @attention Funktion muss zur initalisierung (mindestens) zweimal aufgerufen werden um den STATE richtig zu definieren!
  * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
@@ -369,33 +384,186 @@ int8_t rotaryEncode();
 #define RIGTH 1
 #define IDLE 0
 
+/** 
+ * @brief Functions returns Pointer to TRIS Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pTRIS Pointer to TRIS Register
+ * @details returns NULL if Port has no TRIS Register
+ */
 uint16_t* getpTRIS(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to PORT Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pPORT Pointer to PORT Register
+ * @details returns NULL if Port has no PORT Register
+ */
 uint16_t* getpPORT(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to LAT Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pLAT Pointer to LAT Register
+ * @details returns NULL if Port has no LAT Register
+ */
 uint16_t* getpLAT(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to ODC Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pODC Pointer to ODC Register
+ * @details returns NULL if Port has no ODC Register
+ */
 uint16_t* getpODC(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to CNEN Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pCNEN Pointer to CNEN Register
+ * @details returns NULL if Port has no CNEN Register
+ */
 uint16_t* getpCNEN(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to CNPU Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pCNPU Pointer to CNPU Register
+ * @details returns NULL if Port has no CNPU Register
+ */
 uint16_t* getpCNPU(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to CNPD Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pCNPD Pointer to CNPD Register
+ * @details returns NULL if Port has no CNPD Register
+ */
 uint16_t* getpCNPD(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to ANSEL Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pANSEL Pointer to ANSEL Register
+ * @details returns NULL if Port has no ANSEL Register
+ */
 uint16_t* getpANSEL(uint8_t Port);
+
+/** 
+ * @brief Functions returns Pointer to IOCON Register 
+ * @param uint8_t Port Number of Port
+ * @return uint16_t* pIOCON Pointer to IOCON Register
+ * @details returns NULL if Port has no IOCON Register
+ */
 uint16_t* getpIOCON(uint8_t Port);
 
+/** 
+ * @brief Functions setBit of pui16Var 
+ * @param uint16_t* pui16Var Variable which contains the Bit to set
+ * @param uint8_t ui8Bit Bitnumber to set 0..15
+ * @param uint8_t ui8Value Value to set the Bit 0 or 1
+ * @attention ui8Value has to be 0 or 1 otherwise the function doesn't change pui16Var
+ */
 void setBit(uint16_t* pui16Var, uint8_t ui8Bit, uint8_t ui8Value);
+
+/** 
+ * @brief Functions returns the value of one Bit form ui16Var
+ * @param uint16_t ui16Var Variable which contains the Bit to read
+ * @param uint8_t ui8Bit Bitnumber you want to read 0..15
+ * @return uint8_t ui8Value Value of the Bit 0 or 1
+ */
 uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
+
+/** 
+ * @brief Function returns Register Bit Number which is linked with the port
+ * @param uint8_t Port Port you want to know the Register
+ * @return uint8_t Return Return Value: Register Bit Number of Port
+ */
 uint8_t getPortBitNumb(uint8_t Port);
 
+/** 
+ * @brief Function initilizes ADC1 for single mode with 10Bit
+ * @attention ...
+ */
 void initADC1();
+
+/** 
+ * @brief Function reads analog Value from ui8Port
+ * @param uint8_t Port Port you want to read analog
+ * @return int16_t analog Value
+ */
 int16_t analogRead(uint8_t ui8Port);
+
+/** 
+ * @brief Function returns Analog Port Bit Number which is linked with the port
+ * @param uint8_t Port Port you want to know the Analog Port Bit Number
+ * @return uint8_t Return Return Value: Analog Port Bit Number of Port
+ */
 uint8_t getAnalogPortBitNumb(uint8_t Port);
 
+/** 
+ * @brief  initialize PWM Modul
+ * @details Function initilizes Hardware PWM Module to Independent PWM Mode
+ * @param void
+ * @return void
+ * @attention Periode Value must be set with Function setPwmPeriodValue
+ * @attention provided ports: RC1, RC2, RC3, RC4, RE0, RE1, RE2, RE3, RE4, RE5, RE6, RE7
+ */
 void initPwmModul();
+
+/** 
+ * @brief sets Periode Value for Hardware PWM Modul
+ * @details Function sets PWM Period Value
+ * @param void
+ * @return void
+ * @attention Periode Value must be set with Function setPwmPeriodValue
+ */
 void setPwmPeriodValue(uint16_t ui16PeriodValue);
+
+/** 
+ * @brief Function returns PWM Pin Enable Register Bit Number
+ * @param uint8_t Port Port you want to know the PWM Pin Enable Register Bit Number
+ * @return uint8_t Return Return Value: PWM Pin Enable Register Bit Number of Port
+ */
 uint8_t getPwmPinEnRegisterBitNumb(uint8_t Port);
+
+/** 
+ * @brief sets Duty Cycle (on Time) for Hardware PWM Modul Port
+ * @param   uint8_t     ui8Port         Port you want to change the DutyCycle
+ *          uint16_t    ui16DutyCycle   DutyCycle (0...Period Value)
+ * @return void
+ * @attention Periode Value must be set with Function setPwmPeriodValue
+ */
 void setPwmDutyCycle(uint8_t ui8Port, uint16_t ui16DutyCycle);
 
-void initOutputCompare();
-
+/** 
+ * @brief initialize Output Compare Module
+ * @details Function initializes Output Compare Module to 
+ * @param   uint8_t OC_Pin  internal OCx Pin to initalize output compare module
+ * @return void
+ * @attention internal OCx Pins must be mapped to Output Pins!!! See Function EdaBoardOutputMapping
+ */
 void initOutputComparePwm(uint8_t OC_Pin);
-void EdaBoardOutputMapping();
+
+/** 
+ * @brief set Output Compare Values 
+ * @details set Parameter for Output Compare PWM Pins, Value are normalited to Fp = Fosc/2
+ * @param uint8_t   OC_Pin Output Compare Pin
+ *        uint16_t  ui16PeriodTime Period Value for OC Pins
+ *        uint16_t  ui16HighTime High Time Value for OC Pins
+ * @return void
+ * @attention 
+ */
 void setOutputCompareValues(uint8_t OC_Pin, uint16_t ui16PeriodTime, uint16_t ui16HighTime);
+
+/** 
+ * @brief Output Mapping Function
+ * @details Function maps internal Pins to external output Pins
+ * @details  Pin 72 (RD0) <= OC1
+ * @details  Pin 76 (RD1) <= OC2
+ * @param  void
+ * @return void
+ * @attention read Datasheet to map the pins
+ */
+void EdaBoardOutputMapping();
 
 #endif	/* EDAPIC33HARDWARE_H */

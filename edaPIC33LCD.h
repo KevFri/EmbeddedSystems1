@@ -160,7 +160,7 @@ void sendDataToLCD();
  * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
  * @param uint8_t ui8Line Zeile in welcher der String gespeichert werden soll
  * @return void
- * @detail Funktion kopiert einen String in den Schattenspeicher des LCDs
+ * @details Funktion kopiert einen String in den Schattenspeicher des LCDs
  * @attention Funktion überschreibt den Schattenspeicher des LCDs
  */
 void setLCDLine(const char* pStr, uint8_t ui8Line);
@@ -169,7 +169,7 @@ void setLCDLine(const char* pStr, uint8_t ui8Line);
  * @brief setLCDLine1
  * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
  * @return void
- * @detail Funktion kopiert einen String in den Schattenspeicher (Line1) des LCDs
+ * @details Funktion kopiert einen String in den Schattenspeicher (Line1) des LCDs
  * @attention Funktion überschreibt den Schattenspeicher des LCDs
  */
 void setLCDLine1(const char* pString);
@@ -178,20 +178,43 @@ void setLCDLine1(const char* pString);
  * @brief setLCDLine2
  * @param const char* pStr String der in den Schattenspeicher gespeichert werden soll
  * @return void
- * @detail Funktion kopiert einen String in den Schattenspeicher (Line2) des LCDs
+ * @details Funktion kopiert einen String in den Schattenspeicher (Line2) des LCDs
  * @attention Funktion überschreibt den Schattenspeicher des LCDs
  */
 void setLCDLine2(const char* pString);
 
 //void putCharLCD(char c);
 
-
+/**
+ * @brief Schreibmaschine für LCD Display
+ * @param i8RotaryEncode Rotationsencoder liefert -1,0,1
+ * @param ui8SWState Taster State, wird verwendet um Modus der Schreibmaschine zu ändern
+ */
 void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState );
 
+/** 
+ * @brief create New Char for LCD Display
+ * @param void
+ * @return void 
+ * @attention to add new chars, change function 
+ */
 void createNewChar();
 
+/**
+ * @brief erzeuge Fortschrittsbalken
+ * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..1024
+ * @param i16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..1024
+ * @return pointer to String
+ */
 char* createFortschrittsbalken(char *pStr, int16_t i16Value);
 
+/**
+ * @brief erzeuge Fortschrittsbalken
+ * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..MaxValue
+ * @param ui16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..MaxValue
+ * @param ui16MaxValue Maximalwert für Fortschrittsbalken
+ * @return pointer to String 
+ */
 char* createFortschrittsbalken2(char *pStr, uint16_t ui16Value, uint16_t ui16MaxValue);
 
 #ifdef	__cplusplus

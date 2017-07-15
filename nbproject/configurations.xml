@@ -20,27 +20,15 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>primary_oscillator.c</itemPath>
-      <itemPath>rechenleistung.c</itemPath>
-      <itemPath>primzahlen.c</itemPath>
-      <itemPath>PinModeMain.c</itemPath>
       <itemPath>edaPIC33Timer.c</itemPath>
       <itemPath>edaPIC33SystemTime.c</itemPath>
-      <itemPath>TimerMain.c</itemPath>
-      <itemPath>SystemTimeMain.c</itemPath>
-      <itemPath>MainVorlage.c</itemPath>
-      <itemPath>MainNonBlocking.c</itemPath>
-      <itemPath>edaPIC33BlinkLed.c</itemPath>
-      <itemPath>MainFSM.c</itemPath>
-      <itemPath>MainLCD.c</itemPath>
       <itemPath>edaPIC33LCD.c</itemPath>
       <itemPath>edaPIC33OtherStuff.c</itemPath>
-      <itemPath>MainLCD_old.c</itemPath>
-      <itemPath>IncrementalMain.c</itemPath>
       <itemPath>edaPIC33Hardware.c</itemPath>
-      <itemPath>AnalogMain.c</itemPath>
       <itemPath>edaPIC33Setup.c</itemPath>
       <itemPath>PWM_Main.c</itemPath>
+      <itemPath>edaPIC33BlinkLed.c</itemPath>
+      <itemPath>Main Files/AnalogMain.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -88,18 +76,6 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
-      <item path="AnalogMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <C30>
         <property key="code-model" value="default"/>
         <property key="const-model" value="default"/>
@@ -222,67 +198,7 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="IncrementalMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="MainFSM.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="MainLCD.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="MainLCD_old.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="MainNonBlocking.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="MainVorlage.c" ex="true" overriding="false">
+      <item path="Main Files/AnalogMain.c" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
@@ -396,18 +312,6 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="3.25"/>
       </PICkit3PlatformTool>
-      <item path="PinModeMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <Simulator>
         <property key="codecoverage.enabled" value="Disable"/>
         <property key="codecoverage.enableoutputtofile" value="false"/>
@@ -740,30 +644,6 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
-      <item path="SystemTimeMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="TimerMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <item path="edaPIC33Hardware.h" ex="false" overriding="false">
         <C30>
         </C30>
@@ -777,42 +657,6 @@
         </C30Global>
       </item>
       <item path="edaPIC33Timer.h" ex="false" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="primary_oscillator.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="primzahlen.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
-      <item path="rechenleistung.c" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>

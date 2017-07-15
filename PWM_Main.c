@@ -1,8 +1,8 @@
 /** 
- * @file   MainLCD.c
+ * @file   PWM_Main.c
  * @author Kevin Fritz
  *
- * @date 26.04.2075, 18:14
+ * @date 26.04.2017, 18:14
  */
 
 
@@ -17,15 +17,16 @@
  * ***********************
  */
 
-#include <xc.h>         //Include appropriate controller specific headers
-#include <stdint.h>     //Standard typedefs
-#include <stdio.h>      //Standard IO Library
-#include "edaPIC33Hardware.h"  //edaPIC33 Hardware Library
-#include "edaPIC33SystemTime.h"
-#include "edaPIC33Oscillator.h"
+#include <xc.h>                 //Include appropriate controller specific headers
+#include <stdint.h>             //Standard typedefs
+#include <stdio.h>              //Standard IO Library
+#include "edaPIC33Hardware.h"   //edaPIC33 Hardware Library
+#include "edaPIC33SystemTime.h" //edaPIC33 System Time Library, verwendet Timer1!
+#include "edaPIC33Oscillator.h" //Oscillator Library, konfiguriert Oscillator
 #include "edaPIC33LCD.h"        //edaPIC33 LCD Library
 #include "edaPIC33OtherStuff.h" //other Functions
-#include "edaPIC33Setup.h"
+#include "edaPIC33Setup.h"      //setup library for EDAPIC33 Board
+
 
 
 /* ***********************
@@ -53,6 +54,7 @@
  * Definitions
  * ***********************
  */
+/*String used in edaPIC33LCD Library*/
 extern char DataString[32];  
 
 /* ***********************
@@ -67,7 +69,7 @@ extern char DataString[32];
 
 int main() {
     
-    //config oscillator PLL with external 8Mhz crystal
+    //config oscillator PLL with external 8Mhz crystal to F_OSC = 140MHz
     configOscillator();
 
     //setup pinMode for switches, led, LCD, rotatory encode,...
@@ -76,41 +78,13 @@ int main() {
     //config timer 1 for getSystemTimeMillis();)
     configSystemTimeMillis();
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
-  
-    char str[16];
-    uint16_t var=0;
-    float curAvg=0;
-    uint32_t n=1;
+    
     /* Endless Loop */
     while(1){
+        triangleGenerator(OC1_Pin);
         
-        if(!digitalRead(INCSW) == 1)
-        {
-            n=1;
-            curAvg=0;
-        }  
-        else
-            var=(uint16_t)( (int32_t)var +  (64*(int32_t)rotaryEncode()));
-        
-        if(n<=10000)
-        {
-            //calculate Mean Value
-            curAvg = curAvg + ((float)analogRead(AN0) - curAvg)/(float)n;
-            n++;
-        }
-
-        
-        sprintf(str,"Out:%4u",var);
-        setLCDLine(str,1);   
-               
-        setPwmDutyCycle(RC3, var);
-
-        //createFortschrittsbalken2(&DataString[16], ui32Time, 0xFFFF);
-        
-        setOutputCompareValues(OC1_Pin, 2048, 2*var);
-        
-        sprintf(str,"In:%3.4f",curAvg);
-        setLCDLine(str,2);  
+        setLCDLine("KevinFritz 53243",1);  
+        setLCDLine("Embedded System 1",2);  
         //OC1RS =  var;
         //OC1R =   OC1RS/3;  
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
@@ -122,5 +96,3 @@ int main() {
     }//while
     return (EXIT_SUCCESS);  //never reached
 } //main()
-
-

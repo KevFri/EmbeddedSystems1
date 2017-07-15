@@ -13,8 +13,12 @@
 extern "C" {
 #endif
 
-    //setup I/O ports, lcd display, rotatory encoder, switches, leds,...
-    void setupEdaPIC33Board();
+    
+/** 
+ *  @brief Setup EdaPIC33Board
+ *  @details I/O ports, lcd display, rotatory encoder, switches, leds,...
+ */ 
+void setupEdaPIC33Board();
 
 
 #ifdef	__cplusplus

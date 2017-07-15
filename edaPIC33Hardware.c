@@ -895,26 +895,6 @@ void initOutputCompare()
     __builtin_write_OSCCONL(OSCCON | (1<<6));
 }*/
 
-void initOutputCompare()
-{
-    OC1CON1 = 0;
-    OC1CON2 = 0;
-    
-    OC1CON1bits.OCTSEL  =0x07;
-        
-    OC1R =  7500;
-    OC1RS = 35000;
-    
-    OC1CON2bits.SYNCSEL = 0x1F;
-       
-    OC1CON1bits.OCM =6;
-
-    //OUTPUT Port Mapping
-    __builtin_write_OSCCONL(OSCCON & ~(1<<6));
-    _RP64R = 0b010000; //OC1
-    //_RP65R = 0b010001; //OC2
-    __builtin_write_OSCCONL(OSCCON | (1<<6));
-}
 
 void initOutputComparePwm(uint8_t OC_Pin)
 {
@@ -1156,7 +1136,7 @@ void setOutputCompareValues(uint8_t OC_Pin, uint16_t ui16PeriodTime, uint16_t ui
 void EdaBoardOutputMapping()
 {
     __builtin_write_OSCCONL(OSCCON & ~(1<<6));
-    _RP64R = 0b010000; //OC1
-    _RP65R = 0b010001; //OC2
+    _RP64R = 0b010000; //OC1 to Pin 72 --> RD0
+    _RP65R = 0b010001; //OC2 to Pin 76 --> RD1
     __builtin_write_OSCCONL(OSCCON | (1<<6));
 }

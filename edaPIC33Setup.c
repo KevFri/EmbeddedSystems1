@@ -53,6 +53,8 @@ void setupEdaPIC33Board()
     initOutputComparePwm(OC1_Pin);
     initOutputComparePwm(OC2_Pin);
     EdaBoardOutputMapping();
+        //OC1 to Pin 72 --> RD0
+        //OC2 to Pin 76 --> RD1
     
     //initial LCD Display, clear LCD and set cursor home, clear Shadow String
     initMyLCD();

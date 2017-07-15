@@ -195,7 +195,7 @@ void sinusGenerator(uint8_t OutputComparePort)
     //void setOutputCompareValues(uint8_t OC_Pin, uint16_t ui16PeriodTime, uint16_t ui16HighTime)
     uint16_t ui16Magnitude = (uint16_t) ((Vss/2)*(1.0+sin(2.0*Pi*((double)t)/((double)T)))) ;
     
-    setOutputCompareValues(OC1_Pin, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;
@@ -205,13 +205,13 @@ void sawtoothGenerator(uint8_t OutputComparePort)
 {
     static uint16_t t=0;
     uint16_t ui16Magnitude = (((float)1024*(float)t)/(float)T);
-    setOutputCompareValues(OC1_Pin, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;
 }
 
-triangleGenerator(uint8_t OutputComparePort)
+void triangleGenerator(uint8_t OutputComparePort)
 {
     static uint16_t t=0;
     uint16_t ui16Magnitude = 0;
@@ -221,7 +221,7 @@ triangleGenerator(uint8_t OutputComparePort)
     else
         ui16Magnitude = (uint16_t) Vss*(((2*(float)t)/(float)T)-1.0);
     
-    setOutputCompareValues(OC1_Pin, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;

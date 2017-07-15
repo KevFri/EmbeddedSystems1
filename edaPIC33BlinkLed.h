@@ -112,7 +112,6 @@ uint16_t measureToggleTimeSW2();
  */
 uint16_t measureToggleTimeSW3();
 
-//end of my code
 #ifdef	__cplusplus
 }
 #endif

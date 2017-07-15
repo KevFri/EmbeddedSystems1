@@ -60,12 +60,43 @@ void Treppenlichtautomat(uint8_t ui8SwitchState, uint8_t ui8LedPin, const uint32
  */
 void SoftwarePwm(uint8_t ui8Pin, const uint8_t cui8PeriodTime, uint8_t ui8DutyCycle);
 
+/**
+ * 
+ * @param i16InputValue 0..1023
+ * @details  HYSTERESE_ON 524
+ * @details  HYSTERESE_OFF 500
+ * @return Hysterese Value LOW/HIGH
+ */
 uint8_t createHystere(int16_t  i16InputValue);
+
+
+/**
+ * @brief Function creates Comparator
+ * @details Threshold 512
+ * @param i16InputValue 0..1023
+ * @return Comparator Value LOW/HIGH
+ */
 uint8_t createComparator(int16_t  i16InputValue);
 
-
+/**
+ * @brief Function generates Sinus signal with OutputCompareModule
+ * @details Periode Value 20 
+ * @param OutputComparePort Output Port for PWM
+ */
 void sinusGenerator(uint8_t OutputComparePort);
+
+/**
+ * @brief Function generates sawtooth signal with OutputCompareModule
+ * @details Periode Value 20 
+ * @param OutputComparePort Output Port for PWM
+ */
 void sawtoothGenerator(uint8_t OutputComparePort);
+
+/**
+ * @brief Function generates triangle signal with OutputCompareModule
+ * @details Periode Value 20 
+ * @param OutputComparePort Output Port for PWM
+ */
 void triangleGenerator(uint8_t OutputComparePort);
 
 
