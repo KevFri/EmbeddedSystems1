@@ -2,6 +2,10 @@
 #include "edaPIC33Hardware.h"  //edaPIC33 Hardware Library
 #include "edaPIC33LCD.h"        //edaPIC33 LCD Library
 #include "edaPIC33Setup.h"
+#include "edaPIC33ADC.h"
+#include "edaPIC33OutputCompare.h"
+#include "edaPIC33OtherStuff.h"
+#include "edaPIC33PWM.h"
 
 void setupEdaPIC33Board()
 {
@@ -37,8 +41,9 @@ void setupEdaPIC33Board()
     pinMode(PIEZO,DIGITAL_OUTPUT);
     digitalWrite(PIEZO, LOW);
     
-    //initalize ADC1 to 10Bit mode and set pin modes for analog pins (potentiometers)
+    //init ADC1: Automatic Sample and Manual Conversion 10Bit Mode
     initADC1();
+    //set pin modes for analog pins (potentiometers)
     pinMode(AN0, ANALOG_INPUT);
     pinMode(AN1, ANALOG_INPUT);
     
@@ -64,3 +69,13 @@ void setupEdaPIC33Board()
 }
 
 
+void EdaBoardOutputMapping()
+{
+    __builtin_write_OSCCONL(OSCCON & ~(1<<6));
+    //_RP64R = 0b010000; //OC1 to Pin 72 --> RD0
+    //_RP65R = 0b010001; //OC2 to Pin 76 --> RD1
+    _RP64R = _RPOUT_OC1;
+    _RP65R = _RPOUT_OC2;
+    //_RP120R =  0b010000;  //OC1 to Piezo
+    __builtin_write_OSCCONL(OSCCON | (1<<6));
+}

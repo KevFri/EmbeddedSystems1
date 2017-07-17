@@ -86,6 +86,14 @@ uint8_t createComparator(int16_t  i16InputValue);
 void sinusGenerator(uint8_t OutputComparePort);
 
 /**
+ * @brief Function generates sinus signal with OutputCompareModule
+ * @param OutputComparePort Output Port for PWM
+ * @param msPeriod Periode Value in [Functioncalls]
+ * @attention Function have to be called consistent
+ */
+void sinusGeneratorTimeBase(uint8_t OutputComparePort, uint16_t msPeriod);
+
+/**
  * @brief Function generates sawtooth signal with OutputCompareModule
  * @details Periode Value 20 
  * @param OutputComparePort Output Port for PWM
@@ -93,11 +101,94 @@ void sinusGenerator(uint8_t OutputComparePort);
 void sawtoothGenerator(uint8_t OutputComparePort);
 
 /**
+ * @brief Function generates sawtooth signal with OutputCompareModule
+ * @param OutputComparePort Output Port for PWM
+ * @param msPeriod Periode Value in [Functioncalls]
+ * @attention Function have to be called consistent
+ */
+void sawtoothGeneratorTimeBase(uint8_t OutputComparePort, uint16_t msPeriod);
+
+/**
  * @brief Function generates triangle signal with OutputCompareModule
  * @details Periode Value 20 
  * @param OutputComparePort Output Port for PWM
  */
 void triangleGenerator(uint8_t OutputComparePort);
+
+/**
+ * @brief StopWatch. Counts the Time in mm:ss:ms ms ms
+ * @details Stopwatch. Counts the Time during On and write result to string str, fills the rest of string, to width 16, with ' '
+ * @param str Source String
+ * @param Switch Switch State to start/hold stopwatch
+ * @return 1:Stopwatch is running 0:Stopwatch off
+ */
+uint8_t stopWatch(char* str, uint8_t Switch);
+
+
+/**
+ * @brief erzeuge Fortschrittsbalken
+ * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..1024
+ * @param i16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..1024
+ * @return pointer to String
+ */
+char* createFortschrittsbalken(char *pStr, int16_t i16Value);
+
+/**
+ * @brief erzeuge Fortschrittsbalken
+ * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..MaxValue
+ * @param ui16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..MaxValue
+ * @param ui16MaxValue Maximalwert für Fortschrittsbalken
+ * @return pointer to String 
+ */
+char* createFortschrittsbalken2(char *pStr, uint16_t ui16Value, uint16_t ui16MaxValue);
+
+
+/** 
+ * @brief Funktion zum Entprellen des Tasters SW0 (Pin 96)
+ * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Funktionsaufrufe].
+ * @details Funktion Entprellt den Taster SWO (Pin 96)
+ * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ * @attention SW0 muss vorher als Eingang deklariert werden
+ */
+uint8_t isPressedSW0();
+
+/** 
+ * @brief Funktion zum Entprellen eines beliebigen Tasters/Schalter
+ * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Einheit: Funktionsaufrufe].
+ * @details Funktion Entprellt einen beliebigen Eingang
+ * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ * @attention Funktion kann nur für einen Pin verwendet werden
+ * @attention Pin muss vorher als Eingang deklariert werden
+ */
+uint8_t isPressed(uint8_t ui8Port);
+
+/**
+ * @brief Funktion zum Entprellen mehrerer beliebiger Tasters/Schalter (num 0..7)
+ * @detail isPressed2 kann parallel bis zu 8 Taster entprellen, jedem Taster muss eine Nummer 0..7 zugewiesen werden!
+ * @param ui8Port Hardware Port des zu entprellenden Tasters
+ * @param num Nummer des Tasters, kann frei gewählt werden (0..7)
+ * @return HIGH/LOW (entprelled)
+ * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
+ * @attention Num darf nicht öfters verwendet werden
+ * @attention Pin muss vorher als Eingang deklariert werden
+ */
+uint8_t isPressed2(uint8_t ui8Port, uint8_t num);
+
+extern const uint16_t cui16DebounceTime;
+
+
+/** 
+ * @brief Incrementalencoder
+ * @param void
+ * @return int8_t value: -1: Links, 0:unverändert, 1:Rechts
+ * @details Funktionen wertet den Inkrementalencoder auf dem Board auf. Funktion muss zyklisch aufgerufen werden, damit ein drehen festgestellt werden kann
+ * @attention Funktion muss zur initalisierung (mindestens) zweimal aufgerufen werden um den STATE richtig zu definieren!
+ * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
+ */
+int8_t rotaryEncode();
+#define LEFT -1
+#define RIGTH 1
+#define IDLE 0
 
 
 #ifdef	__cplusplus

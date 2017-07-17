@@ -26,7 +26,7 @@
 #include "edaPIC33LCD.h"        //edaPIC33 LCD Library
 #include "edaPIC33OtherStuff.h" //other Functions
 #include "edaPIC33Setup.h"      //setup library for EDAPIC33 Board
-
+#include "edaPIC33OutputCompare.h"
 
 
 /* ***********************
@@ -55,7 +55,8 @@
  * ***********************
  */
 /*String used in edaPIC33LCD Library*/
-extern char DataString[32];  
+extern char DataString[32];
+char str[16];
 
 /* ***********************
  * Main
@@ -79,14 +80,17 @@ int main() {
     configSystemTimeMillis();
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
     
+    uint16_t msPeriod = 35e3;
     /* Endless Loop */
     while(1){
-        triangleGenerator(OC1_Pin);
         
-        setLCDLine("KevinFritz 53243",1);  
-        setLCDLine("Embedded System 1",2);  
-        //OC1RS =  var;
-        //OC1R =   OC1RS/3;  
+        
+        msPeriod += 100*rotaryEncode();
+        sprintf(str, "%u",msPeriod);
+        setLCDLine(str,1);
+                
+        setOutputCompareValues(OC1_Pin, msPeriod ,msPeriod/2);
+        
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
@@ -96,3 +100,4 @@ int main() {
     }//while
     return (EXIT_SUCCESS);  //never reached
 } //main()
+

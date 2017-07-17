@@ -200,23 +200,6 @@ void Schreibmaschine( int8_t i8RotaryEncode, uint8_t ui8SWState );
  */
 void createNewChar();
 
-/**
- * @brief erzeuge Fortschrittsbalken
- * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..1024
- * @param i16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..1024
- * @return pointer to String
- */
-char* createFortschrittsbalken(char *pStr, int16_t i16Value);
-
-/**
- * @brief erzeuge Fortschrittsbalken
- * @param pStr String in den der Fortschrittsbalken gespeichert werden soll, Balken: 0..MaxValue
- * @param ui16Value Wert der als Fortschrittsbalken ausgegeben werden soll 0..MaxValue
- * @param ui16MaxValue Maximalwert für Fortschrittsbalken
- * @return pointer to String 
- */
-char* createFortschrittsbalken2(char *pStr, uint16_t ui16Value, uint16_t ui16MaxValue);
-
 #ifdef	__cplusplus
 }
 #endif

@@ -26,7 +26,8 @@
 #include "edaPIC33LCD.h"        //edaPIC33 LCD Library
 #include "edaPIC33OtherStuff.h" //other Functions
 #include "edaPIC33Setup.h"      //setup library for EDAPIC33 Board
-
+#include "edaPIC33OutputCompare.h"
+#include "edaPIC33ADC.h"
 
 
 /* ***********************
@@ -55,7 +56,8 @@
  * ***********************
  */
 /*String used in edaPIC33LCD Library*/
-extern char DataString[32];  
+extern char DataString[32];
+char str[16];
 
 /* ***********************
  * Main
@@ -81,12 +83,17 @@ int main() {
     
     /* Endless Loop */
     while(1){
-        triangleGenerator(OC1_Pin);
+        uint16_t ANin = (uint16_t) analogRead(AN0);
         
-        setLCDLine("KevinFritz 53243",1);  
-        setLCDLine("Embedded System 1",2);  
-        //OC1RS =  var;
-        //OC1R =   OC1RS/3;  
+        sawtoothGeneratorTimeBase(OC1_Pin, ANin);
+        sinusGeneratorTimeBase(OC2_Pin, ANin);
+        
+        stopWatch(&DataString[16], !isPressed2(INCSW,0)) == 0 ? setLCDLine("OFF",1):setLCDLine("ON",1);
+        
+        FlipFlopLED0(isPressed2(SW0,1));
+        
+        Treppenlichtautomat(isPressed2(SW1,2),LED1,2000,4000);
+        
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms

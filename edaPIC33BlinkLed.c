@@ -10,6 +10,7 @@
 #include "edaPIC33SystemTime.h"
 #include "edaPIC33Hardware.h"
 #include "edaPIC33BlinkLed.h"
+#include "edaPIC33Setup.h"
 
 void blinkLed0(uint16_t ui16ToggleTime)
 {

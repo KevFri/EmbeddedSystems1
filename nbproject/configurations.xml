@@ -12,6 +12,10 @@
       <itemPath>edaPIC33LCD.h</itemPath>
       <itemPath>edaPIC33OtherStuff.h</itemPath>
       <itemPath>edaPIC33Setup.h</itemPath>
+      <itemPath>edaPIC33RingBuffer.h</itemPath>
+      <itemPath>edaPIC33ADC.h</itemPath>
+      <itemPath>edaPIC33OutputCompare.h</itemPath>
+      <itemPath>edaPIC33PWM.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,9 +30,12 @@
       <itemPath>edaPIC33OtherStuff.c</itemPath>
       <itemPath>edaPIC33Hardware.c</itemPath>
       <itemPath>edaPIC33Setup.c</itemPath>
-      <itemPath>PWM_Main.c</itemPath>
       <itemPath>edaPIC33BlinkLed.c</itemPath>
-      <itemPath>Main Files/AnalogMain.c</itemPath>
+      <itemPath>edaPIC33RingBuffer.c</itemPath>
+      <itemPath>edaPIC33ADC.c</itemPath>
+      <itemPath>edaPIC33OutputCompare.c</itemPath>
+      <itemPath>Main_Test.c</itemPath>
+      <itemPath>edaPIC33PWM.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -198,18 +205,6 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="Main Files/AnalogMain.c" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="ADC 2" value="true"/>

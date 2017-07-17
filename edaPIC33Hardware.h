@@ -125,167 +125,6 @@
 #define RE3     99  //pin is used for LCD Communication!
 #define RE4     100 //pin is used for LCD Communication!
 
-//*analog pin definitions
-#define AN0     RB0
-#define AN1     RB1
-#define AN2     RB2   
-#define AN3     RB3
-#define AN4     RB4
-#define AN5     RB5
-#define AN6     RB6
-#define AN7     RB7
-#define AN8     RB8
-#define AN9     RB9
-#define AN10    RB10
-#define AN11    RB11
-#define AN12    RB12
-#define AN13    RB13
-#define AN14    RB14
-#define AN15    RB15
-#define AN16    RC1
-#define AN17    RC2        
-#define AN18    RC3
-#define AN19    RC4
-#define AN20    RE8
-#define AN21    RE9
-#define AN22    RA6  
-#define AN23    RA7
-#define AN24    RE0  //pin is used for LCD Communication!
-#define AN25    RE1  //pin is used for LCD Communication!
-#define AN26    RE2  //pin is used for LCD Communication!
-#define AN27    RE3  //pin is used for LCD Communication!
-#define AN28    RE4  //pin is used for LCD Communication!
-#define AN29    RE5  //pin is used for LCD Communication!
-#define AN30    RE6  //pin is used for LCD Communication!
-#define AN31    RE7  //pin is used for LCD Communication!
-
-#define PWM1L   RE0  //pin is used for LCD Communication!
-#define PWM1H   RE1  //pin is used for LCD Communication!
-#define PWM2L   RE2  //pin is used for LCD Communication!
-#define PWM2H   RE3  //pin is used for LCD Communication!
-#define PWM3L   RE4  //pin is used for LCD Communication!
-#define PWM3H   RE5  //pin is used for LCD Communication!
-#define PWM4L   RE6  //pin is used for LCD Communication!
-#define PWM4H   RE7  //pin is used for LCD Communication!
-#define PWM5L   RC1
-#define PWM5H   RC2
-#define PWM6L   RC3
-#define PWM6H   RC4
-
-#define RP64    RD0
-#define RP65    RD1
-#define RP66    RD2
-#define RP67    RD3
-#define RP69    RD5
-#define RP70    RD6
-#define RP71    RD7
-#define RP79    RD15
-#define RP80    RE0
-#define RP82    RE2
-#define RP84    RE4
-#define RP85    RE5
-#define RP87    RE7
-#define RP96    RF0
-#define RP97    RF1
-#define RP98    RF2
-#define RP99    RF3
-#define RP100   RF4
-#define RP101   RF5
-#define RP104   RF8
-#define RP108   RF12
-#define RP109   RF13
-#define RP112   RG0
-#define RP113   RG1
-#define RP118   RG6
-#define RP120   RG8
-#define RP125   RG13
-#define RP126   RG14
-#define RP127   RG15
-
-#define RPI17   RA1
-#define RPI18   RA2
-#define RPI19   RA3
-#define RPI20   RA4
-#define RPI21   RA5
-#define RPI22   RA6
-#define RPI23   RA7
-#define RPI30   RA14
-#define RPI31   RA15
-#define RPI38   RB6
-#define RPI39   RB7
-#define RPI40   RB8
-#define RPI41   RB9
-#define RPI42   RB10
-#define RPI43   RB11
-#define RPI44   RB12
-#define RPI45   RB13
-#define RPI46   RB14
-#define RPI47   RB15
-#define RPI60   RC12
-#define RPI61   RC13
-#define RPI72   RD8
-#define RPI73   RD9
-#define RPI74   RD10
-#define RPI75   RD11
-#define RPI76   RD12
-#define RPI77   RD13
-#define RPI78   RD14
-#define RPI81   RE1
-#define RPI83   RE3
-#define RPI124  RG12
-
-#define OC1_Pin    1
-#define OC2_Pin    2
-#define OC3_Pin    3
-#define OC4_Pin    4
-#define OC5_Pin    5
-#define OC6_Pin    6
-#define OC7_Pin    7
-#define OC8_Pin    8
-#define OC9_Pin    9
-#define OC10_Pin   10
-#define OC11_Pin   11
-#define OC12_Pin   12
-#define OC13_Pin   13
-#define OC14_Pin   14
-#define OC15_Pin   15
-#define OC16_Pin   16
-
-//*Push-Buttons
-#define SW0 RG12
-#define SW1 RG13
-#define SW2 RG14
-#define SW3 RG15
-
-//*Incremental Encoder
-#define INCA  RG0
-#define INCB  RG1
-#define INCSW RG9
-
-//* DIP Switches
-#define DIP0  RG6 
-#define DIP1  RG7
-
-//* PIEZO
-#define PIEZO RG8
-#define Piezo PIEZO
-
-//*On Board LEDs
-#define LED0 RB8
-#define LED1 RB9
-#define LED2 RB10
-#define LED3 RB11
-#define D200 LED0
-#define D201 LED1
-#define D202 LED2 
-#define D203 LED3
-
-//* On Board Switches
-#define SW200 SW0
-#define SW201 SW1
-#define SW202 SW2
-#define SW203 SW3
-
 //* LCD Ports
 #define LCD_D0 RE0
 #define LCD_D1 RE1
@@ -311,10 +150,6 @@
 #define ANALOG_INPUT_PULLUP     8 
 #define PWM_OUTPUT              9
 
-#define PWM0    OC1_Pin
-#define PWM1    OC2_Pin
-#define Aout0   PWM0
-#define Aout1   PWM1
 /** 
  * @brief Configures the specified pin to behave either as an input or an output.
  * @brief it is possible to enable the internal pullup / pulldown resistors with the mode INPUT_PULLUP, INPUT_PULLDOWN
@@ -349,40 +184,6 @@ void digitalToggle(const uint8_t ui8Port);
  * @attention digitalRead is implemented for all register pins
  */
 uint8_t digitalRead(const uint8_t ui8Port);
-
-/** 
- * @brief Funktion zum Entprellen des Tasters SW0 (Pin 96)
- * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Funktionsaufrufe].
- * @details Funktion Entprellt den Taster SWO (Pin 96)
- * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
- * @attention SW0 muss vorher als Eingang deklariert werden
- */
-uint8_t isPressedSW0();
-
-/** 
- * @brief Funktion zum Entprellen eines beliebigen Tasters/Schalter)
- * @param const uint16_t cui16DebounceTime Entprelldauer kann in edaPIC33Hardware.c festgelegt werden [Einheit: Funktionsaufrufe].
- * @details Funktion Entprellt den Taster SWO (Pin 96)
- * @attention Funktion muss zyklisch in konstanten Zeitabständen aufgerufen werden!
- * @attention Funktion kann nur für einen Pin verwendet werden
- * @attention Pin muss vorher als Eingang deklariert werden
- */
-uint8_t isPressed(uint8_t ui8Port);
-extern const uint16_t cui16DebounceTime;
-
-
-/** 
- * @brief Incrementalencoder
- * @param void
- * @return int8_t value: -1: Links, 0:unverändert, 1:Rechts
- * @details Funktionen wertet den Inkrementalencoder auf dem Board auf. Funktion muss zyklisch aufgerufen werden, damit ein drehen festgestellt werden kann
- * @attention Funktion muss zur initalisierung (mindestens) zweimal aufgerufen werden um den STATE richtig zu definieren!
- * @attention Pins INCA und INCB müssen vorher als INPUT_PULLUP definiert werden 
- */
-int8_t rotaryEncode();
-#define LEFT -1
-#define RIGTH 1
-#define IDLE 0
 
 /** 
  * @brief Functions returns Pointer to TRIS Register 
@@ -480,44 +281,6 @@ uint8_t getBit(uint16_t ui16Var, uint8_t ui8Bit);
  */
 uint8_t getPortBitNumb(uint8_t Port);
 
-/** 
- * @brief Function initilizes ADC1 for single mode with 10Bit
- * @attention ...
- */
-void initADC1();
-
-/** 
- * @brief Function reads analog Value from ui8Port
- * @param uint8_t Port Port you want to read analog
- * @return int16_t analog Value
- */
-int16_t analogRead(uint8_t ui8Port);
-
-/** 
- * @brief Function returns Analog Port Bit Number which is linked with the port
- * @param uint8_t Port Port you want to know the Analog Port Bit Number
- * @return uint8_t Return Return Value: Analog Port Bit Number of Port
- */
-uint8_t getAnalogPortBitNumb(uint8_t Port);
-
-/** 
- * @brief  initialize PWM Modul
- * @details Function initilizes Hardware PWM Module to Independent PWM Mode
- * @param void
- * @return void
- * @attention Periode Value must be set with Function setPwmPeriodValue
- * @attention provided ports: RC1, RC2, RC3, RC4, RE0, RE1, RE2, RE3, RE4, RE5, RE6, RE7
- */
-void initPwmModul();
-
-/** 
- * @brief sets Periode Value for Hardware PWM Modul
- * @details Function sets PWM Period Value
- * @param void
- * @return void
- * @attention Periode Value must be set with Function setPwmPeriodValue
- */
-void setPwmPeriodValue(uint16_t ui16PeriodValue);
 
 /** 
  * @brief Function returns PWM Pin Enable Register Bit Number
@@ -525,45 +288,5 @@ void setPwmPeriodValue(uint16_t ui16PeriodValue);
  * @return uint8_t Return Return Value: PWM Pin Enable Register Bit Number of Port
  */
 uint8_t getPwmPinEnRegisterBitNumb(uint8_t Port);
-
-/** 
- * @brief sets Duty Cycle (on Time) for Hardware PWM Modul Port
- * @param   uint8_t     ui8Port         Port you want to change the DutyCycle
- *          uint16_t    ui16DutyCycle   DutyCycle (0...Period Value)
- * @return void
- * @attention Periode Value must be set with Function setPwmPeriodValue
- */
-void setPwmDutyCycle(uint8_t ui8Port, uint16_t ui16DutyCycle);
-
-/** 
- * @brief initialize Output Compare Module
- * @details Function initializes Output Compare Module to 
- * @param   uint8_t OC_Pin  internal OCx Pin to initalize output compare module
- * @return void
- * @attention internal OCx Pins must be mapped to Output Pins!!! See Function EdaBoardOutputMapping
- */
-void initOutputComparePwm(uint8_t OC_Pin);
-
-/** 
- * @brief set Output Compare Values 
- * @details set Parameter for Output Compare PWM Pins, Value are normalited to Fp = Fosc/2
- * @param uint8_t   OC_Pin Output Compare Pin
- *        uint16_t  ui16PeriodTime Period Value for OC Pins
- *        uint16_t  ui16HighTime High Time Value for OC Pins
- * @return void
- * @attention 
- */
-void setOutputCompareValues(uint8_t OC_Pin, uint16_t ui16PeriodTime, uint16_t ui16HighTime);
-
-/** 
- * @brief Output Mapping Function
- * @details Function maps internal Pins to external output Pins
- * @details  Pin 72 (RD0) <= OC1
- * @details  Pin 76 (RD1) <= OC2
- * @param  void
- * @return void
- * @attention read Datasheet to map the pins
- */
-void EdaBoardOutputMapping();
 
 #endif	/* EDAPIC33HARDWARE_H */
