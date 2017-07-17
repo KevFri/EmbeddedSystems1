@@ -204,7 +204,6 @@ void sendDataToLCD()
     //READS BUSY FLAG IF LCD IS READY TO GET CHAR
     if(readBusyFlagLCD() == 0)
     {
-        digitalWrite(LED1,LOW);
         //CHECKS THE CURSOR POSITION
         if(ui8setCursor == 1)
         {
@@ -238,7 +237,7 @@ void sendDataToLCD()
     }
     else
     {
-        digitalWrite(LED1,HIGH);
+        //do nothing
     }
 }
 

@@ -188,7 +188,7 @@ uint8_t createComparator(int16_t  i16InputValue)
         return 0;
 }
 
-#define Vss 512
+#define Vss 1024
 #define Pi 3.14159265359
 #define T 20
 void sinusGenerator(uint8_t OutputComparePort)
@@ -196,7 +196,7 @@ void sinusGenerator(uint8_t OutputComparePort)
     static uint16_t t=0;
     uint16_t ui16Magnitude = (uint16_t) ((Vss/2)*(1.0+sin(2.0*Pi*((double)t)/((double)T)))) ;
     
-    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, Vss, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;
@@ -208,7 +208,7 @@ void sinusGeneratorTimeBase(uint8_t OutputComparePort, uint16_t msPeriod)
     static uint16_t t=0;
     uint16_t ui16Magnitude = (uint16_t) ((Vss/2)*(1.0+sin(2.0*Pi*((double)t)/((double)msPeriod)))) ;
     
-    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, Vss, ui16Magnitude);
     t++;
     if(t >= msPeriod)
         t=0;
@@ -217,8 +217,8 @@ void sinusGeneratorTimeBase(uint8_t OutputComparePort, uint16_t msPeriod)
 void sawtoothGenerator(uint8_t OutputComparePort)
 {
     static uint16_t t=0;
-    uint16_t ui16Magnitude = (((float)1024*(float)t)/(float)T);
-    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
+    uint16_t ui16Magnitude = (((float)Vss*(float)t)/(float)T);
+    setOutputCompareValues(OutputComparePort, Vss, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;
@@ -226,8 +226,8 @@ void sawtoothGenerator(uint8_t OutputComparePort)
 void sawtoothGeneratorTimeBase(uint8_t OutputComparePort, uint16_t msPeriod)
 {
     static uint16_t t=0;
-    uint16_t ui16Magnitude = (((float)1024*(float)t)/(float)msPeriod);
-    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
+    uint16_t ui16Magnitude = (((float)Vss*(float)t)/(float)msPeriod);
+    setOutputCompareValues(OutputComparePort, Vss, ui16Magnitude);
     t++;
     if(t >= msPeriod)
         t=0;
@@ -244,7 +244,7 @@ void triangleGenerator(uint8_t OutputComparePort)
     else
         ui16Magnitude = (uint16_t) Vss*(((2*(float)t)/(float)T)-1.0);
     
-    setOutputCompareValues(OutputComparePort, 1024, ui16Magnitude);
+    setOutputCompareValues(OutputComparePort, Vss, ui16Magnitude);
     t++;
     if(t >= T)
         t=0;
