@@ -1,5 +1,6 @@
 #include "edaPIC33LCD.h"
 #include "edaPIC33Hardware.h"
+#include "edaPIC33Setup.h"
 #include <string.h>
 
 char DataString[32];  
@@ -197,12 +198,13 @@ void clearLCDStorage()
 
 void sendDataToLCD()
 {
-        static uint8_t ui8position = 0;
+    static uint8_t ui8position = 0;
     static uint8_t ui8setCursor = 0;
     
     //READS BUSY FLAG IF LCD IS READY TO GET CHAR
     if(readBusyFlagLCD() == 0)
     {
+        digitalWrite(LED1,LOW);
         //CHECKS THE CURSOR POSITION
         if(ui8setCursor == 1)
         {
@@ -233,6 +235,10 @@ void sendDataToLCD()
         {
             ui8setCursor = 1;
         }
+    }
+    else
+    {
+        digitalWrite(LED1,HIGH);
     }
 }
 

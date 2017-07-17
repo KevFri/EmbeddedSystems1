@@ -190,6 +190,12 @@ int8_t rotaryEncode();
 #define RIGTH 1
 #define IDLE 0
 
+/**
+ * @brief calculates if the given number is prim
+ * @param ui32Number
+ * @return 1:prim, 0:not prim
+ */
+uint8_t isPrim(uint32_t ui32Number);
 
 #ifdef	__cplusplus
 }

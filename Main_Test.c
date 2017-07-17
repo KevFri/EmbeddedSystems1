@@ -88,16 +88,26 @@ int main() {
         sawtoothGeneratorTimeBase(OC1_Pin, ANin);
         sinusGeneratorTimeBase(OC2_Pin, ANin);
         
-        stopWatch(&DataString[16], !isPressed2(INCSW,0)) == 0 ? setLCDLine("OFF",1):setLCDLine("ON",1);
+        stopWatch(&DataString[16], !isPressed2(INCSW,0));
+        
+        if(isPrim(ui32Time))
+        {
+            sprintf(str, "%lu is Prim",ui32Time);
+            setLCDLine(str,1);
+        }
+        
+        
+        
         
         FlipFlopLED0(isPressed2(SW0,1));
         
-        Treppenlichtautomat(isPressed2(SW1,2),LED1,2000,4000);
-        
+        Treppenlichtautomat(isPressed2(SW1,2),LED2,2000,4000);
+        digitalToggle(LED3);
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
         {
+            sendDataToLCD();
             ClrWdt();   //clear watchdog timer
         }          
     }//while

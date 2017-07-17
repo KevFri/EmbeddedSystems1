@@ -188,7 +188,7 @@ uint8_t createComparator(int16_t  i16InputValue)
         return 0;
 }
 
-#define Vss 1024
+#define Vss 512
 #define Pi 3.14159265359
 #define T 20
 void sinusGenerator(uint8_t OutputComparePort)
@@ -646,4 +646,33 @@ int8_t rotaryEncode()
             break;
     }
     return i8Return;
+}
+
+uint8_t isPrim(uint32_t ui32Number){
+
+    if(ui32Number==0 || ui32Number==1)
+        return 0;
+
+    if((ui32Number%2)==0)
+    {
+        if(ui32Number==2)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    uint32_t ui32Divider;
+    uint32_t ui32SqrtNumber =((uint32_t) sqrt((long double)(ui32Number)))+1;
+
+    for(ui32Divider=3; ui32Divider<ui32SqrtNumber; ui32Divider+=2)
+    {
+        if((ui32Number%ui32Divider) == 0) //check if ui32Divider is a in whole divider of ui32Number
+        {
+            return 0; //uiNumber32 isn't a prime number
+        }
+    }
+    return 1; //ui32Number is a Prime Number
 }
