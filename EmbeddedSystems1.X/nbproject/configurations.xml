@@ -44,6 +44,7 @@
     <itemPath>../edaPIC33SystemTime.h</itemPath>
     <itemPath>../edaPIC33Timer.c</itemPath>
     <itemPath>../edaPIC33Timer.h</itemPath>
+    <itemPath>../edaPIC33UART1.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>..</Elem>
@@ -85,7 +86,29 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
-      <item path="../Main_Test.c" ex="true" overriding="false">
+      <item path="../Aufgabe1Main.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="../Main_Test.c" ex="false" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <C30>
         <property key="code-model" value="default"/>
@@ -190,6 +213,9 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <PICkit3PlatformTool>
+        <property key="firmware.download.all" value="false"/>
+      </PICkit3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

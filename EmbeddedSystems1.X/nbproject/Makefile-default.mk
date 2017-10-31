@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../Aufgabe1Main.c ../edaPIC33ADC.c ../edaPIC33BlinkLed.c ../edaPIC33Hardware.c ../edaPIC33LCD.c ../edaPIC33OtherStuff.c ../edaPIC33OutputCompare.c ../edaPIC33PWM.c ../edaPIC33RingBuffer.c ../edaPIC33Setup.c ../edaPIC33SystemTime.c ../edaPIC33Timer.c
+SOURCEFILES_QUOTED_IF_SPACED=../Main_Test.c ../edaPIC33ADC.c ../edaPIC33BlinkLed.c ../edaPIC33Hardware.c ../edaPIC33LCD.c ../edaPIC33OtherStuff.c ../edaPIC33OutputCompare.c ../edaPIC33PWM.c ../edaPIC33RingBuffer.c ../edaPIC33Setup.c ../edaPIC33SystemTime.c ../edaPIC33Timer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/Aufgabe1Main.o ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o.d ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o.d ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o.d ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o.d ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o.d ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o.d ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o.d ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/Main_Test.o ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/Main_Test.o.d ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o.d ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o.d ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o.d ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o.d ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o.d ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o.d ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o.d ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o.d ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1472/Aufgabe1Main.o ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o
+OBJECTFILES=${OBJECTDIR}/_ext/1472/Main_Test.o ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o ${OBJECTDIR}/_ext/1472/edaPIC33BlinkLed.o ${OBJECTDIR}/_ext/1472/edaPIC33Hardware.o ${OBJECTDIR}/_ext/1472/edaPIC33LCD.o ${OBJECTDIR}/_ext/1472/edaPIC33OtherStuff.o ${OBJECTDIR}/_ext/1472/edaPIC33OutputCompare.o ${OBJECTDIR}/_ext/1472/edaPIC33PWM.o ${OBJECTDIR}/_ext/1472/edaPIC33RingBuffer.o ${OBJECTDIR}/_ext/1472/edaPIC33Setup.o ${OBJECTDIR}/_ext/1472/edaPIC33SystemTime.o ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o
 
 # Source Files
-SOURCEFILES=../Aufgabe1Main.c ../edaPIC33ADC.c ../edaPIC33BlinkLed.c ../edaPIC33Hardware.c ../edaPIC33LCD.c ../edaPIC33OtherStuff.c ../edaPIC33OutputCompare.c ../edaPIC33PWM.c ../edaPIC33RingBuffer.c ../edaPIC33Setup.c ../edaPIC33SystemTime.c ../edaPIC33Timer.c
+SOURCEFILES=../Main_Test.c ../edaPIC33ADC.c ../edaPIC33BlinkLed.c ../edaPIC33Hardware.c ../edaPIC33LCD.c ../edaPIC33OtherStuff.c ../edaPIC33OutputCompare.c ../edaPIC33PWM.c ../edaPIC33RingBuffer.c ../edaPIC33Setup.c ../edaPIC33SystemTime.c ../edaPIC33Timer.c
 
 
 CFLAGS=
@@ -88,12 +88,12 @@ MP_LINKER_FILE_OPTION=,--script=p33EP512MU810.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1472/Aufgabe1Main.o: ../Aufgabe1Main.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/1472/Main_Test.o: ../Main_Test.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../Aufgabe1Main.c  -o ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/_ext/1472/Main_Test.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/Main_Test.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../Main_Test.c  -o ${OBJECTDIR}/_ext/1472/Main_Test.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1472/Main_Test.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/Main_Test.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o: ../edaPIC33ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
@@ -173,12 +173,12 @@ ${OBJECTDIR}/_ext/1472/edaPIC33Timer.o: ../edaPIC33Timer.c  nbproject/Makefile-$
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/edaPIC33Timer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/_ext/1472/Aufgabe1Main.o: ../Aufgabe1Main.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/1472/Main_Test.o: ../Main_Test.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ../Aufgabe1Main.c  -o ${OBJECTDIR}/_ext/1472/Aufgabe1Main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/Aufgabe1Main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/_ext/1472/Main_Test.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/Main_Test.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../Main_Test.c  -o ${OBJECTDIR}/_ext/1472/Main_Test.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1472/Main_Test.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/Main_Test.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/_ext/1472/edaPIC33ADC.o: ../edaPIC33ADC.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 

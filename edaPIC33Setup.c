@@ -76,6 +76,13 @@ void EdaBoardOutputMapping()
     //_RP65R = 0b010001; //OC2 to Pin 76 --> RD1
     _RP64R = _RPOUT_OC1;
     _RP65R = _RPOUT_OC2;
+    
+    RPOR9 = 0;
+    RPOR9bits.RP101R = 1;       //RF5/RP101 as U1TX
+    RPINR18bits.U1RXR = 100;    //RP100/RF4 as U1RX
+    
+    
+    
     //_RP120R =  0b010000;  //OC1 to Piezo
     __builtin_write_OSCCONL(OSCCON | (1<<6));
 }
