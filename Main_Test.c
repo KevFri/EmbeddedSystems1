@@ -67,6 +67,8 @@ char str[16];
 char szRX[32] = "\0";
 char szTX[32] = "\0";
 
+extern char psUart1ReadBuffer[256];
+
 /* ***********************
  * Main
  * ***********************
@@ -80,11 +82,11 @@ int main() {
     configOscillator();
 
     InitUART1();
-    char c;
+    //char c;
     
     //setup pinMode for switches, led, LCD, rotatory encode,...
     setupEdaPIC33Board();
-
+    
     
     
     //config timer 1 for getSystemTimeMillis();)
@@ -93,29 +95,21 @@ int main() {
     
     
     putsU1("DSP Reset");
-    getU1();
+    //getU1();
     
     /* Endless Loop */
     while(1){
         
+               
+        //getsnU1( szRX, 32);
         
-        /*
-        c = getU1();
-        if(c!=0)
-        {
-            putU1( c);
-            sprintf(str,"last char: %c %x", c,c);
-            setLCDLine(str,1);
-        }
-        */
+        setLCDLine(psUart1ReadBuffer,1);
         
-        getsnU1( szRX, 32);
+        sprintf(str, "Millis: %lu",ui32Time);
+        setLCDLine(str,2);
+        //putsU1(szTX);
         
-        sprintf(szTX, "PIC: %s",szRX);
-        putsU1(szTX);
-        ClrWdt();
-        
-        /*
+             
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
         while(getSystemTimeMillis() < ui32Time) //wait rest of 1ms
@@ -123,7 +117,7 @@ int main() {
             //sendDataToLCD();
             ClrWdt();   //clear watchdog timer
         }
-        */
+        
     }//while
     return (EXIT_SUCCESS);  //never reached
 } //main()

@@ -29,13 +29,20 @@ void putsU1(char* s);
 
 char* getsnU1( char *s, int len);
 
-/*
+char psUart1ReadBuffer[256];
+
 void __attribute__ ( (interrupt, no_auto_psv) ) _U1RXInterrupt( void )
 {
-    LATA = U1RXREG;
+    static uint8_t ui8Counter = 0;
+    //LATA = U1RXREG;
+    while(U1STAbits.URXDA)
+        if(U1RXREG != 0x0000)
+            psUart1ReadBuffer[ui8Counter++] = U1RXREG;
+    
     IFS0bits.U1RXIF = 0;
 }
 
+/*
 void __attribute__ ( (interrupt, no_auto_psv) ) _U1TXInterrupt( void )
 {
     IFS0bits.U1TXIF = 0;
@@ -48,8 +55,14 @@ void InitUART1(void)
     U1BRG = 150;
     U1MODE = 0x8008;
     U1STA = 0x0400;
-    //RTS = 1; // set RTS default status
-    //TRTS = 0; // make RTS output
+    U1STAbits.URXISEL = 0b00;
+    
+    IPC7 = 0x4400;        // Mid Range Interrupt Priority level, no urgent reason
+    IFS0bits.U1RXIF = 0;  // Clear the Recieve Interrupt Flag
+    IEC0bits.U1RXIE = 1;  // Enable Recieve Interrupts
+    //U1MODEbits.UARTEN = 1;// Turn the UART1 peripheral on
+    
+    
 } // InitU2
 
 int putU1(int c)
