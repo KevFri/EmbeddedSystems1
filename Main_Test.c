@@ -95,6 +95,7 @@ int main() {
     
     
     putsU1("DSP Reset");
+    clearUart1ReadBuffer();
     //getU1();
     
     /* Endless Loop */
@@ -102,13 +103,20 @@ int main() {
         
                
         //getsnU1( szRX, 32);
+        uint8_t i;
+        for(i=0; i<16;i++)
+        {
+            str[i] = psUart1ReadBuffer[i] != '\0' ? psUart1ReadBuffer[i] : '$' ;
+        }
         
-        setLCDLine(psUart1ReadBuffer,1);
+        setLCDLine(str,1);
         
         sprintf(str, "Millis: %lu",ui32Time);
         setLCDLine(str,2);
         //putsU1(szTX);
         
+        if(getUart1ReadBufferCounter() >= 17)
+            clearUart1ReadBuffer();
              
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter

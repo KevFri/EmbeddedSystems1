@@ -31,16 +31,34 @@ char* getsnU1( char *s, int len);
 
 char psUart1ReadBuffer[256];
 
+volatile uint8_t ui8Uart1ReadBufferCounter = 0; //global variable for Uart 1 Buffer
+
+void clrUart1ReadBufferCounter( void )
+{
+    ui8Uart1ReadBufferCounter = 0;
+}
+
+uint8_t getUart1ReadBufferCounter()
+{
+    return ui8Uart1ReadBufferCounter;
+}
+
 void __attribute__ ( (interrupt, no_auto_psv) ) _U1RXInterrupt( void )
 {
-    static uint8_t ui8Counter = 0;
-    //LATA = U1RXREG;
     while(U1STAbits.URXDA)
-        if(U1RXREG != 0x0000)
-            psUart1ReadBuffer[ui8Counter++] = U1RXREG;
+            psUart1ReadBuffer[ui8Uart1ReadBufferCounter++] = U1RXREG;
     
     IFS0bits.U1RXIF = 0;
 }
+
+void clearUart1ReadBuffer(void)
+{
+    uint16_t i;
+    for(i=0; i<=256; i++)
+        psUart1ReadBuffer[i]='_';
+    ui8Uart1ReadBufferCounter=0;
+}
+
 
 /*
 void __attribute__ ( (interrupt, no_auto_psv) ) _U1TXInterrupt( void )
