@@ -29,6 +29,7 @@
 #include "edaPIC33OutputCompare.h"
 #include "edaPIC33ADC.h"
 #include "edaPIC33UART1.h"
+#include "edaPIC33Protocol.h"
 
 
 /* ***********************
@@ -81,7 +82,7 @@ int main() {
     //config oscillator PLL with external 8Mhz crystal to F_OSC = 140MHz
     configOscillator();
 
-    InitUART1();
+    initUart1();
     //char c;
     
     //setup pinMode for switches, led, LCD, rotatory encode,...
@@ -94,29 +95,47 @@ int main() {
     uint32_t ui32Time= getSystemTimeMillis(); //Variable used for time calculation
     
     
-    putsU1("DSP Reset");
-    clearUart1ReadBuffer();
+    putStrUart1("DSP Reset");
+    clrUart1ReadBuffer();
     //getU1();
     
     /* Endless Loop */
     while(1){
         
                
-        //getsnU1( szRX, 32);
-        uint8_t i;
-        for(i=0; i<16;i++)
+        //copy ReadBuffer to str and replace 0x00 with '$'
         {
-            str[i] = psUart1ReadBuffer[i] != '\0' ? psUart1ReadBuffer[i] : '$' ;
+            uint8_t i;
+            for(i=0; i<16;i++)
+            {
+                str[i] = psUart1ReadBuffer[i] != '\0' ? psUart1ReadBuffer[i] : '$' ;
+            }
+            setLCDLine(str,1);
         }
         
-        setLCDLine(str,1);
+       
+        if(getUart1NewMessageFlag())
+        {
+           char pMsg[20];
+            digitalWrite(LED0, HIGH);
+            handleMessage(getNewMsgUart1(pMsg));
+        }
+        else
+        {
+            digitalWrite(LED0, LOW);
+        }
         
-        sprintf(str, "Millis: %lu",ui32Time);
+        
+        
+        sprintf(str, "%lu   %x",ui32Time,psUart1ReadBuffer[0]);
         setLCDLine(str,2);
         //putsU1(szTX);
         
         if(getUart1ReadBufferCounter() >= 17)
-            clearUart1ReadBuffer();
+        {
+            clrUart1ReadBuffer();
+
+        }
              
         sendDataToLCD(); //send one character from LCD-Storage (Shadow-String) to LCD
         ui32Time++; //increase ms counter
